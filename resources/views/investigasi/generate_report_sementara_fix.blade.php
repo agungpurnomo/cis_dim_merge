@@ -53,7 +53,7 @@
                 </td>
                 <td align="center">
                   <h2> LAPORAN INVESTIGASI SEMENTARA </h2>
-                 Per Tanggal 14/06/2021
+                 Per Tanggal <?php echo date("Y.m.d") ?>
                 </td>
                 <td><?php echo str_repeat("&nbsp;",5);?></td>
               </tr>
@@ -229,6 +229,7 @@
       </td>
     </tr>
   </table>
+    @if ($detail->informasi_lain==!'')
     <h5>
       TAMBAHAN INFORMASI LAINNYA :
     </h5>
@@ -236,6 +237,8 @@
         background-color: black; color: white; padding : 5px 5px 5px 5px">
         {{$detail->informasi_lain}}
     </div>
+    @endif
+    
   </div>
 
   {{-- UPdate Investigasi --}}

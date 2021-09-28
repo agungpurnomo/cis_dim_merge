@@ -31,7 +31,11 @@ class UserController extends Controller
         }
         return view('user.index');
     }
-
+    
+    public function profile()
+    {
+        return view('user.profile');
+    }
     /**
      * Show the form for creating a new resource.
      *

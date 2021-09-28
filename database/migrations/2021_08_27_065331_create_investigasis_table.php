@@ -43,6 +43,8 @@ class CreateInvestigasisTable extends Migration
             $table->integer('investigasi_fee');
             $table->unsignedBigInteger('investigator_id');
             $table->string('informasi_lain');
+            $table->date('tgl_kirim_dokumen');
+            $table->string('tambahan_waktu');
             $table->unsignedBigInteger('user_id');
             $table->integer('status');
             $table->timestamps();

@@ -390,6 +390,18 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label" for="tgl_kirim_dokumen">Tanggal Kirim Dokumen</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="js-flatpickr form-control" id="tgl_kirim_dokumen" name="tgl_kirim_dokumen" placeholder="Y-m-d">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Tambahan Informasi Lain</label>
+                            <div class="col-sm-8">
+                                <textarea type="text" class="form-control" rows="3" id="tambahan_waktu" name="tambahan_waktu"></textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <hr>
