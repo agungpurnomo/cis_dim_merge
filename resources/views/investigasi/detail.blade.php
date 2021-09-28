@@ -736,7 +736,10 @@
                         
                         @endif
                         @if ($detail->status =='1')
-                            <span class="fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-warning fs-sm">Completed</span>
+                            <span class="fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success fs-sm">Completed</span>
+                        @endif
+                        @if ($detail->status =='2')
+                            <span class="fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info fs-sm">Wait Approved</span>
                         @endif
                         <p id="id" hidden>{{$detail->id}}</p>
                     </h2>
@@ -776,14 +779,7 @@
                 @endif
                 
 
-                @if ($detail->status =='0')
-                <a href="" class="btn btn-alt-success me-1 btn-sm">
-                    <i class="fa fa-plus text-info me-1"></i>Temuan Kasus
-                </a>
-                <a href="" class="btn btn-alt-info btn-sm mr-2" >
-                    <i class="fa fa-pencil-alt text-info me-1"></i>Uang Pertanggungan Diselamatkan</button>
-                </a>               
-                @endif
+                
          
             </div>
                      
@@ -1002,7 +998,7 @@
                     TEMUAN KASUS
                 </h3>
                 <button type="button" type="button" class="btn btn-alt-primary  btn-sm" data-bs-toggle="modal" data-bs-target="#modal-add-temuan">
-                    <i class="fa fa-plus text-info me-1"></i>Tambah Temuan</button>              
+                    <i class="fa fa-plus text-info me-1"></i>Temuan</button>              
             </div>
 
             <div class="block-content block-content-full">
@@ -1032,7 +1028,7 @@
                     UANG PERTANGGUNGAN DISELAMATKAN
                 </h3>
                 <button type="button" type="button" class="btn btn-alt-primary  btn-sm" data-bs-toggle="modal" data-bs-target="#modal-add-uangpertanggungan">
-                    <i class="fa fa-plus text-info me-1"></i>Tambah Uang Pertanggungan Diselamatkan</button>              
+                    <i class="fa fa-plus text-info me-1"></i>Uang Pertanggungan Diselamatkan</button>              
             </div>
 
             <div class="block-content block-content-full">
@@ -1117,17 +1113,19 @@
 
 
         <div class="row push">
-            <div class="col-lg-12">
+            <div class="col-lg-12 text-center">
                 <!-- <a href="" class="btn btn-alt-primary me-1 btn-sm btn-cetak-sementara"><i class="fa fa-print text-info me-1"></i>Generate Report Sementara</a> -->
-                <form method="get" action="">
-                    <button type="submit" class="btn btn-alt-primary me-1 btn-sm btn-cetak-akhir"><i class="fa fa-print text-info me-1"></i>Generate Report Akhir</button>
-                </form>
+                
+                <button type="submit" class="btn btn-alt-primary me-1 btn-sm btn-cetak-akhir"><i class="fa fa-print text-info me-1"></i>Generate Report Akhir</button>
                 <a href="{{ route('generate',$detail->id)}}" class="btn btn-alt-primary me-1 btn-sm btn-cetak-sementara"><i class="fa fa-print text-info me-1"></i>Generate Report Sementara</a>
-                <form method="get" action="">
-                    <a class="btn btn-alt-primary me-1 btn-sm btn-send-approve"><i class="fa fa-arrow-alt-circle-right text-info me-1"></i>Send to Approve</a>
-                </form>
-            </div>
-                                  
+                
+                @if ($detail->status =='0')
+                    <a class="btn btn-alt-primary me-1 btn-sm btn-send-approve"><i class="fa fa-arrow-alt-circle-right text-success me-1"></i>Send to Approve</a>
+                @endif
+                @if ($detail->status =='2')
+                    <a class="btn btn-alt-primary me-1 btn-sm btn-cancel-send"><i class="fa fa-arrow-alt-circle-right text-warning me-1"></i>Cancel Send to Approve</a>
+                @endif
+            </div>             
         </div>
 
         

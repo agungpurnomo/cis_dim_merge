@@ -89,6 +89,9 @@
                             <td>{{$datas->nm_tertanggung}}</td>
                             <td>{{$datas->nm_perusahaan}}</td>
                             <td>
+                                @if($datas->status=='2')
+                                    <span class="fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info fs-sm">wait approved</span>
+                                @endif
                                 @if($datas->status=='1')
                                     <span class="fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success fs-sm">Completed</span>
                                 @endif

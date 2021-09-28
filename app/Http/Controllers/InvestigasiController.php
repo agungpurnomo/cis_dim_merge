@@ -34,13 +34,26 @@ class InvestigasiController extends Controller
      */
     public function index(Request $request)
     {
-        $user_id = Auth::user()->id;
-        $data = DB::table('investigasis')
+        $user_id = Auth::user();
+
+        if ($user_id->role =='master'){
+            $data = DB::table('investigasis')
             ->join('asuransis','investigasis.asuransi_id','=','asuransis.id')
             ->join('investigators','investigasis.investigator_id','=','investigators.id')
             ->select('investigasis.*','asuransis.nm_perusahaan','investigators.nm_investigator')
             ->orderBy('created_at', 'DESC')
             ->get();
+        }
+        if ($user_id->role =='user'){
+            $data = DB::table('investigasis')
+            ->join('asuransis','investigasis.asuransi_id','=','asuransis.id')
+            ->join('investigators','investigasis.investigator_id','=','investigators.id')
+            ->select('investigasis.*','asuransis.nm_perusahaan','investigators.nm_investigator')
+            ->orderBy('created_at', 'DESC')
+            ->where('investigasis.user_id',$user_id->id)
+            ->get();
+        }
+        
         return view('investigasi.list',compact('data','user_id'));
     }
 
