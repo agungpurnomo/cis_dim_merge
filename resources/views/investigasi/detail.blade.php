@@ -242,11 +242,11 @@
         })
         //end delepe update
 
-        //approve
+        //send permintaan approve
         $('body').on("click",".btn-send-approve",function(){
             var id = $('#id').text();
             $('#form_result').html('');
-            console.log(id);
+            // console.log(id);
             $.ajax({
                 url: "/sendApprove/"+id,
                 method: "GET",
@@ -260,10 +260,10 @@
 
         $("#getsendapprove").on("submit",function(e){
             e.preventDefault()
-            var id = $("#id").val()
+            var id = $('#id').text();
             var dt = $(this).serialize();
-            console.log(id);
-            console.log(dt);
+            // console.log(id);
+            // console.log(dt);
             $.ajax({
                 url: "/editsendApprove/"+id,
                 method: "PATCH",
@@ -271,7 +271,116 @@
                 success:function(){
                     $("#modal-send-approve").modal("hide");
                     One.helpers('jq-notify', 
-                        {type: 'success', icon: 'fa fa-check me-1', message: 'Berhasil diupdate!'});
+                        {type: 'success', icon: 'fa fa-check me-1', message: 'Send approve success!'});
+                    location.reload();
+                }
+            })
+        })
+        //end send approve
+
+        //cancel send approve
+        $('body').on("click",".btn-cancel-send",function(){
+            var id = $('#id').text();
+            $('#form_result').html('');
+            console.log(id);
+            $.ajax({
+                url: "/sendApprove/"+id,
+                method: "GET",
+                dataType : "json",
+                success:function(html){
+                    $("#modal-cancel-send").modal("show")
+                    $("#id").val(html.data.id)
+                }
+            });
+        });
+
+        $("#getcancelsendapprove").on("submit",function(e){
+            e.preventDefault()
+            var id = $('#id').text();
+            var dt = $(this).serialize();
+            // console.log(id);
+            // console.log(dt);
+            $.ajax({
+                url: "/editsendApprove/"+id,
+                method: "PATCH",
+                data: $(this).serialize(),
+                success:function(){
+                    $("#modal-send-approve").modal("hide");
+                    One.helpers('jq-notify', 
+                        {type: 'success', icon: 'fa fa-check me-1', message: 'Cancel Send approve success!'});
+                    location.reload();
+                }
+            })
+        })
+        //end cancel send approve
+
+        //approve
+        $('body').on("click",".btn-approve",function(){
+            var id = $('#id').text();
+            $('#form_result').html('');
+            console.log(id);
+            $.ajax({
+                url: "/sendApprove/"+id,
+                method: "GET",
+                dataType : "json",
+                success:function(html){
+                    $("#modal-approve").modal("show")
+                    $("#id").val(html.data.id)
+                }
+            });
+        });
+
+        $("#getapprove").on("submit",function(e){
+            e.preventDefault()
+            var id = $('#id').text();
+            var dt = $(this).serialize();
+            // console.log(id);
+            // console.log(dt);
+            $.ajax({
+                url: "/editsendApprove/"+id,
+                method: "PATCH",
+                data: $(this).serialize(),
+                success:function(){
+                    $("#modal-approve").modal("hide");
+                    One.helpers('jq-notify', 
+                        {type: 'success', icon: 'fa fa-check me-1', message: 'Approved success!'});
+                    location.reload();
+                }
+            })
+        })
+        //end approve
+
+        //cancel approve
+        $('body').on("click",".btn-cancel-approve",function(){
+            var id = $('#id').text();
+            $('#form_result').html('');
+            console.log(id);
+            $.ajax({
+                url: "/sendApprove/"+id,
+                method: "GET",
+                dataType : "json",
+                success:function(html){
+                    $("#modal-cancel-approve").modal("show")
+                    $("#id").val(html.data.id)
+                }
+            });
+        });
+
+        $("#getcancelapprove").on("submit",function(e){
+            e.preventDefault()
+            var id = $('#id').text();
+            var dt = $(this).serialize();
+            // console.log(id);
+            // console.log(dt);
+            $.ajax({
+                url: "/editsendApprove/"+id,
+                method: "PATCH",
+                data: $(this).serialize(),
+                success:function(){
+                    $("#modal-cancel-approve").modal("hide");
+                    One.helpers('jq-notify', 
+                        {type: 'warning', icon: 'fa fa-check me-1', message: 'Approved dibatalkan!'});
+                    location.reload();
                 }
             })
         })
@@ -741,6 +850,7 @@
                         @if ($detail->status =='2')
                             <span class="fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info fs-sm">Wait Approved</span>
                         @endif
+                        <br>Admin : {{$detail->username}}
                         <p id="id" hidden>{{$detail->id}}</p>
                     </h2>
                 </div>
@@ -774,13 +884,7 @@
                     <i class="fa fa-fw fa-times me-1"></i>Hapus
                 </button>
                 @endif
-                @if ($detail->status =='1')
-                <button type="button" class="btn btn-alt-warning  btn-sm">Cancel Closed</button>
-                @endif
                 
-
-                
-         
             </div>
                      
         </div>
@@ -1125,8 +1229,11 @@
                 @if ($detail->status =='2' and $user->role =='user')
                     <a class="btn btn-alt-primary me-1 btn-sm btn-cancel-send"><i class="fa fa-arrow-alt-circle-right text-warning me-1"></i>Cancel Send to Approve</a>
                 @endif
-                @if ($detail->status =='2' or $detail->status =='0' and $user->role =='master')
+                @if (($detail->status =='2' or $detail->status =='0') and $user->role =='master')
                     <a class="btn btn-alt-primary me-1 btn-sm btn-approve"><i class="fa fa-arrow-alt-circle-right text-success me-1"></i>Approve</a>
+                @endif
+                @if ($detail->status =='1' and $user->role =='master')
+                <button type="button" class="btn btn-alt-warning  btn-sm btn-cancel-approve">Cancel Closed</button>
                 @endif
             </div>             
         </div>
@@ -1369,6 +1476,95 @@
         </div>
     </div>
     <!-- END Small Block Modal -->
+
+    <!-- modal cancel send approve-->
+    <div class="modal fade" id="modal-cancel-send" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">
+        <div class="modal-dialog modal-vcenter" role="document">
+            <div class="modal-content">
+                <span id="form_result"></span>
+                <form id="getcancelsendapprove">
+                <div class="block block-rounded block-transparent mb-0">
+                    <div class="block-header block-header-default">
+                    <h3 class="block-title">Cancel Send Approve Investigasi</h3>
+                    <input type="text" value="0" name="status" id="status" hidden>
+                    <div class="block-options">
+                        <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-fw fa-times"></i>
+                        </button>
+                    </div>
+                    </div>
+                    <div class="block-content fs-sm text-center">
+                        <h5>Yakin akan membatalkan permintaan approve?</h5>
+                    </div>
+                    <div class="block-content block-content-full text-end bg-body">
+                        <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-sm btn-danger btn-getcancel-send">Kirim</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end cancel approve -->
+
+    <!-- modal approve-->
+    <div class="modal fade" id="modal-approve" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">
+        <div class="modal-dialog modal-vcenter" role="document">
+            <div class="modal-content">
+                <span id="form_result"></span>
+                <form id="getapprove">
+                <div class="block block-rounded block-transparent mb-0">
+                    <div class="block-header block-header-default">
+                    <h3 class="block-title">Approve Investigasi</h3>
+                    <input type="text" value="1" name="status" id="status" hidden>
+                    <div class="block-options">
+                        <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-fw fa-times"></i>
+                        </button>
+                    </div>
+                    </div>
+                    <div class="block-content fs-sm text-center">
+                        <h5>Apakah yakin untuk menyetujui hasil investigasi?</h5>
+                    </div>
+                    <div class="block-content block-content-full text-end bg-body">
+                        <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-sm btn-danger btn-getcancel-send">Kirim</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end approve -->
+    <!-- modal approve-->
+    <div class="modal fade" id="modal-cancel-approve" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">
+        <div class="modal-dialog modal-vcenter" role="document">
+            <div class="modal-content">
+                <span id="form_result"></span>
+                <form id="getcancelapprove">
+                <div class="block block-rounded block-transparent mb-0">
+                    <div class="block-header block-header-default">
+                    <h3 class="block-title">Cancel Approve Investigasi</h3>
+                    <input type="text" value="0" name="status" id="status" hidden>
+                    <div class="block-options">
+                        <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-fw fa-times"></i>
+                        </button>
+                    </div>
+                    </div>
+                    <div class="block-content fs-sm text-center">
+                        <h5>Apakah yakin untuk membatalkan persetujuan hasil investigasi?</h5>
+                    </div>
+                    <div class="block-content block-content-full text-end bg-body">
+                        <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-sm btn-danger btn-cancel-approve">Simpan</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end approve -->
 
      <!-- modal-add temuan-->
     <div class="modal fade" id="modal-add-temuan" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">

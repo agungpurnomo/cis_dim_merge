@@ -64,11 +64,11 @@
     <div class="content">
     <div class="row">
 	<div class="col-lg-6">
-		<div class="card">
-			<div class="card-header">
+		<div class="block">
+			<div class="block-header">
 				Email : {{ Auth::user()->email }}
 			</div>
-			<div class="card-body">
+			<div class="block-body">
 				  <div class="card mb-3" style="max-width: 540px;">
 					  <div class="row no-gutters">
 					    <div class="col-md-4">
@@ -88,11 +88,11 @@
 	</div>
 
 	<div class="col-lg-6">
-		<div class="card">
-			<div class="card-header">
+		<div class="block">
+			<div class="block-header">
 				Edit Profile
 			</div>
-			<div class="card-body">
+			<div class="block-content">
 				<form method="POST" action="">
 				@csrf
 				@method('PATCH')

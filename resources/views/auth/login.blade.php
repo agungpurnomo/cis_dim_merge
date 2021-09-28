@@ -9,10 +9,10 @@
                     <div class="block-header block-header-default">
                         <h3 class="block-title">Sign In</h3>
                         <div class="block-options">
-                        <a class="btn-block-option fs-sm" href="op_auth_reminder.html">Forgot Password?</a>
+                        <!-- <a class="btn-block-option fs-sm" href="op_auth_reminder.html">Forgot Password?</a>
                         <a class="btn-block-option" href="op_auth_signup.html" data-bs-toggle="tooltip" data-bs-placement="left" title="New Account">
                             <i class="fa fa-user-plus"></i>
-                        </a>
+                        </a> -->
                         </div>
                     </div>
                     <div class="block-content">

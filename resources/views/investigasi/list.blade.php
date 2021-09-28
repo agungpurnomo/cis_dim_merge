@@ -73,6 +73,7 @@
                             <th class="text-center" style="width: 15%;">Nama Tertanggung</th>
                             <th class="text-center" class="d-none d-sm-table-cell">Perusahaan</th>
                             <th class="text-center">Status</th>
+                            <th class="text-center">Admin</th>
                             <th class="text-center" style="width: 15%;">Action</th>
                         </tr>
                     </thead>
@@ -99,6 +100,7 @@
                                     <span class="fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning fs-sm">In Progress</span>
                                 @endif
                             </td>
+                            <td>{{$datas->username}}</td>
                             <td class="text-center">
                                 <form method="get" action="/investigasi/{{$datas->id}}/detail">
                                     <button class="btn btn-outline-info btn-sm mr-2" type="submit"><i class="fa fa-info-circle text-info me-1"></i>detail</button>
