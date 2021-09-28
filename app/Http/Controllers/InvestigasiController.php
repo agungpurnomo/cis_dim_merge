@@ -306,6 +306,7 @@ class InvestigasiController extends Controller
     public function show($id)
     {
         // $kategori = KategoriInvestigasi::all();
+        $user = Auth::user();
         $asuransi = Asuransi::all();
         $detail = Investigasi::find($id)
                 ->join('asuransis','investigasis.asuransi_id','=','asuransis.id')
@@ -317,7 +318,7 @@ class InvestigasiController extends Controller
                 ->where('investigasis.id', $id )
                 ->first();
 
-        return view('investigasi.detail',compact('detail','asuransi'));
+        return view('investigasi.detail',compact('detail','asuransi','user'));
     }
 
 

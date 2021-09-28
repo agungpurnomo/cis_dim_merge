@@ -1119,11 +1119,14 @@
                 <button type="submit" class="btn btn-alt-primary me-1 btn-sm btn-cetak-akhir"><i class="fa fa-print text-info me-1"></i>Generate Report Akhir</button>
                 <a href="{{ route('generate',$detail->id)}}" class="btn btn-alt-primary me-1 btn-sm btn-cetak-sementara"><i class="fa fa-print text-info me-1"></i>Generate Report Sementara</a>
                 
-                @if ($detail->status =='0')
+                @if ($detail->status =='0' and $user->role =='user')
                     <a class="btn btn-alt-primary me-1 btn-sm btn-send-approve"><i class="fa fa-arrow-alt-circle-right text-success me-1"></i>Send to Approve</a>
                 @endif
-                @if ($detail->status =='2')
+                @if ($detail->status =='2' and $user->role =='user')
                     <a class="btn btn-alt-primary me-1 btn-sm btn-cancel-send"><i class="fa fa-arrow-alt-circle-right text-warning me-1"></i>Cancel Send to Approve</a>
+                @endif
+                @if ($detail->status =='2' or $detail->status =='0' and $user->role =='master')
+                    <a class="btn btn-alt-primary me-1 btn-sm btn-approve"><i class="fa fa-arrow-alt-circle-right text-success me-1"></i>Approve</a>
                 @endif
             </div>             
         </div>
