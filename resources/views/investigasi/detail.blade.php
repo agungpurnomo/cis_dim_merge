@@ -54,6 +54,30 @@
         $("#modal-upload").modal("show");
     });
 
+    $('body').on("click",".btn-imageview",function(){
+        
+        var id = $(this).attr("id");
+         var myImage = new Image(400, 300);
+         var SITEURL ={!! json_encode(url('/')) !!};
+        console.log(id);
+        
+        $.ajax({
+            url : "{{ url('viewimg')}}"+ '/' + id,
+            method: "GET",
+            dataType : "json",
+            success: function(data){
+                var fot = data[0].path;
+                var n = fot.toString();
+                myImage.src = SITEURL+"/media/photos/"+n;
+                x = document.getElementById("gambar");
+                x.appendChild(myImage);
+            }
+
+            
+        });
+        $("#modal-ViewImg").modal("show");
+    });
+
     $(document).ready(function (e) {
         $.ajaxSetup({
             headers: {
@@ -1413,6 +1437,32 @@
                     </form>
                     </div>
                     
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end modal upload foto -->
+
+     <!-- modal show foto -->
+    <div class="modal fade" id="modal-ViewImg" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="block block-rounded block-transparent mb-0">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">Show Image</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-fw fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content fs-lg" style="align-text:center">
+                        <div id="gambar" style="width:100%; max-width:500px"></div>
+                          
+                    </div>
+                    <div class="block-content block-content-full text-end bg-body">
+                            <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Batal</button> 
+                    </div>
                 </div>
             </div>
         </div>

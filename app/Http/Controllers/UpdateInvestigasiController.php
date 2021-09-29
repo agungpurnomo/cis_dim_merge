@@ -8,6 +8,7 @@ use App\Models\Updateinvestigasi;
 use App\Models\FotoInvestigasi;
 use App\Models\KategoriInvestigasi;
 use App\Models\Investigator;
+use Illuminate\Support\Facades\DB;
 use Auth;
 use File;
 
@@ -78,6 +79,16 @@ class UpdateInvestigasiController extends Controller
         {
             return response()->json(["message" => "Please try again."]);
         }
+    }
+
+    public function viewImg(Request $request,$id)
+    {
+        // $id = $request->id;
+        $data = DB::table('foto_investigasis')
+                    ->select('foto_investigasis.*')
+                    ->where('updateinvestigasi_id', $id )
+                    ->get();
+        return response()->json($data);
     }
 
     /**
