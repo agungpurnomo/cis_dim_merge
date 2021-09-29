@@ -483,9 +483,16 @@ class InvestigasiController extends Controller
         ->where('kesimpulans.investigasi_id',$id)
         ->get();
 
+        //KategoriCount
+        $kategoriInvest = DB::table('updateinvestigasis')
+        ->leftjoin('kategori_investigasis','kategori_investigasis.id','=','updateinvestigasis.kategoriinvestigasi_id')
+        ->where('updateinvestigasis.investigasi_id',$id)
+        ->distinct()
+        ->get();
+
         
         $pdf = PDF::loadview('investigasi.generate_report',
-                compact('asuransi','detail','data','kategori','foto','rekomendasi','kesimpulan'))
+                compact('asuransi','detail','data','kategori','foto','rekomendasi','kesimpulan','kategoriInvest'))
         ->setPaper('letter','potrait');
     	return $pdf->stream('laporan-investigasi-pdf');
     }

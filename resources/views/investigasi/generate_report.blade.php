@@ -341,7 +341,7 @@
           nantinya, terutama menyangkut penandatanganan SPAJ,financial background,dll. 
         </td>
       </tr>
-     <tr valign="top">
+      <tr valign="top">
         <td>3. </td>
         <td>
           Melakukan 	 pengecekan ke beberapa fasilitas kesehatan yang ada disekitar tempat tinggal 
@@ -349,6 +349,18 @@
           mengetahui riwayat perawatan.
         </td>
       </tr>
+      <?php
+        $no=3;
+      ?>
+      @foreach ($kategoriInvest as $item)
+      <?php $no++; ?>
+      <tr valign="top">
+        <td>{{$no}}.</td>
+        <td>
+          {{$item->kategori_investigasi}}
+        </td>
+      </tr>
+      @endforeach
 </table>
 </div>
 </div>

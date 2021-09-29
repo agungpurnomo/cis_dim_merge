@@ -1224,7 +1224,12 @@
             <div class="col-lg-12 text-center">
                 <!-- <a href="" class="btn btn-alt-primary me-1 btn-sm btn-cetak-sementara"><i class="fa fa-print text-info me-1"></i>Generate Report Sementara</a> -->
                 
+                @if ($detail->status =='1')
                 <button type="submit" class="btn btn-alt-primary me-1 btn-sm btn-cetak-akhir"><i class="fa fa-print text-info me-1"></i>Generate Report Akhir</button>
+                @endif
+                @if ($detail->status =='0' or $detail->status =='2' )
+                <button disabled type="submit" class="btn btn-alt-primary me-1 btn-sm btn-cetak-akhir"><i class="fa fa-print text-info me-1"></i>Generate Report Akhir</button>
+                @endif
                 <a href="{{ route('generate',$detail->id)}}" class="btn btn-alt-primary me-1 btn-sm btn-cetak-sementara"><i class="fa fa-print text-info me-1"></i>Generate Report Sementara</a>
                 
                 @if ($detail->status =='0' and $user->role =='user')
