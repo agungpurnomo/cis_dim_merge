@@ -92,5 +92,9 @@ Route::get('/investigasi/generate/{id}', [App\Http\Controllers\InvestigasiContro
 
 //report
 Route::get('/pendingcase', [App\Http\Controllers\ReportController::class, 'pendingCase'])->name('pendingCase');
+Route::get('/printpendingcase/{dr_tgl}/{smp_tgl}/{asuransi_id}', [App\Http\Controllers\ReportController::class, 'printPendingCase'])->name('printpendingcase');
+
 Route::get('/portofolio', [App\Http\Controllers\ReportController::class, 'portofolio'])->name('portofolio');
+Route::get('/printportofolio/{dr_tgl}/{smp_tgl}/{asuransi_id}', [App\Http\Controllers\ReportController::class, 'printPortofolio'])->name('printportofolio');
+
 Route::get('/management', [App\Http\Controllers\ReportController::class, 'management'])->name('management');

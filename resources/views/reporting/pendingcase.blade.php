@@ -37,9 +37,15 @@
             });
     </script>
     <script type="text/javascript">
+<<<<<<< HEAD
+       
+        function listAll(tgl1='',tgl2='',asuransi=''){
+           $('.js-dataTable-buttons').dataTable({
+=======
         
-        function listAll(){
+        function listAll(tgl1,tgl2,asuransi){
             $('.js-dataTable-buttons').dataTable({
+>>>>>>> 6cd91cac985d96116057bf40039fa8406a77f619
             
             lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
             autoWidth: false,
@@ -50,7 +56,12 @@
                       } 
                 }
             ],
-            ajax: '{{ url("pendingcase") }}',
+            ajax: {
+                url :"{{ url('pendingcase') }}",
+                data : {dr_tgl : tgl1,
+                    smp_tgl : tgl2,
+                    asuransi : asuransi},
+               },
             columns: [
                 {data: 'id' , name: 'id', width: '5%'},
                 {data: 'no_polis', name: 'no_polis', width: '10%'},
@@ -62,25 +73,51 @@
                 {data: 'nm_agen', name: 'nm_agen', width: '15%'},
                 {data: 'nm_investigator', name: 'nm_investigator', width: '15%'},
             ],
+            destroy: true,
             dom: "<'row'<'col-sm-12'<'text-center bg-body-light py-2 mb-2'B>>>" +
                 "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>"
+                
             });
         }
                
         $('#btn-filter').click(function(){
-            
-                listAll();
 
+            var tgl1 = $('#dr_tgl').val();
+            var tgl2 = $('#smp_tgl').val();
+            var asuransi = $('#asuransi_id').val();
             
-            
+<<<<<<< HEAD
+            if(tgl1 =="" ||  tgl2=="" ||  asuransi==""){
+               One.helpers('jq-notify', 
+                    {type: 'warning', icon: 'fa fa-exclamation-triangle me-1', message: 'Silahkan Pilih Filter Terlebih Dahulu!'});
+            }else{
+                // $('.js-dataTable-buttons').dataTable().draw();
+=======
+            if(tgl1 =="" || tgl2=="" || asuransi==""){
+               One.helpers('jq-notify', 
+                    {type: 'warning', icon: 'fa fa-exclamation-triangle me-1', message: 'Silahkan Pilih Filter Terlebih Dahulu!'});
+            }else{
+                $('.js-dataTable-buttons').dataTable().reload().ajax();
+>>>>>>> 6cd91cac985d96116057bf40039fa8406a77f619
+                listAll(tgl1,tgl2,asuransi);
+            }
+                
         });
 
+         $('#btn-print').click(function(){
 
+            var tgl1 = $('#dr_tgl').val();
+            var tgl2 = $('#smp_tgl').val();
+            var asuransi = $('#asuransi_id').val();
 
-
-
-       
-
+            if(tgl1 =="" ||  tgl2=="" || asuransi==""){
+               One.helpers('jq-notify', 
+                    {type: 'warning', icon: 'fa fa-exclamation-triangle me-1', message: 'Silahkan Pilih Filter Terlebih Dahulu!'});
+            }else{
+                window.open('{{ url("/printpendingcase") }}'+ '/' +tgl1+'/'+tgl2+'/'+asuransi,'_blank');
+            }
+                
+        });
     </script>
 @endsection
 
@@ -154,7 +191,7 @@
                                 <button type="button" id="btn-filter" class="btn btn-alt-primary btn-filter"><i class="fa fa-filter text-info me-1"></i>Filter</button>
                             </div>
                             <div class="col-sm-3 text-end">
-                                <button type="button" class="btn btn-alt-primary"><i class="fa fa-print text-info me-1"></i>Print</button>
+                                <button type="button" id="btn-print" class="btn btn-alt-primary"><i class="fa fa-print text-info me-1"></i>Print</button>
                             </div>
                         </div>
                     </div>
