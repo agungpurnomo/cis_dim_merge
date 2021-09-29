@@ -32,6 +32,18 @@
     padding : 5px 5px 15px 15px;
   }
 
+  .table-polis {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  .td-polis, .th-polis {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
 
 
 </style>
@@ -429,48 +441,40 @@
 
 {{-- kepemilikan polis --}}
 
-<div class="page" style="margin-top: 50px; font-family: Arial, Helvetica, sans-serif;">
-<!-- <table>
-  <tr>
-    <td>
-      <img src="{{ public_path('lib_report/logo_head.png') }}" alt=""> 
-    </td>
-    <td >
-    <h2 style="text-align: center; margin-left : 30px">KESIMPULAN AKHIR INVESTIGASI</h2>
-    </td>
-  </tr>
-</table> -->
+<div  style="margin-top: 50px; font-family: Arial, Helvetica, sans-serif;">
 
-<?php $no=1; ?>
-<div style="margin-top:30px;">
-    <h4>KEPEMILIKAN POLIS ASURANSI</h4>
-</div>
 <div class="border-dot">
-  <table>
+  <div style="margin-top:30px;">
+      <h4>KEPEMILIKAN POLIS ASURANSI</h4>
+  </div>
+  <table class="table-polis">
     <tr>
-      <th>No</th>
-      <th>Perusahaan Asuransi</th>
-      <th>Issued Polis</th>
-      <th>Uang Pertanggungan</th>
-      <th>Klaim</th>
-      <th>Keputusan</th>
+      <th class="th-polis">No</th>
+      <th class="th-polis">Perusahaan Asuransi</th>
+      <th class="th-polis">Issued Polis</th>
+      <th class="th-polis">Uang Pertanggungan</th>
+      <th class="th-polis">Klaim</th>
+      <th class="th-polis">Keputusan</th>
     </tr>
     <tr>
-      <td>1</td>
-      <td>Maria Anders</td>
-      <td>Germany</td>
-      <td>Alfreds Futterkiste</td>
-      <td>Maria Anders</td>
-      <td>Germany</td>
+      <td class="td-polis">1</td>
+      <td class="td-polis">{{$detail->nm_perusahaan}}</td>
+      <td class="td-polis">{{$detail->no_polis}}</td>
+      <td class="td-polis">{{$detail->uang_pertanggungan}}</td>
+      <td class="td-polis"></td>
+      <td class="td-polis"></td>
     </tr>
+    <?php $no=2; ?>
+    @foreach ($polislain as $polis)
     <tr>
-      <td>2</td>
-      <td>Maria Anders</td>
-      <td>Germany</td>
-      <td>Alfreds Futterkiste</td>
-      <td>Maria Anders</td>
-      <td>Germany</td>
+      <td class="td-polis"><?php echo $no++; ?></td>
+      <td class="td-polis">{{$polis->nm_perusahaan}}</td>
+      <td class="td-polis"></td>
+      <td class="td-polis"></td>
+      <td class="td-polis"></td>
+      <td class="td-polis"></td>
     </tr>
+    @endforeach
   </table>
 </div>
 {{-- End kepemilikan polis --}}
