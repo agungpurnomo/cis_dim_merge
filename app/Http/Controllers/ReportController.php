@@ -15,6 +15,7 @@ use App\Models\Rekomendasi;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 use Auth;
+use PDF;
 
 class ReportController extends Controller
 {
@@ -31,6 +32,7 @@ class ReportController extends Controller
     public function pendingCase(Request $request)
     {
         $asuransi=Asuransi::all();
+        $data = [];
         if ($request->ajax()) {
             if($request->dr_tgl != '' && $request->smp_tgl != '')
             {
@@ -38,16 +40,13 @@ class ReportController extends Controller
                         ->join('investigators','investigasis.investigator_id','=','investigators.id')
                         ->join('jenis_claims','investigasis.jenisclaim_id','=','jenis_claims.id')
                         ->select('investigasis.*','investigators.*','jenis_claims.*')
+                        ->where('asuransi_id',$request->asuransi)
                         ->whereBetween('tgl_registrasi', array($request->dr_tgl, $request->smp_tgl))
                         ->get();
             }else{
-                $data = DB::table('investigasis')
-                        ->join('investigators','investigasis.investigator_id','=','investigators.id')
-                        ->join('jenis_claims','investigasis.jenisclaim_id','=','jenis_claims.id')
-                        ->select('investigasis.*','investigators.*','jenis_claims.*')
-                        // ->where('investigasis.id', $id )
-                        ->get();
+                $data = [];
             }
+          
             return DataTables::of($data)
                     ->escapeColumns([])
                     ->make(true);
@@ -55,16 +54,86 @@ class ReportController extends Controller
         return view('reporting.pendingcase',compact('asuransi'));
     }
 
+    public function printPendingCase(Request $request,$dr_tgl,$smp_tgl,$asuransi_id)
+    {
+        $asuransi=Asuransi::all();
+        $data = [];
+        $tgl1 = $dr_tgl;
+        $tgl2 = $smp_tgl;
+        
+            if($dr_tgl != '' && $smp_tgl != '' &&  $asuransi_id != '')
+            {
+                $data = DB::table('investigasis')
+                        ->join('investigators','investigasis.investigator_id','=','investigators.id')
+                        ->join('jenis_claims','investigasis.jenisclaim_id','=','jenis_claims.id')
+                        ->select('investigasis.*','investigators.*','jenis_claims.*')
+                        ->where('status',0)
+                        ->where('asuransi_id',$asuransi_id)
+                        ->whereBetween('tgl_registrasi', array($dr_tgl, $smp_tgl))
+                        ->get();
+            }else{
+                $data = [];
+            }
+
+        $pdf = PDF::loadview('reporting.report-pandingcase',
+                compact('data','tgl1','tgl2'))
+                ->setPaper('letter','landscape');
+                return $pdf->stream('laporan_pending_investigasi');
+    }
+
     public function portofolio(Request $request)
     {
         $asuransi=Asuransi::all();
+        $data = [];
         if ($request->ajax()) {
-            $data = Investigasi::select('*')->orderBy('created_at','DESC');
+            if($request->dr_tgl != '' && $request->smp_tgl != '')
+            {
+                $data = DB::table('investigasis')
+                        ->join('investigators','investigasis.investigator_id','=','investigators.id')
+                        ->join('jenis_claims','investigasis.jenisclaim_id','=','jenis_claims.id')
+                        ->select('investigasis.*','investigators.*','jenis_claims.*')
+                        ->where('asuransi_id',$request->asuransi)
+                        ->whereBetween('tgl_registrasi', array($request->dr_tgl, $request->smp_tgl))
+                        ->get();
+            }else{
+                $data = [];
+            }
+          
             return DataTables::of($data)
                     ->escapeColumns([])
                     ->make(true);
         }
         return view('reporting.portofolio',compact('asuransi'));
+    }
+
+    public function printPortofolio(Request $request,$dr_tgl,$smp_tgl,$asuransi_id)
+    {
+        $asuransi=Asuransi::all();
+        $data = [];
+        $tgl1 = $dr_tgl;
+        $tgl2 = $smp_tgl;
+        
+            if($dr_tgl != '' && $smp_tgl != '' &&  $asuransi_id != '')
+            {
+                $data = DB::table('investigasis')
+                        ->join('investigators','investigasis.investigator_id','=','investigators.id')
+                        ->join('jenis_claims','investigasis.jenisclaim_id','=','jenis_claims.id')
+                        ->select('investigasis.*','investigators.*','jenis_claims.*')
+                        ->where('asuransi_id',$asuransi_id)
+                        ->whereBetween('tgl_registrasi', array($dr_tgl, $smp_tgl))
+                        ->get();
+                $peru = DB::table('asuransis')
+                        ->select('*')
+                        ->where('id',$asuransi_id)
+                        ->first();
+            }else{
+                $data = [];
+            }
+
+        $pdf = PDF::loadview('reporting.report-portofolio',
+                compact('data','tgl1','tgl2','peru'))
+                ->setPaper('letter','landscape');
+                return $pdf->stream('laporan_pending_investigasi');
     }
 
     public function management(Request $request)
