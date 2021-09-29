@@ -490,9 +490,16 @@ class InvestigasiController extends Controller
         ->distinct()
         ->get();
 
+        $polislain = DB::table('polislains')
+                    ->leftjoin('asuransis','polislains.asuransi_id','=','asuransis.id')
+                    ->where('polislains.investigasi_id',$id)
+                    ->select('polislains.*','asuransis.nm_perusahaan')
+                    ->get();
+
         
         $pdf = PDF::loadview('investigasi.generate_report',
-                compact('asuransi','detail','data','kategori','foto','rekomendasi','kesimpulan','kategoriInvest'))
+                compact('asuransi','detail','data','kategori','foto','rekomendasi',
+                        'kesimpulan','kategoriInvest','polislain'))
         ->setPaper('letter','potrait');
     	return $pdf->stream('laporan-investigasi-pdf');
     }
