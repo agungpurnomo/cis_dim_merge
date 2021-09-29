@@ -31,6 +31,7 @@ class ReportController extends Controller
     public function pendingCase(Request $request)
     {
         $asuransi=Asuransi::all();
+        $data = [];
         if ($request->ajax()) {
             if($request->dr_tgl != '' && $request->smp_tgl != '')
             {
@@ -38,6 +39,7 @@ class ReportController extends Controller
                         ->join('investigators','investigasis.investigator_id','=','investigators.id')
                         ->join('jenis_claims','investigasis.jenisclaim_id','=','jenis_claims.id')
                         ->select('investigasis.*','investigators.*','jenis_claims.*')
+                        ->where('asuransi_id',$request->asuransi)
                         ->whereBetween('tgl_registrasi', array($request->dr_tgl, $request->smp_tgl))
                         ->get();
             }else{
@@ -48,6 +50,7 @@ class ReportController extends Controller
                         // ->where('investigasis.id', $id )
                         ->get();
             }
+          
             return DataTables::of($data)
                     ->escapeColumns([])
                     ->make(true);

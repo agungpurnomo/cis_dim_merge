@@ -38,7 +38,7 @@
     </script>
     <script type="text/javascript">
         
-        function listAll(){
+        function listAll(tgl1,tgl2,asuransi){
             $('.js-dataTable-buttons').dataTable({
             
             lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
@@ -50,7 +50,12 @@
                       } 
                 }
             ],
-            ajax: '{{ url("pendingcase") }}',
+            ajax: {
+                url :"{{ url('pendingcase') }}",
+                data : {dr_tgl : tgl1,
+                    smp_tgl : tgl2,
+                    asuransi : asuransi},
+               },
             columns: [
                 {data: 'id' , name: 'id', width: '5%'},
                 {data: 'no_polis', name: 'no_polis', width: '10%'},
@@ -68,11 +73,19 @@
         }
                
         $('#btn-filter').click(function(){
-            
-                listAll();
 
+            var tgl1 = $('#dr_tgl').val();
+            var tgl2 = $('#smp_tgl').val();
+            var asuransi = $('#asuransi_id').val();
             
-            
+            if(tgl1 =="" || tgl2=="" || asuransi==""){
+               One.helpers('jq-notify', 
+                    {type: 'warning', icon: 'fa fa-exclamation-triangle me-1', message: 'Silahkan Pilih Filter Terlebih Dahulu!'});
+            }else{
+                $('.js-dataTable-buttons').dataTable().reload().ajax();
+                listAll(tgl1,tgl2,asuransi);
+            }
+                
         });
 
 
