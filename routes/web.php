@@ -84,6 +84,7 @@ Route::get('/investigator', [App\Http\Controllers\InvestigatorController::class,
 Route::get('/kategoriinvestigasi', [App\Http\Controllers\KategoriInvestigasiController::class, 'index'])->name('kategoriinvestigasi');
 
 Route::post('/upload', [App\Http\Controllers\UpdateInvestigasiController::class, 'upload'])->name('upload');
+Route::get('/viewimg/{id}', [App\Http\Controllers\UpdateInvestigasiController::class, 'viewImg'])->name('viewimg');
 
 Route::get('/investigasi/generate/', [App\Http\Controllers\InvestigasiController::class, 'generateAkhir'])->name('generateakhir');
 
