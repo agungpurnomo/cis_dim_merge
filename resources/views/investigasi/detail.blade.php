@@ -445,7 +445,7 @@
             columns: [
                 {data: 'DT_RowIndex' , name: 'id', width: '1%'},
                 {data: 'kesimpulan', name: 'kesimpulan'},
-                {data: 'action', name: 'action', orderable: false, searchable: true,width: '1%' },
+                {data: 'action', name: 'action', orderable: false, searchable: true,width: '15%' },
             ],
         });
         
@@ -539,7 +539,7 @@
             columns: [
                 {data: 'DT_RowIndex' , name: 'id', width: '1%'},
                 {data: 'rekomendasi', name: 'rekomendasi'},
-                {data: 'action', name: 'action', orderable: false, searchable: true,width: '1%' },
+                {data: 'action', name: 'action', orderable: false, searchable: true,width: '15%' },
             ],
         });
 
@@ -634,7 +634,7 @@
                 {data: 'DT_RowIndex' , name: 'id', width: '1%'},
                 {data: 'temuan', name: 'temuan'},
                 {data: 'tanggal', name: 'tanggal'},
-                {data: 'action', name: 'action', orderable: false, searchable: true,width: '1%' },
+                {data: 'action', name: 'action', orderable: false, searchable: true,width: '15%' },
             ],
         });
 
@@ -729,7 +729,7 @@
                     {data: 'DT_RowIndex' , name: 'id', width: '1%'},
                     {data: 'nominal', name: 'nominal'},
                     {data: 'keterangan', name: 'keterangan'},
-                    {data: 'action', name: 'action', orderable: false, searchable: true,width: '1%' },
+                    {data: 'action', name: 'action', orderable: false, searchable: true,width: '15%' },
                 ],
             });
 
@@ -1009,8 +1009,12 @@
                                 <td class="fw fs-sm">{{$detail->area_investigasi}}</td>
                                 </tr>
                                 <tr>
-                                <td class="fw fs-sm">Provinsi</td>
-                                <td class="fw fs-sm">{{$detail->provinsi}}</td>
+                                    <td class="fw fs-sm">Provinsi</td>
+                                    <td class="fw fs-sm">{{$detail->provinsi}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw fs-sm">Tgl Kirim Dokumen</td>
+                                    <td class="fw fs-sm">{{$detail->tgl_kirim_dokumen}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1162,7 +1166,7 @@
                     KESIMPULAN INVESTIGASI
                 </h3>
                 <button type="button" type="button" class="btn btn-alt-primary  btn-sm" data-bs-toggle="modal" data-bs-target="#modal-add-kesimpulan">
-                    <i class="fa fa-plus text-info me-1"></i>Tambah Kesimpulan</button>              
+                    <i class="fa fa-plus text-info me-1"></i>Kesimpulan</button>              
             </div>
 
             <div class="block-content block-content-full">
@@ -1191,7 +1195,7 @@
                     REKOMENDASI KEPUTUSAN KLAIM
                 </h3>
                 <button type="button" type="button" class="btn btn-alt-primary  btn-sm" data-bs-toggle="modal" data-bs-target="#modal-add-rekomendasi">
-                    <i class="fa fa-plus text-info me-1"></i>Tambah Rekomendasi</button>               
+                    <i class="fa fa-plus text-info me-1"></i>Rekomendasi</button>               
             </div>
 
             <div class="block-content block-content-full">
@@ -1587,7 +1591,7 @@
                         </div>
                         <div class="form-floating mb-4">
                             <input hidden type="text" value="{{$detail->id}}" id="investigasi_id" name="investigasi_id">
-                            <textarea class="form-control" id="temuan" name="temuan" rows="4" cols="50"></textarea>
+                            <textarea type="text" class="form-control" rows="8" id="temuan" name="temuan" rows="5" cols="50"></textarea>
                             <label for="example-textarea-floating">Temuan</label>
                         </div>
                     </div>
@@ -1624,7 +1628,7 @@
                         </div>
                         <div class="form-floating mb-4">
                             <input hidden type="text" id="temuan_id" name="id">
-                            <textarea class="form-control" id="edittemuan" name="temuan" rows="4" cols="50"></textarea>
+                            <textarea type="text" class="form-control" id="edittemuan" name="temuan" rows="5" cols="50"></textarea>
                             <label for="example-textarea-floating">Kesimpualan Investigasi</label>
                         </div>
                     </div>
@@ -1687,7 +1691,7 @@
                             <label for="example-textarea-floating">Nominal</label>
                         </div>
                         <div class="form-floating mb-4">
-                            <textarea class="form-control" id="keterangan" name="keterangan" rows="4" cols="50"></textarea>
+                            <textarea type="text" class="form-control" id="keterangan" name="keterangan" rows="5" cols="50"></textarea>
                             <label for="example-textarea-floating">Keterangan</label>
                         </div>
                     </div>
@@ -1724,7 +1728,7 @@
                                 <label for="example-textarea-floating">Nominal</label>
                             </div>
                             <div class="form-floating mb-4">
-                                <textarea class="form-control" id="edit_keterangan" name="keterangan" rows="4" cols="50"></textarea>
+                                <textarea type="text" class="form-control" id="edit_keterangan" name="keterangan" rows="5" cols="50"></textarea>
                                 <label for="example-textarea-floating">Keterangan</label>
                             </div>
                     </div>
@@ -1771,7 +1775,7 @@
             <div class="modal-content">
                 <div class="block block-rounded block-transparent mb-0">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Tambah Kesimpualan Investigasi</h3>
+                        <h3 class="block-title">Tambah Kesimpulan Investigasi</h3>
                         <div class="block-options">
                             <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                             <i class="fa fa-fw fa-times"></i>
@@ -1782,7 +1786,7 @@
                         <form id="createKesimpulan">
                         <div class="form-floating mb-4">
                             <input hidden type="text" value="{{$detail->id}}" id="investigasi_id" name="investigasi_id">
-                            <textarea class="form-control" id="kesimpulan" name="kesimpulan" rows="4" cols="50"></textarea>
+                            <textarea type="text" class="form-control" id="kesimpulan" name="kesimpulan" rows="5" cols="50"></textarea>
                             <label for="example-textarea-floating">Kesimpualan Investigasi</label>
                         </div>
                     </div>
@@ -1863,7 +1867,7 @@
             <div class="modal-content">
                 <div class="block block-rounded block-transparent mb-0">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Tambah Kesimpualan Investigasi</h3>
+                        <h3 class="block-title">Tambah Rekomendasi Investigasi</h3>
                         <div class="block-options">
                             <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                             <i class="fa fa-fw fa-times"></i>
@@ -1874,8 +1878,8 @@
                         <form id="createrekomndasi">
                         <div class="form-floating mb-4">
                             <input hidden type="text" value="{{$detail->id}}" id="investigasi_id" name="investigasi_id">
-                            <textarea class="form-control" id="rekomendasi" name="rekomendasi" rows="4" cols="50"></textarea>
-                            <label for="example-textarea-floating">Kesimpualan Investigasi</label>
+                            <textarea type="text" class="form-control" id="rekomendasi" name="rekomendasi" rows="5" cols="50"></textarea>
+                            <label for="example-textarea-floating">Rekomendasi Investigasi</label>
                         </div>
                     </div>
                     <div class="block-content block-content-full text-end bg-body">
@@ -1907,8 +1911,8 @@
                         <form id="uprekomendasi">
                         <div class="form-floating mb-4">
                             <input hidden type="text" id="rekomendasi_id" name="id">
-                            <textarea class="form-control" id="editrekomendasi" name="rekomendasi" rows="4" cols="50"></textarea>
-                            <label for="example-textarea-floating">Kesimpualan Investigasi</label>
+                            <textarea type="text" class="form-control" id="editrekomendasi" name="rekomendasi" rows="5" cols="50"></textarea>
+                            <label for="example-textarea-floating">Rekomendasi Investigasi</label>
                         </div>
                     </div>
                     <div class="block-content block-content-full text-end bg-body">
