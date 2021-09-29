@@ -37,16 +37,10 @@
             });
     </script>
     <script type="text/javascript">
-<<<<<<< HEAD
        
         function listAll(tgl1='',tgl2='',asuransi=''){
            $('.js-dataTable-buttons').dataTable({
-=======
-        
-        function listAll(tgl1,tgl2,asuransi){
-            $('.js-dataTable-buttons').dataTable({
->>>>>>> 6cd91cac985d96116057bf40039fa8406a77f619
-            
+
             lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
             autoWidth: false,
             buttons: [
@@ -86,19 +80,11 @@
             var tgl2 = $('#smp_tgl').val();
             var asuransi = $('#asuransi_id').val();
             
-<<<<<<< HEAD
-            if(tgl1 =="" ||  tgl2=="" ||  asuransi==""){
-               One.helpers('jq-notify', 
-                    {type: 'warning', icon: 'fa fa-exclamation-triangle me-1', message: 'Silahkan Pilih Filter Terlebih Dahulu!'});
-            }else{
-                // $('.js-dataTable-buttons').dataTable().draw();
-=======
+
             if(tgl1 =="" || tgl2=="" || asuransi==""){
                One.helpers('jq-notify', 
                     {type: 'warning', icon: 'fa fa-exclamation-triangle me-1', message: 'Silahkan Pilih Filter Terlebih Dahulu!'});
             }else{
-                $('.js-dataTable-buttons').dataTable().reload().ajax();
->>>>>>> 6cd91cac985d96116057bf40039fa8406a77f619
                 listAll(tgl1,tgl2,asuransi);
             }
                 
