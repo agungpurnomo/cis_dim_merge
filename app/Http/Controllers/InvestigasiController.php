@@ -40,7 +40,9 @@ class InvestigasiController extends Controller
             $data = DB::table('investigasis')
             ->join('asuransis','investigasis.asuransi_id','=','asuransis.id')
             ->join('investigators','investigasis.investigator_id','=','investigators.id')
-            ->select('investigasis.*','asuransis.nm_perusahaan','investigators.nm_investigator')
+            ->join('users','investigasis.user_id','=','users.id')
+            ->select('investigasis.*','asuransis.nm_perusahaan','investigators.nm_investigator',
+                        'users.name as username')
             ->orderBy('created_at', 'DESC')
             ->get();
         }
@@ -48,7 +50,9 @@ class InvestigasiController extends Controller
             $data = DB::table('investigasis')
             ->join('asuransis','investigasis.asuransi_id','=','asuransis.id')
             ->join('investigators','investigasis.investigator_id','=','investigators.id')
-            ->select('investigasis.*','asuransis.nm_perusahaan','investigators.nm_investigator')
+            ->join('users','investigasis.user_id','=','users.id')
+            ->select('investigasis.*','asuransis.nm_perusahaan','investigators.nm_investigator',
+                    'users.name as username')
             ->orderBy('created_at', 'DESC')
             ->where('investigasis.user_id',$user_id->id)
             ->get();
@@ -306,18 +310,21 @@ class InvestigasiController extends Controller
     public function show($id)
     {
         // $kategori = KategoriInvestigasi::all();
+        $user = Auth::user();
         $asuransi = Asuransi::all();
         $detail = Investigasi::find($id)
                 ->join('asuransis','investigasis.asuransi_id','=','asuransis.id')
                 ->join('investigators','investigasis.investigator_id','=','investigators.id')
                 ->join('jenis_claims','investigasis.jenisclaim_id','=','jenis_claims.id')
+                ->join('users','investigasis.user_id','=','users.id')
                 ->select('investigasis.*','asuransis.id as asuransi_id','asuransis.nm_perusahaan',
                          'asuransis.kd_perusahaan','investigators.id as investigator_id',
-                         'investigators.nm_investigator','jenis_claims.id as jenisklaim_id','jenis_claims.jenis_klaim')
+                         'investigators.nm_investigator','jenis_claims.id as jenisklaim_id',
+                         'jenis_claims.jenis_klaim','users.name as username')
                 ->where('investigasis.id', $id )
                 ->first();
 
-        return view('investigasi.detail',compact('detail','asuransi'));
+        return view('investigasi.detail',compact('detail','asuransi','user'));
     }
 
 
@@ -476,9 +483,16 @@ class InvestigasiController extends Controller
         ->where('kesimpulans.investigasi_id',$id)
         ->get();
 
+        //KategoriCount
+        $kategoriInvest = DB::table('updateinvestigasis')
+        ->leftjoin('kategori_investigasis','kategori_investigasis.id','=','updateinvestigasis.kategoriinvestigasi_id')
+        ->where('updateinvestigasis.investigasi_id',$id)
+        ->distinct()
+        ->get();
+
         
         $pdf = PDF::loadview('investigasi.generate_report',
-                compact('asuransi','detail','data','kategori','foto','rekomendasi','kesimpulan'))
+                compact('asuransi','detail','data','kategori','foto','rekomendasi','kesimpulan','kategoriInvest'))
         ->setPaper('letter','potrait');
     	return $pdf->stream('laporan-investigasi-pdf');
     }

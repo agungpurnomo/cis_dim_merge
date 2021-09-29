@@ -242,11 +242,11 @@
         })
         //end delepe update
 
-        //approve
+        //send permintaan approve
         $('body').on("click",".btn-send-approve",function(){
             var id = $('#id').text();
             $('#form_result').html('');
-            console.log(id);
+            // console.log(id);
             $.ajax({
                 url: "/sendApprove/"+id,
                 method: "GET",
@@ -260,10 +260,10 @@
 
         $("#getsendapprove").on("submit",function(e){
             e.preventDefault()
-            var id = $("#id").val()
+            var id = $('#id').text();
             var dt = $(this).serialize();
-            console.log(id);
-            console.log(dt);
+            // console.log(id);
+            // console.log(dt);
             $.ajax({
                 url: "/editsendApprove/"+id,
                 method: "PATCH",
@@ -271,7 +271,116 @@
                 success:function(){
                     $("#modal-send-approve").modal("hide");
                     One.helpers('jq-notify', 
-                        {type: 'success', icon: 'fa fa-check me-1', message: 'Berhasil diupdate!'});
+                        {type: 'success', icon: 'fa fa-check me-1', message: 'Send approve success!'});
+                    location.reload();
+                }
+            })
+        })
+        //end send approve
+
+        //cancel send approve
+        $('body').on("click",".btn-cancel-send",function(){
+            var id = $('#id').text();
+            $('#form_result').html('');
+            console.log(id);
+            $.ajax({
+                url: "/sendApprove/"+id,
+                method: "GET",
+                dataType : "json",
+                success:function(html){
+                    $("#modal-cancel-send").modal("show")
+                    $("#id").val(html.data.id)
+                }
+            });
+        });
+
+        $("#getcancelsendapprove").on("submit",function(e){
+            e.preventDefault()
+            var id = $('#id').text();
+            var dt = $(this).serialize();
+            // console.log(id);
+            // console.log(dt);
+            $.ajax({
+                url: "/editsendApprove/"+id,
+                method: "PATCH",
+                data: $(this).serialize(),
+                success:function(){
+                    $("#modal-send-approve").modal("hide");
+                    One.helpers('jq-notify', 
+                        {type: 'success', icon: 'fa fa-check me-1', message: 'Cancel Send approve success!'});
+                    location.reload();
+                }
+            })
+        })
+        //end cancel send approve
+
+        //approve
+        $('body').on("click",".btn-approve",function(){
+            var id = $('#id').text();
+            $('#form_result').html('');
+            console.log(id);
+            $.ajax({
+                url: "/sendApprove/"+id,
+                method: "GET",
+                dataType : "json",
+                success:function(html){
+                    $("#modal-approve").modal("show")
+                    $("#id").val(html.data.id)
+                }
+            });
+        });
+
+        $("#getapprove").on("submit",function(e){
+            e.preventDefault()
+            var id = $('#id').text();
+            var dt = $(this).serialize();
+            // console.log(id);
+            // console.log(dt);
+            $.ajax({
+                url: "/editsendApprove/"+id,
+                method: "PATCH",
+                data: $(this).serialize(),
+                success:function(){
+                    $("#modal-approve").modal("hide");
+                    One.helpers('jq-notify', 
+                        {type: 'success', icon: 'fa fa-check me-1', message: 'Approved success!'});
+                    location.reload();
+                }
+            })
+        })
+        //end approve
+
+        //cancel approve
+        $('body').on("click",".btn-cancel-approve",function(){
+            var id = $('#id').text();
+            $('#form_result').html('');
+            console.log(id);
+            $.ajax({
+                url: "/sendApprove/"+id,
+                method: "GET",
+                dataType : "json",
+                success:function(html){
+                    $("#modal-cancel-approve").modal("show")
+                    $("#id").val(html.data.id)
+                }
+            });
+        });
+
+        $("#getcancelapprove").on("submit",function(e){
+            e.preventDefault()
+            var id = $('#id').text();
+            var dt = $(this).serialize();
+            // console.log(id);
+            // console.log(dt);
+            $.ajax({
+                url: "/editsendApprove/"+id,
+                method: "PATCH",
+                data: $(this).serialize(),
+                success:function(){
+                    $("#modal-cancel-approve").modal("hide");
+                    One.helpers('jq-notify', 
+                        {type: 'warning', icon: 'fa fa-check me-1', message: 'Approved dibatalkan!'});
+                    location.reload();
                 }
             })
         })
@@ -336,7 +445,7 @@
             columns: [
                 {data: 'DT_RowIndex' , name: 'id', width: '1%'},
                 {data: 'kesimpulan', name: 'kesimpulan'},
-                {data: 'action', name: 'action', orderable: false, searchable: true,width: '1%' },
+                {data: 'action', name: 'action', orderable: false, searchable: true,width: '15%' },
             ],
         });
         
@@ -430,7 +539,7 @@
             columns: [
                 {data: 'DT_RowIndex' , name: 'id', width: '1%'},
                 {data: 'rekomendasi', name: 'rekomendasi'},
-                {data: 'action', name: 'action', orderable: false, searchable: true,width: '1%' },
+                {data: 'action', name: 'action', orderable: false, searchable: true,width: '15%' },
             ],
         });
 
@@ -525,7 +634,7 @@
                 {data: 'DT_RowIndex' , name: 'id', width: '1%'},
                 {data: 'temuan', name: 'temuan'},
                 {data: 'tanggal', name: 'tanggal'},
-                {data: 'action', name: 'action', orderable: false, searchable: true,width: '1%' },
+                {data: 'action', name: 'action', orderable: false, searchable: true,width: '15%' },
             ],
         });
 
@@ -620,7 +729,7 @@
                     {data: 'DT_RowIndex' , name: 'id', width: '1%'},
                     {data: 'nominal', name: 'nominal'},
                     {data: 'keterangan', name: 'keterangan'},
-                    {data: 'action', name: 'action', orderable: false, searchable: true,width: '1%' },
+                    {data: 'action', name: 'action', orderable: false, searchable: true,width: '15%' },
                 ],
             });
 
@@ -741,6 +850,7 @@
                         @if ($detail->status =='2')
                             <span class="fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info fs-sm">Wait Approved</span>
                         @endif
+                        <br>Admin : {{$detail->username}}
                         <p id="id" hidden>{{$detail->id}}</p>
                     </h2>
                 </div>
@@ -774,13 +884,7 @@
                     <i class="fa fa-fw fa-times me-1"></i>Hapus
                 </button>
                 @endif
-                @if ($detail->status =='1')
-                <button type="button" class="btn btn-alt-warning  btn-sm">Cancel Closed</button>
-                @endif
                 
-
-                
-         
             </div>
                      
         </div>
@@ -905,8 +1009,12 @@
                                 <td class="fw fs-sm">{{$detail->area_investigasi}}</td>
                                 </tr>
                                 <tr>
-                                <td class="fw fs-sm">Provinsi</td>
-                                <td class="fw fs-sm">{{$detail->provinsi}}</td>
+                                    <td class="fw fs-sm">Provinsi</td>
+                                    <td class="fw fs-sm">{{$detail->provinsi}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw fs-sm">Tgl Kirim Dokumen</td>
+                                    <td class="fw fs-sm">{{$detail->tgl_kirim_dokumen}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1058,7 +1166,7 @@
                     KESIMPULAN INVESTIGASI
                 </h3>
                 <button type="button" type="button" class="btn btn-alt-primary  btn-sm" data-bs-toggle="modal" data-bs-target="#modal-add-kesimpulan">
-                    <i class="fa fa-plus text-info me-1"></i>Tambah Kesimpulan</button>              
+                    <i class="fa fa-plus text-info me-1"></i>Kesimpulan</button>              
             </div>
 
             <div class="block-content block-content-full">
@@ -1087,7 +1195,7 @@
                     REKOMENDASI KEPUTUSAN KLAIM
                 </h3>
                 <button type="button" type="button" class="btn btn-alt-primary  btn-sm" data-bs-toggle="modal" data-bs-target="#modal-add-rekomendasi">
-                    <i class="fa fa-plus text-info me-1"></i>Tambah Rekomendasi</button>               
+                    <i class="fa fa-plus text-info me-1"></i>Rekomendasi</button>               
             </div>
 
             <div class="block-content block-content-full">
@@ -1116,14 +1224,25 @@
             <div class="col-lg-12 text-center">
                 <!-- <a href="" class="btn btn-alt-primary me-1 btn-sm btn-cetak-sementara"><i class="fa fa-print text-info me-1"></i>Generate Report Sementara</a> -->
                 
+                @if ($detail->status =='1')
                 <button type="submit" class="btn btn-alt-primary me-1 btn-sm btn-cetak-akhir"><i class="fa fa-print text-info me-1"></i>Generate Report Akhir</button>
+                @endif
+                @if ($detail->status =='0' or $detail->status =='2' )
+                <button disabled type="submit" class="btn btn-alt-primary me-1 btn-sm btn-cetak-akhir"><i class="fa fa-print text-info me-1"></i>Generate Report Akhir</button>
+                @endif
                 <a href="{{ route('generate',$detail->id)}}" class="btn btn-alt-primary me-1 btn-sm btn-cetak-sementara"><i class="fa fa-print text-info me-1"></i>Generate Report Sementara</a>
                 
-                @if ($detail->status =='0')
+                @if ($detail->status =='0' and $user->role =='user')
                     <a class="btn btn-alt-primary me-1 btn-sm btn-send-approve"><i class="fa fa-arrow-alt-circle-right text-success me-1"></i>Send to Approve</a>
                 @endif
-                @if ($detail->status =='2')
+                @if ($detail->status =='2' and $user->role =='user')
                     <a class="btn btn-alt-primary me-1 btn-sm btn-cancel-send"><i class="fa fa-arrow-alt-circle-right text-warning me-1"></i>Cancel Send to Approve</a>
+                @endif
+                @if (($detail->status =='2' or $detail->status =='0') and $user->role =='master')
+                    <a class="btn btn-alt-primary me-1 btn-sm btn-approve"><i class="fa fa-arrow-alt-circle-right text-success me-1"></i>Approve</a>
+                @endif
+                @if ($detail->status =='1' and $user->role =='master')
+                <button type="button" class="btn btn-alt-warning  btn-sm btn-cancel-approve">Cancel Closed</button>
                 @endif
             </div>             
         </div>
@@ -1367,6 +1486,95 @@
     </div>
     <!-- END Small Block Modal -->
 
+    <!-- modal cancel send approve-->
+    <div class="modal fade" id="modal-cancel-send" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">
+        <div class="modal-dialog modal-vcenter" role="document">
+            <div class="modal-content">
+                <span id="form_result"></span>
+                <form id="getcancelsendapprove">
+                <div class="block block-rounded block-transparent mb-0">
+                    <div class="block-header block-header-default">
+                    <h3 class="block-title">Cancel Send Approve Investigasi</h3>
+                    <input type="text" value="0" name="status" id="status" hidden>
+                    <div class="block-options">
+                        <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-fw fa-times"></i>
+                        </button>
+                    </div>
+                    </div>
+                    <div class="block-content fs-sm text-center">
+                        <h5>Yakin akan membatalkan permintaan approve?</h5>
+                    </div>
+                    <div class="block-content block-content-full text-end bg-body">
+                        <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-sm btn-danger btn-getcancel-send">Kirim</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end cancel approve -->
+
+    <!-- modal approve-->
+    <div class="modal fade" id="modal-approve" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">
+        <div class="modal-dialog modal-vcenter" role="document">
+            <div class="modal-content">
+                <span id="form_result"></span>
+                <form id="getapprove">
+                <div class="block block-rounded block-transparent mb-0">
+                    <div class="block-header block-header-default">
+                    <h3 class="block-title">Approve Investigasi</h3>
+                    <input type="text" value="1" name="status" id="status" hidden>
+                    <div class="block-options">
+                        <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-fw fa-times"></i>
+                        </button>
+                    </div>
+                    </div>
+                    <div class="block-content fs-sm text-center">
+                        <h5>Apakah yakin untuk menyetujui hasil investigasi?</h5>
+                    </div>
+                    <div class="block-content block-content-full text-end bg-body">
+                        <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-sm btn-danger btn-getcancel-send">Kirim</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end approve -->
+    <!-- modal approve-->
+    <div class="modal fade" id="modal-cancel-approve" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">
+        <div class="modal-dialog modal-vcenter" role="document">
+            <div class="modal-content">
+                <span id="form_result"></span>
+                <form id="getcancelapprove">
+                <div class="block block-rounded block-transparent mb-0">
+                    <div class="block-header block-header-default">
+                    <h3 class="block-title">Cancel Approve Investigasi</h3>
+                    <input type="text" value="0" name="status" id="status" hidden>
+                    <div class="block-options">
+                        <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-fw fa-times"></i>
+                        </button>
+                    </div>
+                    </div>
+                    <div class="block-content fs-sm text-center">
+                        <h5>Apakah yakin untuk membatalkan persetujuan hasil investigasi?</h5>
+                    </div>
+                    <div class="block-content block-content-full text-end bg-body">
+                        <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-sm btn-danger btn-cancel-approve">Simpan</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end approve -->
+
      <!-- modal-add temuan-->
     <div class="modal fade" id="modal-add-temuan" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -1388,7 +1596,7 @@
                         </div>
                         <div class="form-floating mb-4">
                             <input hidden type="text" value="{{$detail->id}}" id="investigasi_id" name="investigasi_id">
-                            <textarea class="form-control" id="temuan" name="temuan" rows="4" cols="50"></textarea>
+                            <textarea type="text" class="form-control" rows="8" id="temuan" name="temuan" rows="5" cols="50"></textarea>
                             <label for="example-textarea-floating">Temuan</label>
                         </div>
                     </div>
@@ -1425,7 +1633,7 @@
                         </div>
                         <div class="form-floating mb-4">
                             <input hidden type="text" id="temuan_id" name="id">
-                            <textarea class="form-control" id="edittemuan" name="temuan" rows="4" cols="50"></textarea>
+                            <textarea type="text" class="form-control" id="edittemuan" name="temuan" rows="5" cols="50"></textarea>
                             <label for="example-textarea-floating">Kesimpualan Investigasi</label>
                         </div>
                     </div>
@@ -1488,7 +1696,7 @@
                             <label for="example-textarea-floating">Nominal</label>
                         </div>
                         <div class="form-floating mb-4">
-                            <textarea class="form-control" id="keterangan" name="keterangan" rows="4" cols="50"></textarea>
+                            <textarea type="text" class="form-control" id="keterangan" name="keterangan" rows="5" cols="50"></textarea>
                             <label for="example-textarea-floating">Keterangan</label>
                         </div>
                     </div>
@@ -1525,7 +1733,7 @@
                                 <label for="example-textarea-floating">Nominal</label>
                             </div>
                             <div class="form-floating mb-4">
-                                <textarea class="form-control" id="edit_keterangan" name="keterangan" rows="4" cols="50"></textarea>
+                                <textarea type="text" class="form-control" id="edit_keterangan" name="keterangan" rows="5" cols="50"></textarea>
                                 <label for="example-textarea-floating">Keterangan</label>
                             </div>
                     </div>
@@ -1572,7 +1780,7 @@
             <div class="modal-content">
                 <div class="block block-rounded block-transparent mb-0">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Tambah Kesimpualan Investigasi</h3>
+                        <h3 class="block-title">Tambah Kesimpulan Investigasi</h3>
                         <div class="block-options">
                             <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                             <i class="fa fa-fw fa-times"></i>
@@ -1583,7 +1791,7 @@
                         <form id="createKesimpulan">
                         <div class="form-floating mb-4">
                             <input hidden type="text" value="{{$detail->id}}" id="investigasi_id" name="investigasi_id">
-                            <textarea class="form-control" id="kesimpulan" name="kesimpulan" rows="4" cols="50"></textarea>
+                            <textarea type="text" class="form-control" id="kesimpulan" name="kesimpulan" rows="5" cols="50"></textarea>
                             <label for="example-textarea-floating">Kesimpualan Investigasi</label>
                         </div>
                     </div>
@@ -1664,7 +1872,7 @@
             <div class="modal-content">
                 <div class="block block-rounded block-transparent mb-0">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Tambah Kesimpualan Investigasi</h3>
+                        <h3 class="block-title">Tambah Rekomendasi Investigasi</h3>
                         <div class="block-options">
                             <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                             <i class="fa fa-fw fa-times"></i>
@@ -1675,8 +1883,8 @@
                         <form id="createrekomndasi">
                         <div class="form-floating mb-4">
                             <input hidden type="text" value="{{$detail->id}}" id="investigasi_id" name="investigasi_id">
-                            <textarea class="form-control" id="rekomendasi" name="rekomendasi" rows="4" cols="50"></textarea>
-                            <label for="example-textarea-floating">Kesimpualan Investigasi</label>
+                            <textarea type="text" class="form-control" id="rekomendasi" name="rekomendasi" rows="5" cols="50"></textarea>
+                            <label for="example-textarea-floating">Rekomendasi Investigasi</label>
                         </div>
                     </div>
                     <div class="block-content block-content-full text-end bg-body">
@@ -1708,8 +1916,8 @@
                         <form id="uprekomendasi">
                         <div class="form-floating mb-4">
                             <input hidden type="text" id="rekomendasi_id" name="id">
-                            <textarea class="form-control" id="editrekomendasi" name="rekomendasi" rows="4" cols="50"></textarea>
-                            <label for="example-textarea-floating">Kesimpualan Investigasi</label>
+                            <textarea type="text" class="form-control" id="editrekomendasi" name="rekomendasi" rows="5" cols="50"></textarea>
+                            <label for="example-textarea-floating">Rekomendasi Investigasi</label>
                         </div>
                     </div>
                     <div class="block-content block-content-full text-end bg-body">

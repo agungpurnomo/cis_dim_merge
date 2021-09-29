@@ -100,14 +100,12 @@
       kepada PT Deswa Invisco Multitama  (DIM) untuk melakukan  investigasi atas  
       klaim – klaim asuransi yang terjadi, bersama dengan ini pula secara 
        khusus kami menyampaikan laporan akhir hasil investigasi atas klaim 
-       <b> No. Polis {{$detail->no_polis}} atas  {{$detail->nm_pemegang_polis}}l </b>untuk dapat diterima dengan baik, 
+       <b> No. Polis {{$detail->no_polis}} atas nama {{$detail->nm_pemegang_polis}}l </b>untuk dapat diterima dengan baik, 
        perlu kami sampaikan bahwa proses investigasi <b> kami lakukan 
-       dalam periode 07/07/2021 sd. 20/07/2021 *(diisi sesuai dengan periode investigasi )</b>, 
-       dimana proses investigasi ini memerlukan tambahan waktu sehubungan dengan penelusuran  
-       pada beberapa faskes di Malaysia dan Singapura. 
+       dalam periode {{$detail->tgl_registrasi}} sd. {{$detail->tgl_kirim_dokumen}}</b>, 
+       {{$detail->tambahan_waktu}}. 
       <br><br>
-      Perlu kami sampaikan bahwa Investigasi kasus ini <b> melingkupi wilayah *(diisi sesuai wilayah 
-      investigasi) </b> untuk mencari dan mendapatkan informasi serta data yang berkaitan dengan Nasabah. 
+      Perlu kami sampaikan bahwa Investigasi kasus ini <b> melingkupi wilayah {{$detail->area_investigasi}} </b> untuk mencari dan mendapatkan informasi serta data yang berkaitan dengan Nasabah. 
       Secara lebih lengkap mengenai perjalanan  proses investigasi, temuan dilapangan, 
       kesimpulan hasil investigasi serta rekomendasi keputusan klaim dapat di lihat pada laporan akhir 
       investigasi ini. 
@@ -123,7 +121,7 @@
       <br><br>
       Salam,
       <br><br>
-      Jakarta, 20 Juli 2021
+      Jakarta, {{$detail->tgl_kirim_dokumen}}
       <br>
       <b>Management PT Deswa Invisco Multitama (DIM)</b> 
       <br><br>
@@ -343,7 +341,7 @@
           nantinya, terutama menyangkut penandatanganan SPAJ,financial background,dll. 
         </td>
       </tr>
-     <tr valign="top">
+      <tr valign="top">
         <td>3. </td>
         <td>
           Melakukan 	 pengecekan ke beberapa fasilitas kesehatan yang ada disekitar tempat tinggal 
@@ -351,6 +349,18 @@
           mengetahui riwayat perawatan.
         </td>
       </tr>
+      <?php
+        $no=3;
+      ?>
+      @foreach ($kategoriInvest as $item)
+      <?php $no++; ?>
+      <tr valign="top">
+        <td>{{$no}}.</td>
+        <td>
+          {{$item->kategori_investigasi}}
+        </td>
+      </tr>
+      @endforeach
 </table>
 </div>
 </div>

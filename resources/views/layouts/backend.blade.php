@@ -241,12 +241,17 @@
                                         </a>
                                     </li>
                                 </ul>
+
+                                <a class="nav-main-link" href="{{route('user.index')}}">
+                                    <i class="nav-main-link-icon si si-user"></i>
+                                    <span class="nav-main-link-name">User App</span>
+                                </a>
                             </li>
                             
 
                             <li class="nav-main-heading">More</li>
                             <li class="nav-main-item open">
-                                <a class="nav-main-link" href="">
+                                <a class="nav-main-link" href="{{ route('profile') }}">
                                     <i class="nav-main-link-icon si si-user"></i>
                                     <span class="nav-main-link-name">User Profile</span>
                                 </a>
@@ -313,7 +318,7 @@
                                 <div class="p-3 text-center bg-body-light border-bottom rounded-top">
                                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="{{ asset('media/avatars/avatar10.jpg') }}" alt="">
                                     <p class="mt-2 mb-0 fw-medium">{{ Auth::user()->name }}</p>
-                                    <p class="mb-0 text-muted fs-sm fw-medium">Web Developer</p>
+                                    <p class="mb-0 text-muted fs-sm fw-medium">Level - {{ Auth::user()->role }}</p>
                                 </div>
                                 <div class="p-2">
                                     <!-- <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">

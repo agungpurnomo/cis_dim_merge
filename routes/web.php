@@ -26,6 +26,9 @@ Auth::routes();
 
 Route::resource('jenisklaim','\App\Http\Controllers\JenisClaimController');
 Route::resource('polislain','\App\Http\Controllers\PolisLainController');
+Route::resource('user','\App\Http\Controllers\UserController');
+
+Route::get('/profile', [App\Http\Controllers\UserController::class, 'profile'])->name('profile');
 
 Route::resource('asuransi','\App\Http\Controllers\AsuransiController');
 Route::resource('investigator','\App\Http\Controllers\InvestigatorController');
