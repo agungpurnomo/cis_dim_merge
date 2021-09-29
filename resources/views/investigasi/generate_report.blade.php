@@ -427,6 +427,55 @@
 {{-- End INvestigasi Lapangan --}}
 
 
+{{-- kepemilikan polis --}}
+
+<div class="page" style="margin-top: 50px; font-family: Arial, Helvetica, sans-serif;">
+<!-- <table>
+  <tr>
+    <td>
+      <img src="{{ public_path('lib_report/logo_head.png') }}" alt=""> 
+    </td>
+    <td >
+    <h2 style="text-align: center; margin-left : 30px">KESIMPULAN AKHIR INVESTIGASI</h2>
+    </td>
+  </tr>
+</table> -->
+
+<?php $no=1; ?>
+<div style="margin-top:30px;">
+    <h4>KEPEMILIKAN POLIS ASURANSI</h4>
+</div>
+<div class="border-dot">
+  <table>
+    <tr>
+      <th>No</th>
+      <th>Perusahaan Asuransi</th>
+      <th>Issued Polis</th>
+      <th>Uang Pertanggungan</th>
+      <th>Klaim</th>
+      <th>Keputusan</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Maria Anders</td>
+      <td>Germany</td>
+      <td>Alfreds Futterkiste</td>
+      <td>Maria Anders</td>
+      <td>Germany</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Maria Anders</td>
+      <td>Germany</td>
+      <td>Alfreds Futterkiste</td>
+      <td>Maria Anders</td>
+      <td>Germany</td>
+    </tr>
+  </table>
+</div>
+{{-- End kepemilikan polis --}}
+
+
 {{-- kesimpulan --}}
 
 <div class="page" style="margin-top: 50px; font-family: Arial, Helvetica, sans-serif;">
