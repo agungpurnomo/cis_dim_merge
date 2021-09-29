@@ -168,7 +168,7 @@
                         <ul class="nav-main">
                             <li class="nav-main-item">
                                 <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="/dashboard">
-                                    <i class="nav-main-link-icon si si-cursor"></i>
+                                    <i class="nav-main-link-icon si si-speedometer"></i>
                                     <span class="nav-main-link-name">Dashboard</span>
                                 </a>
                             </li>
@@ -190,7 +190,7 @@
                             </li>
                             <li class="nav-main-item">
                                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                                    <i class="nav-main-link-icon si si-bulb"></i>
+                                    <i class="nav-main-link-icon si si-book-open"></i>
                                     <span class="nav-main-link-name">Reporting</span>
                                 </a>
                                 <ul class="nav-main-submenu">
@@ -216,7 +216,7 @@
                             
                             <li class="nav-main-item">
                                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                                    <i class="nav-main-link-icon si si-bulb"></i>
+                                    <i class="nav-main-link-icon si si-settings"></i>
                                     <span class="nav-main-link-name">Master Data</span>
                                 </a>
                                 <ul class="nav-main-submenu">
@@ -243,7 +243,7 @@
                                 </ul>
 
                                 <a class="nav-main-link" href="{{route('user.index')}}">
-                                    <i class="nav-main-link-icon si si-user"></i>
+                                    <i class="nav-main-link-icon si si-users"></i>
                                     <span class="nav-main-link-name">User App</span>
                                 </a>
                             </li>

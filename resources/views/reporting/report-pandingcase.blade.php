@@ -22,6 +22,10 @@
       border-collapse: collapse;
       border: 1.5px solid black;
     }
+
+    td{
+      font-size: 14px;
+    }
     </style>
   </head>
   <body>
@@ -33,7 +37,7 @@
                 <img src="{{ public_path('lib_report/logo_head.png') }}">
               </td>
               <td><?php echo str_repeat("&nbsp;",25);?></td>
-              <td align="center">
+              <td align="center" style="padding-top:15px;">
                 <h2> PENDING INVESTIGASI REPORT </h2>
                     <?php echo $tgl1;?> S/D  <?php echo $tgl2;?>
               </td>
@@ -41,7 +45,7 @@
             </tr>
           </table>
         </div>
-      <hr style="border: 2px solid black;">
+      <hr style="border: 1px solid black;">
     </div>
     <div id="footer">footerin on each page</div>
    
@@ -69,7 +73,7 @@
                   <td>&nbsp;{{$item->nm_tertanggung}}&nbsp;</td>
                   <td>&nbsp;{{$item->nm_pemegang_polis}}&nbsp;</td>
                   <td>&nbsp;{{$item->tgl_efektif_polis}}&nbsp;</td>
-                  <td>&nbsp;{{$item->uang_pertanggungan}}&nbsp;</td>
+                  <td>&nbsp;{{$item->matauang}} @currency($item->uang_pertanggungan)&nbsp;</td>
                   <td>&nbsp;{{$item->jenis_klaim}}&nbsp;</td>
                   <td>&nbsp;{{$item->nm_agen}}&nbsp;</td>
                   <td>&nbsp;{{$item->nm_investigator}}&nbsp;</td>

@@ -819,7 +819,7 @@
             window.open('{{ url("/investigasi/generate/") }}'+ '/' + id,'_blank');
         })
 
-        $(".btn-cetak-sementara--").on("click",function(){
+        $(".btn-cetak-sementara").on("click",function(){
             var id = $('#id').text();
             console.log(id);
             window.open("{{ route('generate',$detail->id)}}",'_blank');
@@ -1043,9 +1043,11 @@
                 <h3 class="block-title">
                     KEPEMILIKAN POLIS LAIN
                 </h3>
+                @if ($detail->status=='0')
                 <button type="button" class="btn btn-alt-info btn-sm" aria-haspopup="true" aria-expanded="false" data-bs-toggle="modal" data-bs-target="#modal-add">
                     <i class="fa fa-plus text-info me-1"></i>Add Polis Lain
-                </button>              
+                </button>  
+                @endif            
             </div>
 
             <div class="block-content block-content-full">
@@ -1074,8 +1076,10 @@
                 <h3 class="block-title">
                     HASIL INVESTIGASI
                 </h3>
+                @if ($detail->status=='0')
                 <a href="{{ route('updateinvestigasi.show',$detail->id)}}" class="btn btn-alt-success me-1 btn-sm">
-                    <i class="fa fa-plus text-info me-1"></i>Update Investigasi</a>              
+                    <i class="fa fa-plus text-info me-1"></i>Update Investigasi</a>  
+                @endif            
             </div>
 
             <div class="block-content block-content-full">
@@ -1105,8 +1109,11 @@
                 <h3 class="block-title">
                     TEMUAN KASUS
                 </h3>
+                @if ($detail->status=='0')
                 <button type="button" type="button" class="btn btn-alt-primary  btn-sm" data-bs-toggle="modal" data-bs-target="#modal-add-temuan">
-                    <i class="fa fa-plus text-info me-1"></i>Temuan</button>              
+                    <i class="fa fa-plus text-info me-1"></i>Temuan
+                </button>
+                @endif              
             </div>
 
             <div class="block-content block-content-full">
@@ -1135,8 +1142,11 @@
                 <h3 class="block-title">
                     UANG PERTANGGUNGAN DISELAMATKAN
                 </h3>
+                @if ($detail->status=='0')
                 <button type="button" type="button" class="btn btn-alt-primary  btn-sm" data-bs-toggle="modal" data-bs-target="#modal-add-uangpertanggungan">
-                    <i class="fa fa-plus text-info me-1"></i>Uang Pertanggungan Diselamatkan</button>              
+                    <i class="fa fa-plus text-info me-1"></i>Uang Pertanggungan Diselamatkan
+                </button>           
+                @endif   
             </div>
 
             <div class="block-content block-content-full">
@@ -1165,8 +1175,11 @@
                 <h3 class="block-title">
                     KESIMPULAN INVESTIGASI
                 </h3>
+                @if ($detail->status=='0')
                 <button type="button" type="button" class="btn btn-alt-primary  btn-sm" data-bs-toggle="modal" data-bs-target="#modal-add-kesimpulan">
-                    <i class="fa fa-plus text-info me-1"></i>Kesimpulan</button>              
+                    <i class="fa fa-plus text-info me-1"></i>Kesimpulan
+                </button>              
+                @endif
             </div>
 
             <div class="block-content block-content-full">
@@ -1194,8 +1207,11 @@
                 <h3 class="block-title">
                     REKOMENDASI KEPUTUSAN KLAIM
                 </h3>
+                @if ($detail->status=='0')
                 <button type="button" type="button" class="btn btn-alt-primary  btn-sm" data-bs-toggle="modal" data-bs-target="#modal-add-rekomendasi">
-                    <i class="fa fa-plus text-info me-1"></i>Rekomendasi</button>               
+                    <i class="fa fa-plus text-info me-1"></i>Rekomendasi
+                </button>               
+                @endif
             </div>
 
             <div class="block-content block-content-full">
@@ -1239,10 +1255,10 @@
                     <a class="btn btn-alt-primary me-1 btn-sm btn-cancel-send"><i class="fa fa-arrow-alt-circle-right text-warning me-1"></i>Cancel Send to Approve</a>
                 @endif
                 @if (($detail->status =='2' or $detail->status =='0') and $user->role =='master')
-                    <a class="btn btn-alt-primary me-1 btn-sm btn-approve"><i class="fa fa-arrow-alt-circle-right text-success me-1"></i>Approve</a>
+                    <a class="btn btn-alt-primary me-1 btn-sm btn-approve"><i class="fa fa-check text-success me-1"></i>Approve</a>
                 @endif
                 @if ($detail->status =='1' and $user->role =='master')
-                <button type="button" class="btn btn-alt-warning  btn-sm btn-cancel-approve">Cancel Closed</button>
+                <button type="button" class="btn btn-alt-warning  btn-sm btn-cancel-approve"><i class="fa fa-lock-open text-info me-1"></i>Cancel Closed</button>
                 @endif
             </div>             
         </div>
