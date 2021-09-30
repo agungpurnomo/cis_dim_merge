@@ -85,6 +85,7 @@ Route::get('/kategoriinvestigasi', [App\Http\Controllers\KategoriInvestigasiCont
 
 Route::post('/upload', [App\Http\Controllers\UpdateInvestigasiController::class, 'upload'])->name('upload');
 Route::get('/viewimg/{id}', [App\Http\Controllers\UpdateInvestigasiController::class, 'viewImg'])->name('viewimg');
+Route::get('/destroyimg/{id}', [App\Http\Controllers\UpdateInvestigasiController::class, 'destroyImg'])->name('destroyimg');
 
 Route::get('/investigasi/generate/', [App\Http\Controllers\InvestigasiController::class, 'generateAkhir'])->name('generateakhir');
 

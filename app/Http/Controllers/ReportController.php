@@ -140,7 +140,25 @@ class ReportController extends Controller
     {
         $asuransi=Asuransi::all();
         if ($request->ajax()) {
-            $data = Investigasi::select('*')->orderBy('created_at','DESC');
+            if($request->dr_tgl != '' && $request->smp_tgl != '')
+            {
+            $data = DB::select('SELECT 
+                                COUNT(i.id) as tot_kasus,
+                                COUNT(t.id) as tot_temuan,
+                                COUNT(i.asuransi_id) - COUNT(t.id) as tidak_ada_temuan,
+                                COUNT(i.nm_agen) as agen,
+                                0 AS insurance_shop,
+                                SUM(i.uang_pertanggungan) as uang_per,
+                                SUM(u.nominal) as uang_selamat
+                                FROM investigasis as i
+                                LEFT JOIN temuans as t on i.id = t.investigasi_id
+                                LEFT JOIN uangdiselamatkans as u on i.id = u.investigasi_id
+                                WHERE i.asuransi_id = 1 
+                                GROUP BY i.asuransi_id
+            ')->orderBy('created_at','DESC');
+            }else{
+                $data = [];
+            }
             return DataTables::of($data)
                     ->escapeColumns([])
                     ->make(true);

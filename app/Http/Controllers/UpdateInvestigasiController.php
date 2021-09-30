@@ -91,6 +91,10 @@ class UpdateInvestigasiController extends Controller
         return response()->json($data);
     }
 
+    public function destroyImg($id){
+
+    }
+
     /**
      * Display the specified resource.
      *
