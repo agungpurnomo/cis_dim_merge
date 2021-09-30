@@ -16,7 +16,8 @@ class CreateFotoInvestigasisTable extends Migration
         Schema::create('foto_investigasis', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('updateinvestigasi_id');
-            $table->string('images');
+            $table->string('judul');
+            $table->string('path');
             $table->timestamps();
 
 

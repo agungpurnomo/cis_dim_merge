@@ -1434,8 +1434,12 @@
                         @csrf
                         <div class="row push">
                             <div class="col-md-12">
+                                <div class="form-group mb-2">
+                                    <label for="" class="form-label">Judul Foto</label>
+                                    <input class="form-control" type="text" name="judul" id="judul" placeholder="Title image">
+                                </div>
                                 <div class="form-group">
-                                    <input class="form-control" type="text"  id="ids" name="id" >
+                                    <input hidden class="form-control" type="text"  id="ids" name="id" >
                                     <input required class="form-control" type="file" name="images[]" id="images" placeholder="Choose images" multiple >
                                 </div>
                             @error('images')
