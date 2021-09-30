@@ -35,7 +35,7 @@
     <!-- Page JS Code -->
     <!-- <script src="{{ asset('js/pages/tables_datatables.js') }}"></script> -->
     <script>One.helpersOnLoad(['js-flatpickr']);</script>
-    <script src="{{ asset('js/pages/be_comp_dialogs.min.js') }}"></script>
+    <!-- <script src="{{ asset('js/pages/be_comp_dialogs.min.js') }}"></script> -->
 
     <script>
         $.ajaxSetup({
@@ -47,12 +47,7 @@
 
     <!-- UPLOAD FOTO -->
     <script type="text/javascript">
-    $('body').on("click",".btn-upload",function(){
-        var id = $(this).attr("id");
-        console.log(id);
-        $(".btn-upload").attr("id",id);
-        $("#modal-upload").modal("show");
-    });
+    
 
     $('body').on("click",".btn-imageview",function(){
         
@@ -85,6 +80,13 @@
             }
         });
 
+        $('body').on("click",".btn-upload",function(){
+            var id = $(this).attr("id");
+            var ids = $('#ids').val(id);
+            console.log(id);
+            $(".btnupload").attr("id",id);
+            $("#modal-upload").modal("show");
+        });
 
         $('#multiple-image-preview-ajax').submit(function(e) {
             e.preventDefault();
@@ -185,8 +187,6 @@
             })
         })
         //Edit & Update
-
-
 
         $('body').on("click",".btn-delete",function(){
             var ids = $(this).attr("id");
@@ -1435,19 +1435,20 @@
                         <div class="row push">
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <input class="form-control" type="text"  id="ids" name="id" >
                                     <input required class="form-control" type="file" name="images[]" id="images" placeholder="Choose images" multiple >
                                 </div>
                             @error('images')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="col-md-12">
+                        <!-- <div class="col-md-12">
                             <div class="mt-1 text-center">
                                 <div class="show-multiple-image-preview"> </div>
                             </div>  
-                        </div>
+                        </div> -->
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-alt-primary mt-2" id="submit">Upload</button>
+                            <button type="submit" class="btn btn-alt-primary mt-2" id="btnupload">Upload</button>
                         </div>
                     </div>     
                     </form>
