@@ -72,11 +72,11 @@
                     render : function(data, type, row){
                         
                             if(row.status == 0){
-                                return ' <span class="fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info fs-sm">Panding / OnProgres</span>';
+                                return ' <span class="fw-semi d-inline-block py-1 px-3  bg-info-light text-info fs-sm">On Progress</span>';
                             }else if(row.status == 1){
-                                return ' <span class="fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger fs-sm">Close</span>';
+                                return ' <span class="fw-semi d-inline-block py-1 px-3 bg-danger-light text-danger fs-sm">Complete</span>';
                             }else{
-                                return ' <span class="fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success fs-sm">Approve</span>';
+                                return ' <span class="fw-semi d-inline-block py-1 px-3  bg-success-light text-success fs-sm">Wait Approved</span>';
                             }
 
                             // return data;   

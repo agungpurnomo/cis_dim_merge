@@ -22,6 +22,10 @@
       border-collapse: collapse;
       border: 1.5px solid black;
     }
+
+    td{
+      font-size: 14px;
+    }
     </style>
   </head>
   <body>
@@ -71,17 +75,17 @@
                   <td>&nbsp;{{$item->nm_tertanggung}}&nbsp;</td>
                   <td>&nbsp;{{$item->nm_pemegang_polis}}&nbsp;</td>
                   <td>&nbsp;{{$item->tgl_efektif_polis}}&nbsp;</td>
-                  <td>&nbsp;{{$item->uang_pertanggungan}}&nbsp;</td>
+                  <td style="text-align:right;">&nbsp;{{$item->matauang}} @currency($item->uang_pertanggungan)&nbsp;</td>
                   <td>&nbsp;{{$item->jenis_klaim}}&nbsp;</td>
                   <td>&nbsp;{{$item->nm_agen}}&nbsp;</td>
                   <td>&nbsp;{{$item->nm_investigator}}&nbsp;</td>
                   <td align="center">&nbsp;
                     <?php if($item->status==2){?>
-                      <b style="color: rgb(31, 166, 175)">On Progress / Panding</b>
+                      Wait approved
                     <?php }else if($item->status==1){ ?>
-                      <b style="color: rgb(187, 86, 39)">Close</b>
+                      Complete
                     <?php }else {?>
-                      <b style="color: rgb(105, 190, 56)">Approve</b>
+                    On progress
                     <?php } ?>
                   &nbsp;</td>
                 </tr>

@@ -268,7 +268,7 @@
         <tr>
           <td>Total Premi</td>
           <td> : </td>
-          <td>{{$detail->total_premi}}</td>
+          <td>@currency($detail->total_premi)</td>
         </tr>
         <tr>
           <td>Pekerjaan Tertanggung</td>
@@ -460,7 +460,7 @@
       <td class="td-polis">1</td>
       <td class="td-polis">{{$detail->nm_perusahaan}}</td>
       <td class="td-polis">{{$detail->no_polis}}</td>
-      <td class="td-polis">{{$detail->uang_pertanggungan}}</td>
+      <td class="td-polis">@currency($detail->uang_pertanggungan)</td>
       <td class="td-polis"></td>
       <td class="td-polis"></td>
     </tr>

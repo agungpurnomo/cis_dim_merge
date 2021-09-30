@@ -35,7 +35,7 @@
             <div class="block block-rounded d-flex flex-column">
                 <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                 <dl class="mb-0">
-                    <dt class="fs-3 fw-bold">32</dt>
+                    <dt class="fs-3 fw-bold">0</dt>
                     <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">Ongoing Investigation</dd>
                 </dl>
                 <div class="item item-rounded-lg bg-body-light">
@@ -54,7 +54,7 @@
             <div class="block block-rounded d-flex flex-column">
                 <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                 <dl class="mb-0">
-                    <dt class="fs-3 fw-bold">124</dt>
+                    <dt class="fs-3 fw-bold">0</dt>
                     <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">Complete Investigation</dd>
                 </dl>
                 <div class="item item-rounded-lg bg-body-light">
@@ -73,7 +73,7 @@
             <div class="block block-rounded d-flex flex-column">
                 <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                 <dl class="mb-0">
-                    <dt class="fs-3 fw-bold">45</dt>
+                    <dt class="fs-3 fw-bold">0</dt>
                     <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">Client</dd>
                 </dl>
                 <div class="item item-rounded-lg bg-body-light">
@@ -92,7 +92,7 @@
             <div class="block block-rounded d-flex flex-column">
                 <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                 <dl class="mb-0">
-                    <dt class="fs-3 fw-bold">4.5%</dt>
+                    <dt class="fs-3 fw-bold">0</dt>
                     <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">Update Investigation</dd>
                 </dl>
                 <div class="item item-rounded-lg bg-body-light">

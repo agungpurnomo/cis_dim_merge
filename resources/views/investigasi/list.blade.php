@@ -103,7 +103,7 @@
                             <td>{{$datas->username}}</td>
                             <td class="text-center">
                                 <form method="get" action="/investigasi/{{$datas->id}}/detail">
-                                    <button class="btn btn-outline-info btn-sm mr-2" type="submit"><i class="fa fa-info-circle text-info me-1"></i>detail</button>
+                                    <button class="btn btn-outline-info btn-sm mr-2" type="submit"><i class="fa fa-clipboard-list text-info me-1"></i>detail</button>
                                 </form>
                                 <!-- <a href="" class="btn btn-alt-info me-1  btn-sm">detail</a> -->
                             </td>

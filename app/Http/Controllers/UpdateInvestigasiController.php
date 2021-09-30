@@ -66,7 +66,8 @@ class UpdateInvestigasiController extends Controller
                          $filename=$file->getClientOriginalName().time().'.'.$file->getClientOriginalExtension();
                          $file->move(public_path() . '/media/photos/', $filename);
       
-                         $insert[$x]['updateinvestigasi_id'] = '16';
+                         $insert[$x]['judul'] = $request->judul;
+                         $insert[$x]['updateinvestigasi_id'] = $request->id;
                          $insert[$x]['path'] = $filename;
                      }
                 }
