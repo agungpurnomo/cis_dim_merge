@@ -100,3 +100,4 @@ Route::get('/portofolio', [App\Http\Controllers\ReportController::class, 'portof
 Route::get('/printportofolio/{dr_tgl}/{smp_tgl}/{asuransi_id}', [App\Http\Controllers\ReportController::class, 'printPortofolio'])->name('printportofolio');
 
 Route::get('/management', [App\Http\Controllers\ReportController::class, 'management'])->name('management');
+Route::get('/printportofolio/{dr_tgl}/{smp_tgl}/{asuransi_id}', [App\Http\Controllers\ReportController::class, 'printPortofolio'])->name('printportofolio');
