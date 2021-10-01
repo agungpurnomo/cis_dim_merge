@@ -72,6 +72,7 @@
                             <th class="text-center" style="width: 15%;">No Case & Tgl Reg</th>
                             <th class="text-center" style="width: 15%;">Nama Tertanggung</th>
                             <th class="text-center" class="d-none d-sm-table-cell">Perusahaan</th>
+                            <th class="text-center" class="d-none d-sm-table-cell">No Polis</th>
                             <th class="text-center">Status</th>
                             <th class="text-center">Admin</th>
                             <th class="text-center" style="width: 15%;">Action</th>
@@ -89,6 +90,7 @@
                             </td>
                             <td>{{$datas->nm_tertanggung}}</td>
                             <td>{{$datas->nm_perusahaan}}</td>
+                            <td>{{$datas->no_polis}}</td>
                             <td>
                                 @if($datas->status=='2')
                                     <span class="fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info fs-sm">wait approved</span>

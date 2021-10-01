@@ -52,7 +52,7 @@
                 </td>
                 <td align="center" style="padding-top:15px;">
                   <h2> LAPORAN INVESTIGASI SEMENTARA </h2>
-                 Per Tanggal <?php echo date("Y.m.d") ?>
+                  <h3> {{ $detail->nm_perusahaan }} </h3>
                 </td>
                 <td><?php echo str_repeat("&nbsp;",5);?></td>
               </tr>
@@ -69,16 +69,6 @@
               <tr valign="top">
                 <td style="padding-right: 20px;">
                   <table style="font-size:14px;">
-                    <tr>
-                      <td>No.case</td>
-                      <td> : </td>
-                      <td style="width:30%">{{$detail->no_case}}</td>
-                    </tr>
-                    <tr valign="top">
-                      <td >Nama Perusahaan</td>
-                      <td> : </td>
-                      <td> <?php echo wordwrap($detail->nm_perusahaan,20,"<br>\n")?> </td>
-                    </tr>
                     <tr>
                       <td>No.Polis</td>
                       <td> : </td>
@@ -112,12 +102,7 @@
                     <tr>
                       <td>Tanggal Penerbitan</td>
                       <td> : </td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>UP Dasar</td>
-                      <td> : </td>
-                      <td></td>
+                      <td>{{$detail->tgl_efektif_polis}}</td>
                     </tr>
                     <tr>
                       <td>Plan</td>

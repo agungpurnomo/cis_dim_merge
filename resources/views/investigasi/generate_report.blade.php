@@ -62,7 +62,7 @@
 
 
 <div style="margin-left: -50px; margin-top: 30px; 
-    background-color: rgb(8, 152, 235);width: 900px; height: 250px" >
+    background-color: #0000cc;width: 900px; height: 250px" >
     <table style="color: #ffffff;margin-left: 220px; font-size: 21px; font-display: ">
       <tr align="center">
         <td>
@@ -248,12 +248,12 @@
         <tr>
           <td>Tanggal Penerbitan</td>
           <td> : </td>
-          <td></td>
+          <td>{{$detail->tl_efektif_polis}}</td>
         </tr>
         <tr>
-          <td>UP Dasar</td>
+          <td>Uang Pertanggungan</td>
           <td> : </td>
-          <td></td>
+          <td>{{$detail->uang_pertanggungan}}</td>
         </tr>
         <tr>
           <td>Plan</td>
@@ -264,6 +264,11 @@
           <td>SPAJ</td>
           <td> : </td>
           <td>{{$detail->tgl_spaj}}</td>
+        </tr>
+        <tr>
+          <td>Premi</td>
+          <td> : </td>
+          <td>@currency($detail->premi)</td>
         </tr>
         <tr>
           <td>Total Premi</td>
@@ -314,12 +319,12 @@
         <tr>
           <td>Pengaju Klaim</td>
           <td> : </td>
-          <td>12 September 2021</td>
+          <td>{{$detail->pengaju_klaim}}</td>
         </tr>
         <tr>
           <td>Konologi Singkat</td>
           <td> : </td>
-          <td>12 September 2021</td>
+          <td>{{$detail->kronologi_singkat}}</td>
         </tr>
       </table>
     </td>
@@ -353,16 +358,8 @@
           nantinya, terutama menyangkut penandatanganan SPAJ,financial background,dll. 
         </td>
       </tr>
-      <tr valign="top">
-        <td>3. </td>
-        <td>
-          Melakukan 	 pengecekan ke beberapa fasilitas kesehatan yang ada disekitar tempat tinggal 
-          Tertanggung termasuk pengecekan pada beberapa faskes di Malaysia dan Singapura untuk 
-          mengetahui riwayat perawatan.
-        </td>
-      </tr>
       <?php
-        $no=3;
+        $no=2;
       ?>
       @foreach ($kategoriInvest as $item)
       <?php $no++; ?>
@@ -391,9 +388,10 @@
   </tr>
 </table>
 
-<div class="border-dot" style="margin-top:30px;">
+
 @foreach ($kategori as $item)
 <?php $no=1; ?>
+<div class="border-dot" style="margin-top:30px;">
 <p style="font-weight: bold;margin-bottom: 1px;">{{$item->kategori_investigasi}}</p>
   @foreach ($data as $val)
     <?php if ($item->id == $val->kategoriinvestigasi_id) { ?>
@@ -434,8 +432,9 @@
             </table>
    <?php }?>
   @endforeach
-@endforeach
 </div>
+@endforeach
+
 {{-- End INvestigasi Lapangan --}}
 
 

@@ -45,6 +45,8 @@ class CreateInvestigasisTable extends Migration
             $table->string('informasi_lain');
             $table->date('tgl_kirim_dokumen');
             $table->string('tambahan_waktu');
+            $table->string('pengaju_klaim');
+            $table->longText('kronologi_singkat');
             $table->unsignedBigInteger('user_id');
             $table->integer('status');
             $table->timestamps();

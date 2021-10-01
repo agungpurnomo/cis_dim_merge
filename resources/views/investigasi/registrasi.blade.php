@@ -397,11 +397,24 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-4 col-form-label" for="example-hf-email">Tambahan Informasi Lain</label>
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Tambahan Waktu</label>
                             <div class="col-sm-8">
-                                <textarea type="text" class="form-control" rows="3" id="tambahan_waktu" name="tambahan_waktu"></textarea>
+                                <textarea type="text" class="form-control" rows="2" id="tambahan_waktu" name="tambahan_waktu"></textarea>
                             </div>
                         </div>
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-password">Pengaju Klaim</label>
+                            <div class="col-sm-8">
+                            <input type="text" class="form-control" id="pengaju_klaim" name="pengaju_klaim" placeholder="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Kronologi Singkat</label>
+                            <div class="col-sm-8">
+                            <textarea class="form-control"  id="kronologi_singkat" name="kronologi_singkat" rows="3" placeholder="kronologi singkat.."></textarea>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
                 <hr>
