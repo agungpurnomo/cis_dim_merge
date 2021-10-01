@@ -37,29 +37,70 @@
             });
     </script>
     <script type="text/javascript">
-        $('.js-dataTable-buttons').dataTable({
-            pageLength: 5,
-            lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
-            autoWidth: false,
-            buttons: [
-                { extend: 'csv', className: 'btn btn-sm btn-primary',
-                    exportOptions: {
-                      columns: [ 0,1,2,3 ]
-                      } 
+        function listAll(tgl1='',tgl2='',asuransi=''){
+            $('.js-dataTable-buttons').dataTable({
+                pageLength: 5,
+                lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
+                autoWidth: false,
+                buttons: [
+                    { extend: 'csv', className: 'btn btn-sm btn-primary',
+                        exportOptions: {
+                            columns: [ 0,1,2,3 ]
+                            } 
+                    }
+                ],
+                ajax: {
+                    url :"{{ url('management') }}",
+                    data : {dr_tgl : tgl1,
+                        smp_tgl : tgl2,
+                        asuransi : asuransi},
+                    },
+                columns: [
+                    {data: 'id', name: 'id',width: '5%'},
+                    {data: 'tot_kasus' , name: 'tot_kasus', width: '5%'},
+                    {data: 'tot_temuan', name: 'tot_temuan', width: '10%'},
+                    {data: 'tidak_ada_temuan', name: 'tidak_ada_temuan', width: '25%'},
+                    {data: 'agen', name: 'agen'},
+                    {data: 'insurance_shop', name: 'insurance_shop', width: '15%'},
+                    {data: 'uang_per', name: 'uang_per', width: '15%'},
+                    {data: 'uang_selamat', name: 'uang_selamat', width: '15%'},
+                    
+                ],
+                destroy: true,
+                dom: "<'row'<'col-sm-12'<'text-center bg-body-light py-2 mb-2'B>>>" +
+                    "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>"
+            });
+        }
+
+        $('#btn-filter').click(function(){
+
+            var tgl1 = $('#tgl_dr').val();
+            var tgl2 = $('#tgl_smp').val();
+            var asuransi = $('#asuransi_id').val();
+
+
+            if(tgl1 =="" || tgl2=="" || asuransi==""){
+            One.helpers('jq-notify', 
+                    {type: 'warning', icon: 'fa fa-exclamation-triangle me-1', message: 'Silahkan Pilih Filter Terlebih Dahulu!'});
+            }else{
+                listAll(tgl1,tgl2,asuransi);
+            }
+
+            $('#btn-print').click(function(){
+
+                var tgl1 = $('#tgl_dr').val();
+                var tgl2 = $('#tgl_smp').val();
+                var asuransi = $('#asuransi_id').val();
+
+                if(tgl1 =="" ||  tgl2=="" || asuransi==""){
+                One.helpers('jq-notify', 
+                        {type: 'warning', icon: 'fa fa-exclamation-triangle me-1', message: 'Silahkan Pilih Filter Terlebih Dahulu!'});
+                }else{
+                    window.open('{{ url("/printmanagement") }}'+ '/' +tgl1+'/'+tgl2+'/'+asuransi,'_blank');
                 }
-            ],
-            ajax: '{{ url("pendingcase") }}',
-            columns: [
-                {data: 'id' , name: 'id', width: '5%'},
-                {data: 'id', name: 'id', width: '10%'},
-                {data: 'id', name: 'id', width: '25%'},
-                {data: 'id', name: 'id'},
-                {data: 'id', name: 'id', width: '15%'},
-                {data: 'id', name: 'id', width: '15%'},
+                    
+            });
                 
-            ],
-            dom: "<'row'<'col-sm-12'<'text-center bg-body-light py-2 mb-2'B>>>" +
-                "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>"
         });
 
     </script>
@@ -132,10 +173,10 @@
                                 <input type="text" class="js-flatpickr form-control" id="tgl_smp" name="tgl_smp" placeholder="sampai">
                             </div>
                             <div class="col-sm-2">
-                                <button type="submit" class="btn btn-alt-primary"><i class="fa fa-filter text-info me-1"></i>Filter</button>
+                                <button type="button" id="btn-filter" class="btn btn-alt-primary btn-filter"><i class="fa fa-filter text-info me-1"></i>Filter</button>
                             </div>
                             <div class="col-sm-3 text-end">
-                                <button type="submit" class="btn btn-alt-primary"><i class="fa fa-print text-info me-1"></i>Print</button>
+                                <button type="button" id="btn-print" class="btn btn-alt-primary"><i class="fa fa-print text-info me-1"></i>Print</button>
                             </div>
                         </div>
                     </div>
@@ -146,14 +187,13 @@
                     <thead>
                         <tr>
                             <th class="text-center" style="width: 80px;">#</th>
-                            <th>No Polis</th>
-                            <th>Tertanggung</th>
-                            <th>Pemegang Polis</th>
-                            <th>Efektif Polis</th>
-                            <th>Uang pertanggungan</th>
-                            <th>Jenis Klaim</th>
-                            <th>Agent</th>
-                            <th>Investigator</th>
+                            <th>Total Kasus</th>
+                            <th>Total Temuan Kasus</th>
+                            <th>Total Tidak Ada Temuan Kasus</th>
+                            <th>Total Keterlibatan agen</th>
+                            <th>Indikasi Insurance Shoping</th>
+                            <th>Uang Pertanggungan</th>
+                            <th>Uang Pertanggungan Diselamatkan</th>
                         </tr>
                     </thead>
                     <tbody>

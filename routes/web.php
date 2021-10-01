@@ -85,6 +85,7 @@ Route::get('/kategoriinvestigasi', [App\Http\Controllers\KategoriInvestigasiCont
 
 Route::post('/upload', [App\Http\Controllers\UpdateInvestigasiController::class, 'upload'])->name('upload');
 Route::get('/viewimg/{id}', [App\Http\Controllers\UpdateInvestigasiController::class, 'viewImg'])->name('viewimg');
+Route::get('/destroyimg/{id}', [App\Http\Controllers\UpdateInvestigasiController::class, 'destroyImg'])->name('destroyimg');
 
 Route::get('/investigasi/generate/', [App\Http\Controllers\InvestigasiController::class, 'generateAkhir'])->name('generateakhir');
 
@@ -99,3 +100,4 @@ Route::get('/portofolio', [App\Http\Controllers\ReportController::class, 'portof
 Route::get('/printportofolio/{dr_tgl}/{smp_tgl}/{asuransi_id}', [App\Http\Controllers\ReportController::class, 'printPortofolio'])->name('printportofolio');
 
 Route::get('/management', [App\Http\Controllers\ReportController::class, 'management'])->name('management');
+Route::get('/printmanagement/{dr_tgl}/{smp_tgl}/{asuransi_id}', [App\Http\Controllers\ReportController::class, 'printManagement'])->name('printmanagement');
