@@ -142,7 +142,8 @@ class ReportController extends Controller
         if ($request->ajax()) {
             if($request->dr_tgl != '' && $request->smp_tgl != '')
             {
-            $data = DB::select('SELECT 
+            $data = DB::select("SELECT
+                                i.*,
                                 COUNT(i.id) as tot_kasus,
                                 COUNT(t.id) as tot_temuan,
                                 COUNT(i.asuransi_id) - COUNT(t.id) as tidak_ada_temuan,
@@ -153,9 +154,10 @@ class ReportController extends Controller
                                 FROM investigasis as i
                                 LEFT JOIN temuans as t on i.id = t.investigasi_id
                                 LEFT JOIN uangdiselamatkans as u on i.id = u.investigasi_id
-                                WHERE i.asuransi_id = 1 
+                                WHERE i.asuransi_id = $request->asuransi AND tgl_registrasi 
+                                BETWEEN '$request->dr_tgl' AND '$request->smp_tgl'
                                 GROUP BY i.asuransi_id
-            ')->orderBy('created_at','DESC');
+            ");
             }else{
                 $data = [];
             }
@@ -164,6 +166,45 @@ class ReportController extends Controller
                     ->make(true);
         }
         return view('reporting.management',compact('asuransi'));
+    }
+
+    public function printManagement(Request $request,$dr_tgl,$smp_tgl,$asuransi_id)
+    {
+        $asuransi=Asuransi::all();
+        $data = [];
+        $tgl1 = $dr_tgl;
+        $tgl2 = $smp_tgl;
+        
+            if($dr_tgl != '' && $smp_tgl != '' &&  $asuransi_id != '')
+            {
+                $data = DB::select("SELECT
+                                    i.*,
+                                    COUNT(i.id) as tot_kasus,
+                                    COUNT(t.id) as tot_temuan,
+                                    COUNT(i.asuransi_id) - COUNT(t.id) as tidak_ada_temuan,
+                                    COUNT(i.nm_agen) as agen,
+                                    0 AS insurance_shop,
+                                    SUM(i.uang_pertanggungan) as uang_per,
+                                    SUM(u.nominal) as uang_selamat
+                                    FROM investigasis as i
+                                    LEFT JOIN temuans as t on i.id = t.investigasi_id
+                                    LEFT JOIN uangdiselamatkans as u on i.id = u.investigasi_id
+                                    WHERE i.asuransi_id = $asuransi_id AND tgl_registrasi 
+                                    BETWEEN '$dr_tgl' AND '$smp_tgl'
+                                    GROUP BY i.asuransi_id");
+
+                $peru = DB::table('asuransis')
+                        ->select('*')
+                        ->where('id',$asuransi_id)
+                        ->first();
+            }else{
+                $data = [];
+            }
+
+        $pdf = PDF::loadview('reporting.report-management',
+                compact('data','tgl1','tgl2','peru'))
+                ->setPaper('letter','landscape');
+                return $pdf->stream('laporan_pending_investigasi');
     }
 
     /**
