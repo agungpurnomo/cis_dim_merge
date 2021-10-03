@@ -65,6 +65,12 @@ Route::delete('/delrekomendasi/{id}', [App\Http\Controllers\InvestigasiControlle
 Route::patch('/updaterekomendasi/{id}', [App\Http\Controllers\InvestigasiController::class, 'updateRekomendasi'])->name('updaterekomendasi');
 Route::get('/getidrekomendasi/{id}', [App\Http\Controllers\InvestigasiController::class, 'getIdRekomendasi'])->name('getidrekomendasi');
 
+Route::get('/getlampiran/{id}', [App\Http\Controllers\InvestigasiController::class, 'getLampiran'])->name('getlampiran');
+Route::get('/getpendalaman/{id}', [App\Http\Controllers\InvestigasiController::class, 'getPendalaman'])->name('getpendalaman');
+Route::get('/getproseskesimpulan/{id}', [App\Http\Controllers\InvestigasiController::class, 'getProsesKesimpulan'])->name('getproseskesimpulan');
+
+
+
 Route::get('/getuangdiselamatkan/{id}', [App\Http\Controllers\InvestigasiController::class, 'getUangDiselamatkan'])->name('getuangdiselamatkan');
 Route::post('/adduangpertanggungan', [App\Http\Controllers\UangPertanggunganContorller::class, 'addUangPertanggungan'])->name('adduangpertanggungan');
 Route::delete('/deluangpertanggungan/{id}', [App\Http\Controllers\UangPertanggunganContorller::class, 'delUangPertanggungan'])->name('deluangpertanggungan');

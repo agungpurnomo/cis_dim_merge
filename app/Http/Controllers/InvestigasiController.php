@@ -96,6 +96,42 @@ class InvestigasiController extends Controller
         return response()->json(['data' => $data]);
     }
 
+    //GET LAMPIRAN, PENDALAMAN, PROSES KESIMPULAN SMT
+    public function getLampiran($id)
+    {
+        $data = Investigasi::findOrFail($id)
+                    ->join('asuransis','investigasis.asuransi_id','=','asuransis.id')
+                    ->join('investigators','investigasis.investigator_id','=','investigators.id')
+                    ->select('investigasis.*','asuransis.nm_perusahaan','investigators.nm_investigator')
+                    ->where('investigasis.id', $id )
+                    ->first();
+        return view('investigasi.lampiran',compact('data'));
+    }
+
+    public function getPendalaman($id)
+    {
+        $data = Investigasi::findOrFail($id)
+                    ->join('asuransis','investigasis.asuransi_id','=','asuransis.id')
+                    ->join('investigators','investigasis.investigator_id','=','investigators.id')
+                    ->select('investigasis.*','asuransis.nm_perusahaan','investigators.nm_investigator')
+                    ->where('investigasis.id', $id )
+                    ->first();
+        return view('investigasi.pendalaman',compact('data'));
+    }
+
+    public function getProsesKesimpulan($id)
+    {
+        $data = Investigasi::findOrFail($id)
+                    ->join('asuransis','investigasis.asuransi_id','=','asuransis.id')
+                    ->join('investigators','investigasis.investigator_id','=','investigators.id')
+                    ->select('investigasis.*','asuransis.nm_perusahaan','investigators.nm_investigator')
+                    ->where('investigasis.id', $id )
+                    ->first();
+        return view('investigasi.proseskesimpulansementara',compact('data'));
+    }
+
+    //END LAMPIRAN, PENDALAMAN, PROSES KESIMPULAN SMT
+
 
     public function getPolis(Request $request, $id)
     {

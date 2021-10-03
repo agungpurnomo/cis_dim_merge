@@ -933,6 +933,12 @@
                 <a href="/investigasi/{{$detail->id}}/edit" class="btn btn-alt-info btn-sm mr-2" >
                     <i class="fa fa-pencil-alt text-info me-1"></i>Edit Informasi</button>
                 </a>
+                <a href="{{ route('getproseskesimpulan',$detail->id)}}" class="btn btn-alt-info btn-sm mr-2" >
+                    <i class="fa fa-pencil-alt text-info me-1"></i>Proses dilakukan & Kesimpulan Sementara</button>
+                </a>
+                <a href="{{ route('getpendalaman',$detail->id)}}" class="btn btn-alt-info btn-sm mr-2" >
+                    <i class="fa fa-pencil-alt text-info me-1"></i>Pendalaman Investigasi</button>
+                </a>
                 <button type="button" class="btn btn-alt-danger me-1 btn-sm btn-delete">
                     <i class="fa fa-fw fa-times me-1"></i>Hapus
                 </button>
@@ -1130,6 +1136,8 @@
                     HASIL INVESTIGASI
                 </h3>
                 @if ($detail->status=='0')
+                <a href="{{ route('getlampiran',$detail->id)}}" class="btn btn-alt-success me-1 btn-sm">
+                    <i class="fa fa-plus text-info me-1"></i>Lampiran Foto</a>  
                 <a href="{{ route('updateinvestigasi.show',$detail->id)}}" class="btn btn-alt-success me-1 btn-sm">
                     <i class="fa fa-plus text-info me-1"></i>Update Investigasi</a>  
                 @endif            
