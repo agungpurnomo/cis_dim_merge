@@ -93,7 +93,7 @@ class UpdateInvestigasiController extends Controller
     }
 
     public function destroyImg($id){
-
+        FotoInvestigasi::find($id)->delete();
     }
 
     /**

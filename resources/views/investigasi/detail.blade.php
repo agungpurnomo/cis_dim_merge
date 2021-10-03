@@ -43,41 +43,71 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+        var SITEURL ={!! json_encode(url('/')) !!};
     </script>
 
     <!-- UPLOAD FOTO -->
     <script type="text/javascript">
     
+        function tabelImg(item, index){
 
-    $('body').on("click",".btn-imageview",function(){
-        
-        var id = $(this).attr("id");
-         var myImage = new Image(400, 300);
-         var SITEURL ={!! json_encode(url('/')) !!};
-        console.log(id);
-        
-        $.ajax({
-            url : "{{ url('viewimg')}}"+ '/' + id,
-            method: "GET",
-            dataType : "json",
-            success: function(data){
-                var fot = data[0].path;
-                var n = fot.toString();
-                myImage.src = SITEURL+"/media/photos/"+n;
-                x = document.getElementById("gambar");
-                x.appendChild(myImage);
-            }
+        }
 
+        $('body').on("click",".btn-imageview",function(){
             
-        });
-        $("#modal-ViewImg").modal("show");
-    });
+            var id = $(this).attr("id");
+            var myImage = new Image(400, 300);
+            console.log(id);
+            var html ="";
 
-    $(document).ready(function (e) {
-        $.ajaxSetup({
-            headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
+            $.ajax({
+                url : "{{ url('viewimg')}}"+ '/' + id,
+                method: "GET",
+                dataType : "json",
+                success: function(data){
+                    for(var i=0; i<data.length; i++){
+                   html +=
+                        `<tr>
+                            <td>`+data[i].judul+`</td>
+                            <td><img src="`+SITEURL+"/media/photos/"+data[i].path+`" style="width:100%; max-width:500px" alt=""></td>
+                            <td> <a href="javascript:void(0)" id="`+data[i].id+`" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled btn-delete-img" data-bs-toggle="tooltip" title="Delete">
+                            <i class="fa fa-fw fa-times"></i></a></td>
+                         </tr>`
+                        }
+                    $('#tabel_img').html(html);
+                }
+
+                
+            });
+
+        $("#modal-ViewImg").modal("show");
+        });
+
+        $('body').on("click",".btn-delete-img",function () {
+            var id = $(this).attr("id");
+            console.log(id);
+            $(".btn-destroy-img").attr("id",id);
+            $("#destroy-modalLabel").text("Yakin Hapus Data :");
+            $("#modal-delete-img").modal("show");
+        })
+
+        $(".btn-destroy-img").on("click",function(){
+            var id = $(this).attr("id")
+            console.log(id);
+            $.ajax({
+                url: "/destroyimg/"+id,
+                method : 'DELETE',
+                success:function(){
+                    $("#modal-delete-img").modal("hide");
+                    $("#modal-ViewImg").modal("hide");
+                    One.helpers('jq-notify', 
+                    {type: 'danger', icon: 'fa fa-check me-1', message: 'Berhasil dihapus!'});
+                },
+                error: function(xhr, status, error){
+                var errorMessage = xhr.status + ': ' + xhr.statusText
+                alert('Gambar gagal dihapus');
+                },
+            });
         });
 
         $('body').on("click",".btn-upload",function(){
@@ -116,7 +146,6 @@
                 }
             });
         });
-    });
     </script>
 
     <script>
@@ -687,7 +716,7 @@
             $("#modal-delete-temuan").modal("show");
         });
 
-         $(".btn-destroy-temuan").on("click",function(){
+        $(".btn-destroy-temuan").on("click",function(){
             var id = $(this).attr("id")
             console.log(id);
             $.ajax({
@@ -1462,7 +1491,7 @@
 
      <!-- modal show foto -->
     <div class="modal fade" id="modal-ViewImg" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="block block-rounded block-transparent mb-0">
                     <div class="block-header block-header-default">
@@ -1474,13 +1503,46 @@
                         </div>
                     </div>
                     <div class="block-content fs-lg" style="align-text:center">
-                        <div id="gambar" style="width:100%; max-width:500px"></div>
-                          
+                        <table class="table table-bordered table-striped table-vcenter">
+                            <thead>
+                                <tr>
+                                    <th>Judul</th>
+                                    <th>Ganbar</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabel_img"></tbody>
+                            
+                        </table>
                     </div>
                     <div class="block-content block-content-full text-end bg-body">
                             <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Batal</button> 
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-delete-img" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">
+        <div class="modal-dialog modal-vcenter" role="document">
+            <div class="modal-content">
+            <div class="block block-rounded block-transparent mb-0">
+                <div class="block-header block-header-default">
+                <h3 class="block-title">Hapus Data</h3>
+                <div class="block-options">
+                    <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-fw fa-times"></i>
+                    </button>
+                </div>
+                </div>
+                <div class="block-content fs-sm text-center">
+                    <h5>Yakin akan menghapus data?</h5>
+                </div>
+                <div class="block-content block-content-full text-end bg-body">
+                    <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-sm btn-danger btn-destroy-img">Hapus</button>
+                </div>
+            </div>
             </div>
         </div>
     </div>
