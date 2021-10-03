@@ -62,7 +62,7 @@
 
 
 <div style="margin-left: -50px; margin-top: 30px; 
-    background-color: #0000cc;width: 900px; height: 250px" >
+    background-color: #4379aa;width: 900px; height: 250px" >
     <table style="color: #ffffff;margin-left: 220px; font-size: 21px; font-display: ">
       <tr align="center">
         <td>
@@ -297,7 +297,7 @@
       <h5><u> INFORMASI KLAIM </u></h5>
       <table>
         <tr>
-          <td>Tanggal Meningal</td>
+          <td>Tanggal Meninggal</td>
           <td> : </td>
           <td>{{$detail->tgl_meninggal}}</td>
         </tr>

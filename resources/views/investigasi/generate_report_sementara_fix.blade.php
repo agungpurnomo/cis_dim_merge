@@ -180,7 +180,7 @@
                         <td>{{$detail->tgl_registrasi}}</td>
                       </tr>
                       <tr>
-                        <td>Konologi Singkat</td>
+                        <td>Kronologi Singkat</td>
                         <td style="padding-left: 40px;"> : </td>
                         <td></td>
                       </tr>
@@ -189,31 +189,31 @@
               </tr>
           </table>
 
-  {{-- Asuransi Lain --}}
-  <table style="margin-top:10px;">
-    <tr>
-      <td colspan ="2">
-        Kepemilkan  Asuransi Lain :
-      </td>
-    </tr>
-    <!-- <tr>
-      <td>
-        PRUDENTIAL : N
-      </td>
-       <td>
-        ALLIANZ : N
-      </td>
-       <td>
-        AIA FINANCIAL : N
-      </td>
-       <td>
-        MANULIFE : N
-      </td>
-       <td>
-        PANIN LIFE : N
-      </td>
-    </tr> -->
-  </table>
+    {{-- Asuransi Lain --}}
+    <table style="margin-top:10px;">
+      <tr>
+        <td colspan ="2">
+          Kepemilikan  Asuransi Lain :
+        </td>
+      </tr>
+      <!-- <tr>
+        <td>
+          PRUDENTIAL : N
+        </td>
+        <td>
+          ALLIANZ : N
+        </td>
+        <td>
+          AIA FINANCIAL : N
+        </td>
+        <td>
+          MANULIFE : N
+        </td>
+        <td>
+          PANIN LIFE : N
+        </td>
+      </tr> -->
+    </table>
 
     @if ($detail->informasi_lain==!'')
     <h5>
@@ -243,6 +243,15 @@
     <?php }?>
     @endforeach
   @endforeach
+</div>
+
+
+<div class="border-solid" style="page-break-inside:avoid;">
+  <h5>HAL-HAL MASIH DALAM PROSES DILAKUKAN</h5>
+</div>
+
+<div class="border-solid" style="page-break-inside:avoid;">
+  <h5>KESIMPULAN SEMENTARA</h5>
 </div>
 
   
