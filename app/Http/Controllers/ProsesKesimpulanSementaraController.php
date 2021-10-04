@@ -56,7 +56,10 @@ class ProsesKesimpulanSementaraController extends Controller
                     ->first();
 
         if ($request->ajax()) {
-            $data = ProsesKesimpulanSementara::select('*')->orderBy('flag','DESC');
+            $data = DB::table('proses_kesimpulan_sementaras as pks')
+                    ->select('pks.*')
+                    ->where('pks.investigasi_id',$id)
+                    ->get();
             return DataTables::of($data)
                     ->addIndexColumn()        
                     ->addColumn('action', function($row){

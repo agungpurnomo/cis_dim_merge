@@ -361,12 +361,12 @@
       <?php
         $no=2;
       ?>
-      @foreach ($kategoriInvest as $item)
+      @foreach ($pendalaman as $item)
       <?php $no++; ?>
       <tr valign="top">
         <td>{{$no}}.</td>
         <td>
-          {{$item->kategori_investigasi}}
+          {{$item->pendalaman}}
         </td>
       </tr>
       @endforeach

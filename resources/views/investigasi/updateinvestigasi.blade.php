@@ -137,7 +137,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-lg-4">
                             <p class="fs-sm text-muted">
                             Investigator
@@ -153,7 +153,7 @@
                             </select>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row">
                         <div class="col-lg-4">
                             <p class="fs-sm text-muted">

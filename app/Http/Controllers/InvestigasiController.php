@@ -13,6 +13,7 @@ use App\Models\Provinsi;
 use App\Models\Kesimpulan;
 use App\Models\Rekomendasi;
 use App\Models\LampiranFoto;
+use App\Models\ProsesKesimpulanSementara;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Carbon;
@@ -440,8 +441,20 @@ class InvestigasiController extends Controller
                 ->groupBy('k.id')
                 ->get();
 
+        $masihdalamproses = DB::table('proses_kesimpulan_sementaras as pks')
+                          ->select('pks.*')
+                          ->where('pks.investigasi_id',$id)
+                          ->where('pks.flag','Proses Dilakukan')
+                          ->get();
+
+        $kesimpulansementara = DB::table('proses_kesimpulan_sementaras as pks')
+                            ->select('pks.*')
+                            ->where('pks.investigasi_id',$id)
+                            ->where('pks.flag','Kesimpulan Sementara')
+                            ->get();
+
                 $pdf = PDF::loadview('investigasi.generate_report_sementara_fix',
-                compact('asuransi','detail','data','kategori'))
+                compact('asuransi','detail','data','kategori','masihdalamproses','kesimpulansementara'))
                 // compact('asuransi','detail','data','kategori','foto','rekomendasi','kesimpulan'))
         ->setPaper('letter','potrait');
         return $pdf->stream('laporan_investigasi_sementara_');
@@ -500,6 +513,11 @@ class InvestigasiController extends Controller
         ->where('kesimpulans.investigasi_id',$id)
         ->get();
 
+        //kesimpulan
+        $pendalaman = DB::table('pendalaman_investigasis as p')
+        ->where('p.investigasi_id',$id)
+        ->get();
+
         //KategoriCount
         $kategoriInvest = DB::table('updateinvestigasis')
         ->leftjoin('kategori_investigasis','kategori_investigasis.id','=','updateinvestigasis.kategoriinvestigasi_id')
@@ -516,7 +534,7 @@ class InvestigasiController extends Controller
         
         $pdf = PDF::loadview('investigasi.generate_report',
                 compact('asuransi','detail','data','kategori','foto','rekomendasi',
-                        'kesimpulan','kategoriInvest','polislain'))
+                        'kesimpulan','kategoriInvest','polislain','pendalaman'))
         ->setPaper('letter','potrait');
     	return $pdf->stream('laporan-investigasi-pdf');
     }

@@ -247,11 +247,31 @@
 
 
 <div class="border-solid" style="page-break-inside:avoid;">
-  <h5>HAL-HAL MASIH DALAM PROSES DILAKUKAN</h5>
+  <h5 style="margin-bottom:5px;">HAL-HAL MASIH DALAM PROSES DILAKUKAN</h5>
+  @foreach ($masihdalamproses as $proses)
+  <?php $no=1; ?>
+          <table style="margin-right: 55px; text-align: justify; font-size:14px;">
+            <tr>
+              <td valign="top"><?php echo $no++; ?>. </td>
+                <td>{{$proses->proses_kesimpulan_sementara}}
+              </td>
+            </tr>
+          </table>
+  @endforeach
 </div>
 
 <div class="border-solid" style="page-break-inside:avoid;">
-  <h5>KESIMPULAN SEMENTARA</h5>
+  <h5 style="margin-bottom:5px;">KESIMPULAN SEMENTARA</h5>
+  <?php $no=1; ?>
+  @foreach ($kesimpulansementara as $kesimpulan)
+      <table style="margin-right: 55px; text-align: justify; font-size:14px;">
+        <tr>
+          <td valign="top"><?php echo $no++; ?>. </td>
+            <td>{{$kesimpulan->proses_kesimpulan_sementara}}
+          </td>
+        </tr>
+      </table>
+  @endforeach
 </div>
 
   
