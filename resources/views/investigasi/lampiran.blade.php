@@ -35,7 +35,30 @@
         });
     </script>
 
-    <script>          
+    <script>
+         function listUpdate(){
+            var html = '<div></div>';
+            var id = $(this).attr("id");
+            console.log(id);
+            $('.js-dataTable-list').dataTable({
+                pageLength: 10,
+                lengthMenu: [[10, 20, 30, 40], [10, 20, 30, 40]],
+                autoWidth: false,
+                ajax: '{{ url("getdetail") }}'+ '/' + id,
+                columns: [
+                    {data: 'DT_RowIndex' , name: 'id', width: '5%'},
+                    {data: 'title', name: 'title'},
+                    {data: 'gambar', name: 'gambar'},
+                    {data: 'keterangan', name: 'keterangan'},
+                    {data: 'action', name: 'action', orderable: false, searchable: true,width: '5%' },
+                ],
+                order: [[2, 'asc']],
+                rowGroup: {
+                    dataSrc: 'kategori_investigasi'
+                }
+            });
+        }
+
         $("#createForm").on("submit",function(e){
             e.preventDefault()
             var id = $("#investigasi_id").val()
@@ -117,7 +140,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
                     </tbody>
                 </table>
      
