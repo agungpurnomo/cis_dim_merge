@@ -25,11 +25,13 @@ class LampiranController extends Controller
                     ->select('*')
                     ->where('investigasis.id', $id )
                     ->get();
-            
             return DataTables::of($data)
-            ->addIndexColumn()        
+            ->addIndexColumn()
+            ->addColumn('action', function($row){
+
+            })        
                 ->addColumn('action', function($row){
-                    $btn .= '<a href="javascript:void(0)" id="'.$row->id.'" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled btn-edit"
+                    $btn = '<a href="javascript:void(0)" id="'.$row->id.'" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled btn-edit"
                            data-bs-toggle="tooltip" title="Edit"><i class="fa fa-fw fa-pencil-alt"></i></a>';
                     $btn .= '<a href="javascript:void(0)" id="'.$row->id.'" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled btn-delete-update"
                             data-bs-toggle="tooltip" title="Delete"><i class="fa fa-fw fa-times"></i></a></div>';

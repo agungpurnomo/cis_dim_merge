@@ -108,4 +108,4 @@ Route::get('/printportofolio/{dr_tgl}/{smp_tgl}/{asuransi_id}', [App\Http\Contro
 Route::get('/management', [App\Http\Controllers\ReportController::class, 'management'])->name('management');
 Route::get('/printmanagement/{dr_tgl}/{smp_tgl}/{asuransi_id}', [App\Http\Controllers\ReportController::class, 'printManagement'])->name('printmanagement');
 
-oute::get('/getlampiranfoto/{id}', [App\Http\Controllers\LampiranController::class, 'getLampiranFoto'])->name('getlampiranfoto');
+Route::get('/getlampiranfoto/{id}', [App\Http\Controllers\LampiranController::class, 'getLampiranFoto'])->name('getlampiranfoto');
