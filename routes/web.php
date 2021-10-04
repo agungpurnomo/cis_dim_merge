@@ -27,6 +27,8 @@ Auth::routes();
 Route::resource('jenisklaim','\App\Http\Controllers\JenisClaimController');
 Route::resource('polislain','\App\Http\Controllers\PolisLainController');
 Route::resource('user','\App\Http\Controllers\UserController');
+Route::resource('pendalaman','\App\Http\Controllers\PendalamanController');
+Route::resource('proseskesimpulanSMT','\App\Http\Controllers\ProsesKesimpulanSementaraController');
 
 Route::get('/profile', [App\Http\Controllers\UserController::class, 'profile'])->name('profile');
 
@@ -66,9 +68,6 @@ Route::patch('/updaterekomendasi/{id}', [App\Http\Controllers\InvestigasiControl
 Route::get('/getidrekomendasi/{id}', [App\Http\Controllers\InvestigasiController::class, 'getIdRekomendasi'])->name('getidrekomendasi');
 
 Route::get('/getlampiran/{id}', [App\Http\Controllers\InvestigasiController::class, 'getLampiran'])->name('getlampiran');
-Route::get('/getpendalaman/{id}', [App\Http\Controllers\InvestigasiController::class, 'getPendalaman'])->name('getpendalaman');
-Route::get('/getproseskesimpulan/{id}', [App\Http\Controllers\InvestigasiController::class, 'getProsesKesimpulan'])->name('getproseskesimpulan');
-
 
 
 Route::get('/getuangdiselamatkan/{id}', [App\Http\Controllers\InvestigasiController::class, 'getUangDiselamatkan'])->name('getuangdiselamatkan');

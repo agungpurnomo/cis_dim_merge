@@ -87,10 +87,10 @@
                         const new_no = parseInt(last_no)+1;
                         const nocase = kd_perusahaan+"/"+bulan+"."+tahun+"/"+new_no;
                         $('#no_case').val(nocase);
-                        console.log(n);
-                        console.log(last_no);
-                        console.log(new_no);
-                        console.log(nocase);
+                        // console.log(n);
+                        // console.log(last_no);
+                        // console.log(new_no);
+                        // console.log(nocase);
                     }
                     console.log(html);
                     

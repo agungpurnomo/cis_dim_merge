@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\PendalamanInvestigasi;
+use App\Models\ProsesKesimpulanSementara;
 use App\Models\Investigasi;
 use Yajra\DataTables\DataTables;
 
-class PendalamanController extends Controller
+class ProsesKesimpulanSementaraController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class PendalamanController extends Controller
      */
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -37,7 +37,7 @@ class PendalamanController extends Controller
      */
     public function store(Request $request)
     {
-        PendalamanInvestigasi::create($request->all());
+        ProsesKesimpulanSementara::create($request->all());
     }
 
     /**
@@ -56,7 +56,7 @@ class PendalamanController extends Controller
                     ->first();
 
         if ($request->ajax()) {
-            $data = PendalamanInvestigasi::select('*')->orderBy('created_at','DESC');
+            $data = ProsesKesimpulanSementara::select('*')->orderBy('flag','DESC');
             return DataTables::of($data)
                     ->addIndexColumn()        
                     ->addColumn('action', function($row){
@@ -67,7 +67,7 @@ class PendalamanController extends Controller
                     ->escapeColumns([])
                     ->make(true);
         }
-        return view('investigasi.pendalaman',compact('data'));
+        return view('investigasi.proseskesimpulansementara',compact('data'));
     }
 
     /**
@@ -78,10 +78,7 @@ class PendalamanController extends Controller
      */
     public function edit($id)
     {
-        if(request()->ajax()) {
-            $data = PendalamanIvestigasi::FindOrFail($id);
-            return response()->json(['data'=>$data]);
-        }
+        //
     }
 
     /**
@@ -91,9 +88,9 @@ class PendalamanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PendalamanInvestigasi $pendalaman)
+    public function update(Request $request, $id)
     {
-        $pendalaman->update($request->all());
+        //
     }
 
     /**
@@ -104,6 +101,6 @@ class PendalamanController extends Controller
      */
     public function destroy($id)
     {
-        PendalamanInvestigasi::find($id)->delete();
+        ProsesKesimpulanSementara::find($id)->delete();
     }
 }
