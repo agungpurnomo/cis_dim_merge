@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="{{ asset('js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}">
     <link rel="stylesheet" href="{{ asset('js/plugins/flatpickr/flatpickr.min.css')}}">
     <link rel="stylesheet" href="https://cdn.datatables.net/rowgroup/1.1.3/css/rowGroup.dataTables.min.css">
-@endsection
+    <link rel="stylesheet" href="{{ asset('js/plugins/simplemde/simplemde.min.css')}}">
+    @endsection
 
 @section('js_after')
     <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
@@ -19,6 +20,7 @@
     
     
     <!-- Page JS Plugins -->
+
     <script src="{{ asset('js/plugins/flatpickr/flatpickr.min.js')}}"></script>
     <script src="{{ asset('js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
     <script src="{{ asset('js/plugins/bootstrap-notify/bootstrap-notify.min.js')}}"></script>
@@ -35,8 +37,15 @@
     <!-- Page JS Code -->
     <!-- <script src="{{ asset('js/pages/tables_datatables.js') }}"></script> -->
     <script>One.helpersOnLoad(['js-flatpickr']);</script>
-    <!-- <script src="{{ asset('js/pages/be_comp_dialogs.min.js') }}"></script> -->
-
+    
+    <script src="{{ asset ('js/oneui.app.min-5.1.js') }}"></script>
+    <script src="{{ asset ('js/plugins/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset ('js/plugins/simplemde/simplemde.min.js') }}"></script>
+    <script>One.helpersOnLoad(['js-ckeditor', 'js-simplemde']);</script>
+     <!-- <script src="{{ asset('js/pages/be_comp_dialogs.min.js') }}"></script> -->
+    <script>
+        
+    </script>
     <script>
         $.ajaxSetup({
             headers: {
@@ -496,7 +505,6 @@
             autoWidth: false,
             ajax: '{{ url("getkesimpulan") }}'+ '/' + id,
             columns: [
-                {data: 'DT_RowIndex' , name: 'id', width: '1%'},
                 {data: 'kesimpulan', name: 'kesimpulan'},
                 {data: 'action', name: 'action', orderable: false, searchable: true,width: '15%' },
             ],
@@ -933,11 +941,11 @@
                 <a href="/investigasi/{{$detail->id}}/edit" class="btn btn-alt-info btn-sm mr-2" >
                     <i class="fa fa-pencil-alt text-info me-1"></i>Edit Informasi</button>
                 </a>
-                <a href="{{ route('getproseskesimpulan',$detail->id)}}" class="btn btn-alt-info btn-sm mr-2" >
-                    <i class="fa fa-pencil-alt text-info me-1"></i>Proses dilakukan & Kesimpulan Sementara</button>
+                <a href="{{ route('proseskesimpulanSMT.show',$detail->id)}}" class="btn btn-alt-info btn-sm mr-2" >
+                    <i class="fa fa-cogs text-info me-1"></i>Proses dilakukan & Kesimpulan Sementara</button>
                 </a>
-                <a href="{{ route('getpendalaman',$detail->id)}}" class="btn btn-alt-info btn-sm mr-2" >
-                    <i class="fa fa-pencil-alt text-info me-1"></i>Pendalaman Investigasi</button>
+                <a href="{{ route('pendalaman.show',$detail->id)}}" class="btn btn-alt-info btn-sm mr-2" >
+                    <i class="fa fa-cogs text-info me-1"></i>Pendalaman Investigasi</button>
                 </a>
                 <button type="button" class="btn btn-alt-danger me-1 btn-sm btn-delete">
                     <i class="fa fa-fw fa-times me-1"></i>Hapus
@@ -1248,7 +1256,6 @@
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-kesimpulan fs-sm">
                         <thead>
                             <tr>
-                                <th class="text-center" style="width: 30px;">#</th>
                                 <th>Kesimpulan</th>
                                 <th style="width: 15%;">Action</th>
                             </tr>
@@ -1913,7 +1920,7 @@
 
     <!-- modal-add Kesimpulan-->
     <div class="modal fade" id="modal-add-kesimpulan" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="block block-rounded block-transparent mb-0">
                     <div class="block-header block-header-default">
@@ -1928,8 +1935,8 @@
                         <form id="createKesimpulan">
                         <div class="form-floating mb-4">
                             <input hidden type="text" value="{{$detail->id}}" id="investigasi_id" name="investigasi_id">
+                            <!-- <label for="example-textarea-floating">Kesimpulan Investigasi</label> -->
                             <textarea type="text" class="form-control" id="kesimpulan" name="kesimpulan" rows="5" cols="50"></textarea>
-                            <label for="example-textarea-floating">Kesimpualan Investigasi</label>
                         </div>
                     </div>
                     <div class="block-content block-content-full text-end bg-body">
@@ -1946,11 +1953,11 @@
 
       <!-- modal-edit Kesimpulan-->
     <div class="modal fade" id="modal-edit-kesimpulan" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="block block-rounded block-transparent mb-0">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Edit Uang Pertanggungan Diselamatkan</h3>
+                        <h3 class="block-title">Update Kesimpulan</h3>
                         <div class="block-options">
                             <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                             <i class="fa fa-fw fa-times"></i>
@@ -1961,8 +1968,8 @@
                         <form id="upKesimpulan">
                         <div class="form-floating mb-4">
                             <input hidden type="text" id="kesimpulan_id" name="id">
+                            <!-- <label for="example-textarea-floating">Kesimpulan Investigasi</label> -->
                             <textarea class="form-control" id="editkesimpulan" name="kesimpulan" rows="4" cols="50"></textarea>
-                            <label for="example-textarea-floating">Kesimpualan Investigasi</label>
                         </div>
                     </div>
                     <div class="block-content block-content-full text-end bg-body">

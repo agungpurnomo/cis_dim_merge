@@ -109,27 +109,7 @@ class InvestigasiController extends Controller
         return view('investigasi.lampiran',compact('data'));
     }
 
-    public function getPendalaman($id)
-    {
-        $data = Investigasi::findOrFail($id)
-                    ->join('asuransis','investigasis.asuransi_id','=','asuransis.id')
-                    ->join('investigators','investigasis.investigator_id','=','investigators.id')
-                    ->select('investigasis.*','asuransis.nm_perusahaan','investigators.nm_investigator')
-                    ->where('investigasis.id', $id )
-                    ->first();
-        return view('investigasi.pendalaman',compact('data'));
-    }
 
-    public function getProsesKesimpulan($id)
-    {
-        $data = Investigasi::findOrFail($id)
-                    ->join('asuransis','investigasis.asuransi_id','=','asuransis.id')
-                    ->join('investigators','investigasis.investigator_id','=','investigators.id')
-                    ->select('investigasis.*','asuransis.nm_perusahaan','investigators.nm_investigator')
-                    ->where('investigasis.id', $id )
-                    ->first();
-        return view('investigasi.proseskesimpulansementara',compact('data'));
-    }
 
     //END LAMPIRAN, PENDALAMAN, PROSES KESIMPULAN SMT
 
