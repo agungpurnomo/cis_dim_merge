@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\LampiranFoto;
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\DataTables;
+use Illuminate\Support\Carbon;
+use Auth;
+use Validator;
 
 class LampiranController extends Controller
 {
@@ -11,9 +17,26 @@ class LampiranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getLampiranFoto($id)
     {
-        //
+        if(request()->ajax())
+        {
+            $data = LampiranFoto::findOrFail($id)
+                    ->select('*')
+                    ->where('investigasis.id', $id )
+                    ->get();
+            
+            return DataTables::of($data)
+            ->addIndexColumn()        
+                ->addColumn('action', function($row){
+                    $btn .= '<a href="javascript:void(0)" id="'.$row->id.'" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled btn-edit"
+                           data-bs-toggle="tooltip" title="Edit"><i class="fa fa-fw fa-pencil-alt"></i></a>';
+                    $btn .= '<a href="javascript:void(0)" id="'.$row->id.'" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled btn-delete-update"
+                            data-bs-toggle="tooltip" title="Delete"><i class="fa fa-fw fa-times"></i></a></div>';
+                    return $btn;
+            })
+            ->escapeColumns([])
+            ->make(true);
     }
 
     /**

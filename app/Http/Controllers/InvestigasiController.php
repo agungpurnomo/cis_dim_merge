@@ -12,6 +12,7 @@ use App\Models\JenisClaim;
 use App\Models\Provinsi;
 use App\Models\Kesimpulan;
 use App\Models\Rekomendasi;
+use App\Models\LampiranFoto;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Carbon;
@@ -103,7 +104,7 @@ class InvestigasiController extends Controller
                     ->join('asuransis','investigasis.asuransi_id','=','asuransis.id')
                     ->join('investigators','investigasis.investigator_id','=','investigators.id')
                     ->select('investigasis.*','asuransis.nm_perusahaan','investigators.nm_investigator')
-                    ->where('investigasis.id', $id )
+                    ->where('investigasis.id',$id)
                     ->first();
         return view('investigasi.lampiran',compact('data'));
     }

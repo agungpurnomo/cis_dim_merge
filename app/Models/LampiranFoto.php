@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LampiranFoto extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'investigasi_id','title','path','keterangan'
+    ];
 }
