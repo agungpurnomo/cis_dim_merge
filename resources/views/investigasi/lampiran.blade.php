@@ -103,7 +103,7 @@
             })
         })
 
-        $('body').on("click",".btn-delete-uangpertanggungan",function(){
+        $('body').on("click",".btn-delete",function(){
             var id = $(this).attr("id");
             var kd = $(this).attr("id");
             $(".btn-destroy-uangpertanggungan").attr("id",id);
