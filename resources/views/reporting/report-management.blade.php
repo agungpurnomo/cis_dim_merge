@@ -23,9 +23,7 @@
       border: 1.5px solid black;
     }
 
-    td{
-      font-size: 14px;
-    }
+
     </style>
   </head>
   <body>
@@ -38,7 +36,7 @@
               </td>
               <td><?php echo str_repeat("&nbsp;",25);?></td>
               <td align="center">
-                <h2> MANAGEMENT REPORT </h2>
+                <h2 style="margin-bottom:10px;margin-top:30px;"> MANAGEMENT REPORT </h2>
                     Periode : <b> <?php echo $tgl1;?> S/D  <?php echo $tgl2;?> </b><br>
                     Perusahaan : <b>{{$peru->nm_perusahaan}}</b> 
               </td>
@@ -51,7 +49,7 @@
     <div id="footer">DIM | <?php echo date('d/m/Y') ?></div>
    
       <div id="content">
-         <table class="garis" style="padding-top :0px">
+         <table class="garis" style="padding-top :0px;font-size: 14px;">
            <thead>
               <tr>
                 <th>No.</th>

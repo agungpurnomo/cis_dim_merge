@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ProsesKesimpulanSementara;
 use App\Models\Investigasi;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\DB;
 
 class ProsesKesimpulanSementaraController extends Controller
 {
