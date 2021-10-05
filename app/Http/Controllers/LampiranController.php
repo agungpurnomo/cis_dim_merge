@@ -9,6 +9,7 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Support\Carbon;
 use Auth;
 use Validator;
+use Image;
 
 class LampiranController extends Controller
 {
@@ -17,28 +18,38 @@ class LampiranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getLampiranFoto($id)
+    public function index()
+    {
+        //
+    }
+
+    public function getLampiranFoto(Request $request,$id)
     {
         if(request()->ajax())
         {
-            $data = LampiranFoto::findOrFail($id)
+            $data = DB::table('lampiran_fotos')
                     ->select('*')
-                    ->where('investigasis.id', $id )
+                    ->where('investigasi_id', $id )
                     ->get();
             return DataTables::of($data)
             ->addIndexColumn()
+            ->addColumn('gambar', function($row){
+                $foto_ls ='<img src="/media/lampiran/'.$row->path.'" width="300px">';
+                return $foto_ls;
+            })    
             ->addColumn('action', function($row){
-
-            })        
-                ->addColumn('action', function($row){
-                    $btn = '<a href="javascript:void(0)" id="'.$row->id.'" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled btn-edit"
-                           data-bs-toggle="tooltip" title="Edit"><i class="fa fa-fw fa-pencil-alt"></i></a>';
-                    $btn .= '<a href="javascript:void(0)" id="'.$row->id.'" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled btn-delete-update"
-                            data-bs-toggle="tooltip" title="Delete"><i class="fa fa-fw fa-times"></i></a></div>';
-                    return $btn;
+                $btn = '<a href="javascript:void(0)" id="'.$row->id.'" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled btn-edit"
+                    data-bs-toggle="tooltip" title="Edit"><i class="fa fa-fw fa-pencil-alt"></i></a>';
+                $btn .= '<a href="javascript:void(0)" id="'.$row->id.'" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled btn-delete"
+                        data-bs-toggle="tooltip" title="Delete"><i class="fa fa-fw fa-times"></i></a></div>';
+                return $btn;
             })
             ->escapeColumns([])
             ->make(true);
+            // dd($data);
+        }
+        
+        return response()->json(['data' => $data]);
     }
 
     /**
@@ -46,9 +57,41 @@ class LampiranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function uploadLampiran(Request $request)
     {
-        //
+        $this->validate($request, [
+            'judul' => 'required',
+            'images' => 'required',
+            'keterangan' => 'required',
+        ]);
+
+        $details = [
+                'investigasi_id' => $request->investigasi_id,
+                'title' => $request->judul,
+                'keterangan' => $request->keterangan,
+        ];
+
+        $id_lampiran = $request->id;
+        $image = $request->file('images');
+        $filename = $image->getClientOriginalName().time().'.'.$image->getClientOriginalExtension();
+        $details['path'] = $filename; 
+
+        $details['path'] = time().'.'.$image->extension();
+     
+        $destinationPath = public_path('/media/lampiran');
+        $img = Image::make($image->path());
+        $img->resize(1000, 1000, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($destinationPath.'/'.$details['path']);
+   
+        
+        $ext_lamp =   LampiranFoto::updateOrCreate(['id' => $id_lampiran], $details);
+        if($ext_lamp){
+            return response()->json(['code'=>1,'msg'=>'Data Success Saved..']);
+        }else{
+            return response()->json(['code'=>0,'msg'=>'Data Error Saved..']);
+        }
+       
     }
 
     /**
@@ -102,8 +145,8 @@ class LampiranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delLampiranFoto($id)
     {
-        //
+        LampiranFoto::find($id)->delete();
     }
 }

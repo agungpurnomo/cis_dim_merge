@@ -108,3 +108,5 @@ Route::get('/management', [App\Http\Controllers\ReportController::class, 'manage
 Route::get('/printmanagement/{dr_tgl}/{smp_tgl}/{asuransi_id}', [App\Http\Controllers\ReportController::class, 'printManagement'])->name('printmanagement');
 
 Route::get('/getlampiranfoto/{id}', [App\Http\Controllers\LampiranController::class, 'getLampiranFoto'])->name('getlampiranfoto');
+Route::post('/uploadlampiran', [App\Http\Controllers\LampiranController::class, 'uploadLampiran'])->name('uploadlampiran');
+Route::get('/dellampiranfoto/{id}', [App\Http\Controllers\LampiranController::class, 'delLampiranFoto'])->name('dellampiranfoto');
