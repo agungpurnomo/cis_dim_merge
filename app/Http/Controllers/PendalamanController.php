@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\PendalamanInvestigasi;
 use App\Models\Investigasi;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\DB;
 
 class PendalamanController extends Controller
 {
@@ -56,7 +57,11 @@ class PendalamanController extends Controller
                     ->first();
 
         if ($request->ajax()) {
-            $data = PendalamanInvestigasi::select('*')->orderBy('created_at','DESC');
+            $data = DB::table('pendalaman_investigasis as pi')
+                    ->select('pi.*')
+                    ->where('pi.investigasi_id',$id)
+                    ->get();
+
             return DataTables::of($data)
                     ->addIndexColumn()        
                     ->addColumn('action', function($row){

@@ -71,12 +71,17 @@ class ReportController extends Controller
                         ->where('asuransi_id',$asuransi_id)
                         ->whereBetween('tgl_registrasi', array($dr_tgl, $smp_tgl))
                         ->get();
+                $peru = DB::table('asuransis')
+                ->select('*')
+                ->where('id',$asuransi_id)
+                ->first();
+                
             }else{
                 $data = [];
             }
 
         $pdf = PDF::loadview('reporting.report-pandingcase',
-                compact('data','tgl1','tgl2'))
+                compact('data','tgl1','tgl2','peru'))
                 ->setPaper('letter','landscape');
                 return $pdf->stream('laporan_pending_investigasi');
     }

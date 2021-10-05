@@ -46,7 +46,7 @@
             buttons: [
                 { extend: 'csv', className: 'btn btn-sm btn-primary',
                     exportOptions: {
-                      columns: [ 0,1,2,3 ]
+                      columns: [ 0,1,2,3,4,5,6,7,8 ]
                       } 
                 }
             ],
@@ -155,7 +155,7 @@
                                 <select class="form-select" id="asuransi_id" name="asuransi_id">
                                     <option selected="">Pilih Client</option>
                                     @foreach ($asuransi as $item)
-                                    <option value="{{$item->id}}">{{$item->nm_perusahaan}}</option>  
+                                    <option value="{{$item->id}}" data-kd_value="{{$item->kd_perusahaan}}">{{$item->nm_perusahaan}}</option>  
                                     @endforeach                                
                                 </select>
                             </div>

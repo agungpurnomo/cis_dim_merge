@@ -38,7 +38,7 @@
               </td>
               <td><?php echo str_repeat("&nbsp;",25);?></td>
               <td align="center">
-                <h2> PORTOFOLIO CASE REPORT </h2>
+                <h2 style="margin-bottom:5px;margin-top:35px;"> PORTOFOLIO CASE REPORT </h2>
                     Periode : <b> <?php echo $tgl1;?> S/D  <?php echo $tgl2;?> </b><br>
                     Perusahaan : <b>{{$peru->nm_perusahaan}}</b> 
               </td>
@@ -48,10 +48,10 @@
         </div>
       <hr style="border: 2px solid black;">
     </div>
-    <div id="footer">footerin on each page</div>
+    <div id="footer"></div>
    
       <div id="content">
-         <table class="garis" style="padding-top :0px">
+         <table class="garis" style="padding-top :0px; font-size: 14px;">
            <thead>
               <tr>
                 <th>&nbsp;No&nbsp;</th>
@@ -71,12 +71,12 @@
              @foreach ($data as $item)
                 <tr>
                   <td align="center">&nbsp;<?php echo $no++ ?>&nbsp;</td>
-                  <td>&nbsp;{{$item->no_polis}}&nbsp;</td>
+                  <td align="center">&nbsp;{{$item->no_polis}}&nbsp;</td>
                   <td>&nbsp;{{$item->nm_tertanggung}}&nbsp;</td>
                   <td>&nbsp;{{$item->nm_pemegang_polis}}&nbsp;</td>
-                  <td>&nbsp;{{$item->tgl_efektif_polis}}&nbsp;</td>
+                  <td align="center">&nbsp;{{$item->tgl_efektif_polis}}&nbsp;</td>
                   <td style="text-align:right;">&nbsp;{{$item->matauang}} @currency($item->uang_pertanggungan)&nbsp;</td>
-                  <td>&nbsp;{{$item->jenis_klaim}}&nbsp;</td>
+                  <td align="center">&nbsp;{{$item->jenis_klaim}}&nbsp;</td>
                   <td>&nbsp;{{$item->nm_agen}}&nbsp;</td>
                   <td>&nbsp;{{$item->nm_investigator}}&nbsp;</td>
                   <td align="center">&nbsp;

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ProsesKesimpulanSementara;
 use App\Models\Investigasi;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\DB;
 
 class ProsesKesimpulanSementaraController extends Controller
 {
@@ -56,7 +57,10 @@ class ProsesKesimpulanSementaraController extends Controller
                     ->first();
 
         if ($request->ajax()) {
-            $data = ProsesKesimpulanSementara::select('*')->orderBy('flag','DESC');
+            $data = DB::table('proses_kesimpulan_sementaras as pks')
+                    ->select('pks.*')
+                    ->where('pks.investigasi_id',$id)
+                    ->get();
             return DataTables::of($data)
                     ->addIndexColumn()        
                     ->addColumn('action', function($row){
