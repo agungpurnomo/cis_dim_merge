@@ -106,9 +106,47 @@
         $('body').on("click",".btn-delete",function(){
             var id = $(this).attr("id");
             var kd = $(this).attr("id");
-            $(".btn-destroy-uangpertanggungan").attr("id",id);
+            $(".btn-destroy").attr("id",id);
             $("#destroy-modalLabel").text("Yakin Hapus Data :" +id);
             $("#modal-delete-upload_foto").modal("show");
+        });
+
+         $(".btn-destroy").on("click",function(){
+            var id = $(this).attr("id")
+            $.ajax({
+                url: '{{ url("dellampiranfoto") }}'+ '/' + id,
+                method : 'DELETE',
+                success:function(){
+                    $("#modal-delete-upload_foto").modal("hide");
+                    $('.js-dataTable-list').DataTable().ajax.reload();  
+                    One.helpers('jq-notify', 
+                    {type: 'danger', icon: 'fa fa-check me-1', message: 'Berhasil dihapus!'});
+                },
+                error: function(xhr, status, error){
+                var errorMessage = xhr.status + ': ' + xhr.statusText
+                },
+            });
+        })
+
+        $('body').on("click",".btn-edit",function(){
+            var id = $(this).attr("id");
+            $.ajax({
+                url: '{{ url("getidlampiranfoto") }}'+ '/' + id,
+                method : 'GET',
+                success:function(data){
+                     $('#modal-upload').modal('show');
+                     $('#btnupload').html('Save Edit');
+                     $('#id').val(data.result.id);
+                     $('#in_id').val(data.result.investigasi_id);
+                     $('#judul').val(data.result.title);
+                     $('#keterangan').val(data.result.keterangan);
+                     $('#images').val(data.result.path);
+
+                },
+                error: function(xhr, status, error){
+                var errorMessage = xhr.status + ': ' + xhr.statusText
+                },
+            });
         });
     </script>
 
@@ -215,7 +253,7 @@
                                     <textarea class="form-control" type="text" name="keterangan" id="keterangan" rows="4" placeholder="Keterangan"></textarea>
                                 </div>
                         </div> 
-                        </div> -->
+                        </div>
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-alt-primary mt-2" id="btnupload">Upload</button>
                         </div>
@@ -246,7 +284,7 @@
                 </div>
                 <div class="block-content block-content-full text-end bg-body">
                     <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-sm btn-danger btn-destroy-uangpertanggungan">Hapus</button>
+                    <button type="button" class="btn btn-sm btn-danger btn-destroy">Hapus</button>
                 </div>
             </div>
             </div>

@@ -109,4 +109,5 @@ Route::get('/printmanagement/{dr_tgl}/{smp_tgl}/{asuransi_id}', [App\Http\Contro
 
 Route::get('/getlampiranfoto/{id}', [App\Http\Controllers\LampiranController::class, 'getLampiranFoto'])->name('getlampiranfoto');
 Route::post('/uploadlampiran', [App\Http\Controllers\LampiranController::class, 'uploadLampiran'])->name('uploadlampiran');
-Route::get('/dellampiranfoto/{id}', [App\Http\Controllers\LampiranController::class, 'delLampiranFoto'])->name('dellampiranfoto');
+Route::delete('/dellampiranfoto/{id}', [App\Http\Controllers\LampiranController::class, 'delLampiranFoto'])->name('dellampiranfoto');
+Route::get('/getidlampiranfoto/{id}', [App\Http\Controllers\LampiranController::class, 'getIdLampiranFoto'])->name('getidlampiranfoto');

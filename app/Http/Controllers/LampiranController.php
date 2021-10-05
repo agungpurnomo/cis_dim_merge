@@ -111,9 +111,15 @@ class LampiranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function getIdLampiranFoto($id)
     {
-        //
+       $data = LampiranFoto::find($id);
+
+       if(!empty($data)){
+        return response()->json(['code'=>1,'msg'=>'Data is Find','result'=>$data]);
+    }else{
+        return response()->json(['code'=>0,'msg'=>'Data not found..']);
+    }
     }
 
     /**
