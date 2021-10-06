@@ -78,7 +78,7 @@
                    html +=
                         `<tr>
                             <td>`+data[i].judul+`</td>
-                            <td><img src="`+SITEURL+"/media/photos/"+data[i].path+`" style="width:100%; max-width:500px" alt=""></td>
+                            <td><img src="`+SITEURL+"/storage/"+data[i].path+`" style="width:100%; max-width:500px" alt=""></td>
                             <td> <a href="javascript:void(0)" id="`+data[i].id+`" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled btn-delete-img" data-bs-toggle="tooltip" title="Delete">
                             <i class="fa fa-fw fa-times"></i></a></td>
                          </tr>`
@@ -951,7 +951,6 @@
                     <i class="fa fa-fw fa-times me-1"></i>Hapus
                 </button>
                 @endif
-                
             </div>
                      
         </div>
@@ -1312,10 +1311,10 @@
                 <button type="submit" class="btn btn-alt-primary me-1 btn-sm btn-cetak-akhir"><i class="fa fa-print text-info me-1"></i>Generate Report Akhir</button>
                 <a href="{{ route('generate',$detail->id)}}" class="btn btn-alt-primary me-1 btn-sm btn-cetak-sementara"><i class="fa fa-print text-info me-1"></i>Generate Report Sementara</a>
                 
-                @if ($detail->status =='0' and $user->role =='user')
+                @if ($detail->status =='0' and ($user->role =='user' or $user->role =='spv'))
                     <a class="btn btn-alt-primary me-1 btn-sm btn-send-approve"><i class="fa fa-arrow-alt-circle-right text-success me-1"></i>Send to Approve</a>
                 @endif
-                @if ($detail->status =='2' and $user->role =='user')
+                @if ($detail->status =='2' and ($user->role =='user' or $user->role =='spv'))
                     <a class="btn btn-alt-primary me-1 btn-sm btn-cancel-send"><i class="fa fa-arrow-alt-circle-right text-warning me-1"></i>Cancel Send to Approve</a>
                 @endif
                 @if (($detail->status =='2' or $detail->status =='0') and $user->role =='master')
@@ -1522,7 +1521,7 @@
                             <thead>
                                 <tr>
                                     <th>Judul</th>
-                                    <th>Ganbar</th>
+                                    <th>Gambar</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

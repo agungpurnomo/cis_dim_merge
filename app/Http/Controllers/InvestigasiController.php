@@ -38,7 +38,7 @@ class InvestigasiController extends Controller
     {
         $user_id = Auth::user();
 
-        if ($user_id->role =='master'){
+        if (($user_id->role =='master' or $user_id->role =='spv')){
             $data = DB::table('investigasis')
             ->join('asuransis','investigasis.asuransi_id','=','asuransis.id')
             ->join('investigators','investigasis.investigator_id','=','investigators.id')

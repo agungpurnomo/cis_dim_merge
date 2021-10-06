@@ -398,7 +398,7 @@
         <table style="margin-right: 55px; text-align: justify">
           <tr>
             <td valign="top"><?php echo $no++; ?>. </td>
-            <td>{{$val->update_investigasi}}. - tgl investigasi : {{$val->tanggal}}
+            <td>{{$val->update_investigasi}}
             </td>
           </tr>
         </table>
@@ -418,7 +418,7 @@
                     ?>
                         <td>
                           {{-- <img src="{{ public_path('lib_report/logo_head.png') }}" alt="">  --}}
-                          <p><img src="{{ public_path('media/photos/'.$picture) }}" alt="" style="width: 250; height: 200"><br/> </p>
+                          <p><img src="{{ public_path('storage/'.$picture) }}" alt="" style="width: 250; height: 200"><br/> </p>
                         </td>
                         <?php if ($con==2) { 
                           $con=0;
