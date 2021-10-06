@@ -440,7 +440,7 @@
 
 {{-- kepemilikan polis --}}
 
-<div  style="margin-top: 50px; font-family: Arial, Helvetica, sans-serif;">
+<div  class="page" style="margin-top: 50px; font-family: Arial, Helvetica, sans-serif;">
 
 <div class="border-dot">
   <div style="margin-top:30px;">
