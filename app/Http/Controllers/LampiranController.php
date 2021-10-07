@@ -34,7 +34,7 @@ class LampiranController extends Controller
             return DataTables::of($data)
             ->addIndexColumn()
             ->addColumn('gambar', function($row){
-                $foto_ls ='<img src="/media/lampiran/'.$row->path.'" width="300px">';
+                $foto_ls ='<img src="/storage/app/public/media/lampiran/'.$row->path.'" width="300px">';
                 return $foto_ls;
             })    
             ->addColumn('action', function($row){
@@ -78,7 +78,7 @@ class LampiranController extends Controller
 
         $details['path'] = time().'.'.$image->extension();
      
-        $destinationPath = public_path('/media/lampiran');
+        $destinationPath = storage_path('app/public/media/lampiran');
         $img = Image::make($image->path());
         $img->resize(1000, 1000, function ($constraint) {
             $constraint->aspectRatio();
