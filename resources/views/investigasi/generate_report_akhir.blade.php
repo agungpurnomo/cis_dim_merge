@@ -231,14 +231,14 @@
           <td>675765211982</td>
         </tr>
         <tr>
-          <td>UP Dasar</td>
+          <td>Uang Pertanggungan</td>
           <td> : </td>
-          <td>{{$detail->usia_polis}}</td>
+          <td>{{$detail->uang_pertanggungan}}</td>
         </tr>
         <tr>
           <td>Plan</td>
           <td> : </td>
-          <td>675765211982</td>
+          <td></td>
         </tr>
         <tr>
           <td>SPAJ</td>
@@ -258,7 +258,7 @@
         <tr>
           <td>Usia Polis</td>
           <td> : </td>
-          <td>675765211982</td>
+          <td>{{$detail->usia_polis}}</td>
         </tr>
         <tr>
           <td>Alamat</td>
@@ -272,7 +272,7 @@
       <h5><u> INFORMASI KLAIM </u></h5>
       <table>
         <tr>
-          <td>Tanggal Meningal</td>
+          <td>Tanggal Meninggal</td>
           <td> : </td>
           <td>{{$detail->tgl_meninggal}}</td>
         </tr>
@@ -294,12 +294,12 @@
         <tr>
           <td>Pengaju Klaim</td>
           <td> : </td>
-          <td>12 September 2021</td>
+          <td>{{$detail->tgl_registrasi}}</td>
         </tr>
         <tr>
           <td>Konologi Singkat</td>
           <td> : </td>
-          <td>12 September 2021</td>
+          <td>{{$detail->kronologi_singkat}}</td>
         </tr>
       </table>
     </td>

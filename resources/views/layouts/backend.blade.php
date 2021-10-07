@@ -6,8 +6,8 @@
 
         <title>Claim Investigation System - PT DIM</title>
 
-        <meta name="description" content="OneUI - Bootstrap 5 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
-        <meta name="author" content="pixelcave">
+        <meta name="description" content="agungapp">
+        <meta name="agung" content="agungp">
         <meta name="robots" content="noindex, nofollow">
 
         <!-- CSRF Token -->
@@ -183,10 +183,6 @@
                                     <i class="nav-main-link-icon si si-list"></i>
                                     <span class="nav-main-link-name">Investigasi</span>
                                 </a>
-                                <!-- <a class="nav-main-link" href="/home">
-                                    <i class="nav-main-link-icon si si-user"></i>
-                                    <span class="nav-main-link-name">Update Investigation</span>
-                                </a> -->
                             </li>
                             <li class="nav-main-item">
                                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
@@ -246,7 +242,7 @@
                                     <i class="nav-main-link-icon si si-users"></i>
                                     <span class="nav-main-link-name">User App</span>
                                 </a>
-                            </li>
+                            </li>                         
                             
 
                             <li class="nav-main-heading">More</li>

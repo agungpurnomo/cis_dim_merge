@@ -62,7 +62,6 @@ class LampiranController extends Controller
         $this->validate($request, [
             'judul' => 'required',
             'images' => 'required',
-            'keterangan' => 'required',
         ]);
 
         $details = [

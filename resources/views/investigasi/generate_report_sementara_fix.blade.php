@@ -33,7 +33,18 @@
       padding : 5px 5px 15px 15px;
     }
 
-  
+    .table-polis {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .td-polis, .th-polis {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
   
   
   </style>
@@ -196,23 +207,27 @@
           Kepemilikan  Asuransi Lain :
         </td>
       </tr>
-      <!-- <tr>
-        <td>
-          PRUDENTIAL : N
-        </td>
-        <td>
-          ALLIANZ : N
-        </td>
-        <td>
-          AIA FINANCIAL : N
-        </td>
-        <td>
-          MANULIFE : N
-        </td>
-        <td>
-          PANIN LIFE : N
-        </td>
-      </tr> -->
+      <table class="table-polis" style="font-size:14px;">
+      <tr>
+        <th class="th-polis">No</th>
+        <th class="th-polis">Perusahaan Asuransi</th>
+        <th class="th-polis">Issued Polis</th>
+        <th class="th-polis">Uang Pertanggungan</th>
+        <th class="th-polis">Klaim</th>
+        <th class="th-polis">Keputusan</th>
+      </tr>
+     
+      <tr>
+        <td class="td-polis"></td>
+        <td class="td-polis"></td>
+        <td class="td-polis"></td>
+        <td class="td-polis"></td>
+        <td class="td-polis"></td>
+        <td class="td-polis"></td>
+      </tr>
+    
+      </table>
+      
     </table>
 
     @if ($detail->informasi_lain==!'')
