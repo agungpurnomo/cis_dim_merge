@@ -110,10 +110,10 @@
        </tr>
     </table>
 </div> <br> <br>
-<table  style="margin-left: 70px;margin-right: 70px;margin-top:32px">
+<table  style="margin-top:32px">
   <tr valign="center">
     <td align="center">
-      <p style="font-size: 49px; font-weight: bold"> External <br> Investigasi </p> 
+      <p style="font-size: 49px; font-weight: bold; padding-left:20px;"> External <br> Investigasi </p> 
     </td>
     <td><?php echo str_repeat("&nbsp;",35);?></td>
     <td> 
@@ -482,7 +482,7 @@
 
 {{-- kepemilikan polis --}}
 
-<div  style="margin-top: 50px; font-family: Arial, Helvetica, sans-serif;">
+<!-- <div  style="margin-top: 50px; font-family: Arial, Helvetica, sans-serif;"> -->
 
 <div class="border-dot">
   <div style="margin-top:30px;">
@@ -557,7 +557,7 @@
   </div>
     <br>
 
-    <h4>REKOMENDASI KEPUTUSAN KLAIM</h4>
+  <h4>REKOMENDASI KEPUTUSAN KLAIM</h4>
   <?php $no=1; ?>
   <div class="border-dot">
     <p style="font-weight: bold;margin-bottom:3px;">
