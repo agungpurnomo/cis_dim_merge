@@ -44,7 +44,31 @@
     padding: 8px;
   }
 
+  div {
+  margin-bottom: 15px;
+  padding: 4px 12px;
+}
 
+.danger {
+  background-color: #ffdddd;
+  border-left: 35px solid #f44336;
+}
+
+.success {
+  background-color: #ddffdd;
+  border-left: 35px solid #04AA6D;
+}
+
+.info {
+  background-color: #e7f3fe;
+  border-left: 35px solid #2196F3;
+}
+
+
+.warning {
+  background-color: #ffffcc;
+  border-left: 35px solid #ffeb3b;
+}
 
 </style>
 
@@ -73,7 +97,7 @@
         <td>
           <b>Policy No. {{$detail->no_polis}}</b>
         </td>
-      </tr>
+        </tr>
       <tr align="center">
         <td>
           <b>Pemegang Polis : {{$detail->nm_pemegang_polis}}</b>
@@ -195,18 +219,35 @@
 {{-- page metode --}}
 {{-- <?php echo str_repeat("<br>",50);?> --}}
 <div class="page" style="margin-top: 50px; margin-left: 50px; margin-right: 50px; font-family: Arial, Helvetica, sans-serif;">
+  <table style="margin-left: 25px;">
+    <tr>
+      <td>
+        <img src="{{ public_path('lib_report/logo_head.png') }}" alt="">
+      </td>
+      <td>
+        <h2><?php echo str_repeat("&nbsp;",10);?>METODE INVESTIGASI</h2>
+      </td>
+    </tr>
+  </table>
+<!-- <img style="margin-top: 25px;" src="{{ public_path('lib_report/metode.png') }}"> -->
+  <div class="metode" style="margin-top:35px; padding-right:30px; padding-left:30px;">
+    <h2>Metode Investigasi</h2>
+    <div class="danger">
+      <p><strong></strong>Pemeriksaan Dokumen Klaim & Polis...</p>
+    </div>
 
-<table style="margin-left: 25px;">
-  <tr>
-    <td>
-      <img src="{{ public_path('lib_report/logo_head.png') }}" alt="">
-    </td>
-    <td>
-      <h2><?php echo str_repeat("&nbsp;",10);?>METODE INVESTIGASI</h2>
-    </td>
-  </tr>
-</table>
-<img style="margin-top: 25px;" src="{{ public_path('lib_report/metode.png') }}">
+    <div class="success">
+      <p><strong></strong>Tindak lanjut atas indikasi dari pemeriksaan dokumen klaim & polis...</p>
+    </div>
+
+    <div class="info">
+      <p><strong></strong>Pengecekan ke lapangan berkaitan dengan RS/Klinik, Instansi pemerintan, dll...</p>
+    </div>
+
+    <div class="warning">
+      <p><strong></strong>{{$detail->metode_investigasi}}</p>
+    </div>
+  </div>
 </div>
 {{-- end page metode --}}
 
