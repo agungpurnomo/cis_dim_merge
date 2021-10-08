@@ -92,7 +92,7 @@ Route::post('/upload', [App\Http\Controllers\UpdateInvestigasiController::class,
 Route::get('/viewimg/{id}', [App\Http\Controllers\UpdateInvestigasiController::class, 'viewImg'])->name('viewimg');
 Route::delete('/destroyimg/{id}', [App\Http\Controllers\UpdateInvestigasiController::class, 'destroyImg'])->name('destroyimg');
 
-Route::get('/investigasi/generate/', [App\Http\Controllers\InvestigasiController::class, 'generateAkhir'])->name('generateakhir');
+// Route::get('/investigasi/generate/', [App\Http\Controllers\InvestigasiController::class, 'generateAkhir'])->name('generateakhir');
 
 Route::get('/investigasi/generate/{id}', [App\Http\Controllers\InvestigasiController::class, 'generateAkhir']);
 

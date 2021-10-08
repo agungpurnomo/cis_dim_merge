@@ -458,8 +458,7 @@
                           $con = count($arr);  
                     ?>
                         <td>
-                          {{-- <img src="{{ public_path('lib_report/logo_head.png') }}" alt="">  --}}
-                          <p><img src="{{ public_path('storage/'.$picture) }}" alt="" style="width: 250; height: 200"><br/> </p>
+                          <p><img src="{{ public_path('storage/'.$picture) }}" alt="" style="width: 240; height: 190"><br/> </p>
                           <p align=center;>{{$res->judul}}</p>
                         </td>
                         <?php if ($con==2) { 
@@ -584,6 +583,13 @@
   <p style="font-weight:bold;font-style:italic; text-align:center;">(*setiap dokumen pendukung yang terdapat pada laporan dilampirkan disini
      dan satu dokumen untuk satu halaman)
   </p>
+  <?php $no=1;?>
+    @foreach ($lampiran as $key)
+      <div>
+        <p style="font-weight: bold"><?php echo $no++?>. {{$key->title}}</p>
+        <p><img src="{{ public_path('storage/'.{{$key->path}}.}}" alt=""></p>
+      </div>
+    @endforeach
 </div>
 {{--end lampiran--}}
 

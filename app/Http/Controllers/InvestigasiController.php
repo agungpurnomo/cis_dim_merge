@@ -531,10 +531,15 @@ class InvestigasiController extends Controller
                     ->select('polislains.*','asuransis.nm_perusahaan')
                     ->get();
 
+        $lampiran = DB::table('lampiran_fotos')
+                    ->where('investigasi_id',$id)
+                    ->select('*')
+                    ->get();
+
         
         $pdf = PDF::loadview('investigasi.generate_report',
                 compact('asuransi','detail','data','kategori','foto','rekomendasi',
-                        'kesimpulan','kategoriInvest','polislain','pendalaman'))
+                        'kesimpulan','kategoriInvest','polislain','pendalaman','lampiran'))
         ->setPaper('letter','potrait');
     	return $pdf->stream('laporan-investigasi-pdf');
     }
