@@ -110,7 +110,7 @@
     <td align ="" style="width: 150px;text-align: justify;">
       Kami mengucapkan terima kasih atas kepercayaan yang telah diberikan oleh <b> {{$detail->nm_perusahaan}} </b>
       kepada PT Deswa Invisco Multitama  (DIM) untuk melakukan  investigasi atas  
-      klaim – klaim asuransi yang terjadi, bersama dengan ini pula secara 
+      klaim &#45; klaim asuransi yang terjadi, bersama dengan ini pula secara 
        khusus kami menyampaikan laporan akhir hasil investigasi atas klaim 
        <b> No. Polis {{$detail->no_polis}} atas nama {{$detail->nm_pemegang_polis}}l </b>untuk dapat diterima dengan baik, 
        perlu kami sampaikan bahwa proses investigasi <b> kami lakukan 
@@ -125,7 +125,7 @@
       Kami berharap agar laporan akhir investigasi ini bisa menjadi dasar serta acuan dalam pengambilan 
       keputusan akhir klaim tersebut. 
       <br><br>	 
-      Jika ada informasi atau hal‐hal dalam laporan ini yang  masih perlu untuk dimintakan penjelasan 
+      Jika ada informasi atau hal &#45; hal dalam laporan ini yang  masih perlu untuk dimintakan penjelasan 
       lebih lanjut kami akan dengan senang hati membantu.  
       <br><br>
       Demikian informasi ini kami sampaikan, kami berharap  semoga kerjasama yang terjalin dengan 
@@ -337,7 +337,7 @@
 <table style="margin-right: 25px;">
   <tr>
     <td>
-      <b>DIM</b> melakukan  pengecekan pada dokumen klaim, pada Surat Penutupan Asuransi Jiwa (SPAJ) serta indikasi‐indikasi 
+      <b>DIM</b> melakukan  pengecekan pada dokumen klaim, pada Surat Penutupan Asuransi Jiwa (SPAJ) serta indikasi&#45;indikasi 
       lainnya maka ada beberapa hal yang perlu dibuktikan dalam investigasi di lapangan 
       nantinya : 
     </td>
@@ -348,13 +348,13 @@
         <td>1. </td>
         <td>
           Membuktikan bahwa benar Tertanggung membeli polis asuransi secara mandiri (sendiri) dan bukan  
-          “dipakai” sebagai perpanjangan tangan orang‐orang yang mencari keuntungan atas polis tersebut.
+          “dipakai” sebagai perpanjangan tangan orang&#45;orang yang mencari keuntungan atas polis tersebut.
         </td>
       </tr>
      <tr valign="top">
         <td>2. </td>
         <td>
-          Membuktikan kesesuaian antara informasi yang diberikan pada SPAJ serta fakta‐fakta yang ada dilapangan  
+          Membuktikan kesesuaian antara informasi yang diberikan pada SPAJ serta fakta&#45;fakta yang ada dilapangan  
           nantinya, terutama menyangkut penandatanganan SPAJ,financial background,dll. 
         </td>
       </tr>
@@ -419,6 +419,7 @@
                         <td>
                           {{-- <img src="{{ public_path('lib_report/logo_head.png') }}" alt="">  --}}
                           <p><img src="{{ public_path('storage/'.$picture) }}" alt="" style="width: 250; height: 200"><br/> </p>
+                          <p align=center;>{{$res->judul}}</p>
                         </td>
                         <?php if ($con==2) { 
                           $con=0;
