@@ -578,16 +578,19 @@
 {{-- End kesimpulan --}}
 
 {{-- lampiran --}}
-<div class="page" style="margin-top: 60px; margin-left: 50px; margin-right: 50px; font-family: Arial, Helvetica, sans-serif;">
-  <h2 style="text-align: center; margin-left : 30px">LAMPIRAN</h2>
-  <p style="font-weight:bold;font-style:italic; text-align:center;">(*setiap dokumen pendukung yang terdapat pada laporan dilampirkan disini
-     dan satu dokumen untuk satu halaman)
-  </p>
+
+<div style="page-break-inside: auto; page-break-before:auto; margin-top: 60px; margin-left: 0px; margin-right: 50px; font-family: Arial, Helvetica, sans-serif;">
+ 
   <?php $no=1;?>
+  
     @foreach ($lampiran as $key)
-      <div>
-        <p style="font-weight: bold"><?php echo $no++?>. {{$key->title}}</p>
-        <p><img src="{{ public_path('storage/'.{{$key->path}}.}}" alt=""></p>
+      <div class="page" style="margin-left: 0px; margin-bottom: 100px; margin-top: 50px">
+        <h2 style="text-align: center; margin-left : 30px;">LAMPIRAN <?php echo $no++?></h2>
+        <p style="font-weight: bold">{{$key->title}}</p>
+        <?php $data_img = $key->path;
+         $data_img_fix = public_path("storage/$data_img ");
+        ?>
+        <p><img style="width: 600px; height: 500px;" src="<?php echo $data_img_fix ?>" alt=""></p>
       </div>
     @endforeach
 </div>
