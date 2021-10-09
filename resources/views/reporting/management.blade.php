@@ -56,16 +56,19 @@
                         asuransi : asuransi},
                     },
                 columns: [
-                    {data: 'id', name: 'id',width: '5%'},
-                    {data: 'tot_kasus' , name: 'tot_kasus', width: '5%'},
-                    {data: 'tot_temuan', name: 'tot_temuan', width: '10%'},
-                    {data: 'tidak_ada_temuan', name: 'tidak_ada_temuan', width: '25%'},
-                    {data: 'agen', name: 'agen'},
-                    {data: 'insurance_shop', name: 'insurance_shop', width: '15%'},
-                    {data: 'uang_per', name: 'uang_per', width: '15%'},
-                    {data: 'uang_selamat', name: 'uang_selamat', width: '15%'},
+                    {data: 'DT_RowIndex', name: 'id',className: "text-center",width: '4%'},
+                    {data: 'tot_kasus' , name: 'tot_kasus',className: "text-center", width: '5%'},
+                    {data: 'tot_temuan', name: 'tot_temuan',className: "text-center", width: '10%'},
+                    {data: 'tidak_ada_temuan', name: 'tidak_ada_temuan',className: "text-center", width: '25%'},
+                    {data: 'agen', name: 'agen',className: "text-center"},
+                    {data: 'insurance_shop', name: 'insurance_shop',className: "text-center", width: '15%'},
+                    {data: 'uang_per', name: 'uang_per',className: "text-end", width: '15%',
+                        render: $.fn.dataTable.render.number( ',', '.', 2 )},
+                    {data: 'uang_selamat', name: 'uang_selamat',className: "text-end", width: '15%',
+                        render: $.fn.dataTable.render.number( ',', '.', 2 )},
                     
                 ],
+                
                 destroy: true,
                 dom: "<'row'<'col-sm-12'<'text-center bg-body-light py-2 mb-2'B>>>" +
                     "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>"

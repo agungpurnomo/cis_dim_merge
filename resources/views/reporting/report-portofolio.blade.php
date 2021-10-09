@@ -37,9 +37,11 @@
                 <img src="{{ public_path('lib_report/logo_head.png') }}">
               </td>
               <td><?php echo str_repeat("&nbsp;",25);?></td>
+              <?php $convertTgl1 = date('d-m-Y', strtotime($tgl1)); ?>
+              <?php $convertTgl2 = date('d-m-Y', strtotime($tgl2)); ?>
               <td align="center">
                 <h2 style="margin-bottom:5px;margin-top:35px;"> PORTOFOLIO CASE REPORT </h2>
-                    Periode : <b> <?php echo $tgl1;?> S/D  <?php echo $tgl2;?> </b><br>
+                    Periode : <b> <?php echo $convertTgl1;?> S/D  <?php echo $convertTgl2;?> </b><br>
                     Perusahaan : <b>{{$peru->nm_perusahaan}}</b> 
               </td>
               <td><?php echo str_repeat("&nbsp;",5);?></td>

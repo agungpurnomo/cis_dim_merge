@@ -13,11 +13,6 @@
     <!-- Page JS Plugins -->
     <script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/plugins/datatables-bs5/dataTables.bootstrap5.min.js') }}"></script>
-    <!-- <script src="{{ asset('js/plugins/datatables-buttons/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons/buttons.flash.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons/buttons.colVis.min.js') }}"></script> -->
 
     <!-- Page JS Code -->
     <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
@@ -85,8 +80,9 @@
                         <tr>
                             <td>{{$no}}</td>
                             <td class="text-center">
+                                <?php $convertTglreg = date('d-m-Y', strtotime($datas->tgl_registrasi)); ?>
                                 {{$datas->no_case}}
-                                {{$datas->tgl_registrasi}}
+                                {{$convertTglreg}}
                             </td>
                             <td>{{$datas->nm_tertanggung}}</td>
                             <td>{{$datas->nm_perusahaan}}</td>

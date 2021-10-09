@@ -33,10 +33,12 @@
               <td width="150px">
                 <img src="{{ public_path('lib_report/logo_head.png') }}">
               </td>
+              <?php $convertTgl1 = date('d-m-Y', strtotime($tgl1)); ?>
+              <?php $convertTgl2 = date('d-m-Y', strtotime($tgl2)); ?>
               <td><?php echo str_repeat("&nbsp;",25);?></td>
               <td align="center" style="padding-top:15px;">
                 <h2 style="margin-bottom:10px;margin-top:20px;"> PENDING INVESTIGASI REPORT </h2>
-                    Periode : <?php echo $tgl1;?> s.d  <?php echo $tgl2;?>
+                    Periode : <?php echo $convertTgl1;?> s.d  <?php echo $convertTgl2;?>
                     <br>
                     Perusahaan : {{$peru->nm_perusahaan}}
               </td>

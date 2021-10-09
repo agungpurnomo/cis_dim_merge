@@ -980,8 +980,9 @@
                                     <td class="fw fs-sm">{{$detail->no_case}}</td> 
                                 </tr>
                                 <tr>
+                                    <?php $convertTglreg = date('d-m-Y', strtotime($detail->tgl_registrasi)); ?>
                                     <td class="fw fs-sm">Tanggal Registrasi</td>
-                                    <td class="fw fs-sm">{{$detail->tgl_registrasi}}</td>
+                                    <td class="fw fs-sm">{{$convertTglreg}}</td>
                                 </tr>
                                 <tr>
                                     <td class="fw fs-sm">Nama Perusahaan</td>
@@ -1012,8 +1013,8 @@
                                 <td class="fw fs-sm">{{$detail->matauang}} @currency($detail->uang_pertanggungan)</td>
                                 </tr>
                                 <tr>
-                                <td class="fw fs-sm">Tanggal SPAJ</td>
-                                <td class="fw fs-sm">{{$detail->tgl_spaj}}</td>
+                                    <td class="fw fs-sm">Tanggal SPAJ</td>
+                                    <td class="fw fs-sm">{{$detail->tgl_spaj}}</td>
                                 </tr>
                                 <tr>
                                 <td class="fw fs-sm">Tgl Efektif Polis</td>
@@ -1081,6 +1082,10 @@
                                 <tr>
                                     <td class="fw fs-sm">Tgl Kirim Dokumen</td>
                                     <td class="fw fs-sm">{{$detail->tgl_kirim_dokumen}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw fs-sm">Keterlibatan Agen</td>
+                                    <td class="fw fs-sm">{{$detail->agen_terlibat}}</td>
                                 </tr>
                             </tbody>
                         </table>

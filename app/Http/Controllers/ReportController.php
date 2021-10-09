@@ -41,6 +41,7 @@ class ReportController extends Controller
                         ->join('jenis_claims','investigasis.jenisclaim_id','=','jenis_claims.id')
                         ->select('investigasis.*','investigators.*','jenis_claims.*')
                         ->where('asuransi_id',$request->asuransi)
+                        ->where('status','0')
                         ->whereBetween('tgl_registrasi', array($request->dr_tgl, $request->smp_tgl))
                         ->get();
             }else{
@@ -48,6 +49,7 @@ class ReportController extends Controller
             }
           
             return DataTables::of($data)
+                    ->addIndexColumn()
                     ->escapeColumns([])
                     ->make(true);
         }
@@ -105,6 +107,7 @@ class ReportController extends Controller
             }
           
             return DataTables::of($data)
+                    ->addIndexColumn()
                     ->escapeColumns([])
                     ->make(true);
         }
@@ -152,7 +155,7 @@ class ReportController extends Controller
                                 COUNT(i.id) as tot_kasus,
                                 COUNT(t.id) as tot_temuan,
                                 COUNT(i.asuransi_id) - COUNT(t.id) as tidak_ada_temuan,
-                                COUNT(i.nm_agen) as agen,
+                                COUNT(i.agen_terlibat='Terlibat') as agen,
                                 0 AS insurance_shop,
                                 SUM(i.uang_pertanggungan) as uang_per,
                                 SUM(u.nominal) as uang_selamat
@@ -167,6 +170,7 @@ class ReportController extends Controller
                 $data = [];
             }
             return DataTables::of($data)
+                    ->addIndexColumn()
                     ->escapeColumns([])
                     ->make(true);
         }
@@ -187,7 +191,7 @@ class ReportController extends Controller
                                     COUNT(i.id) as tot_kasus,
                                     COUNT(t.id) as tot_temuan,
                                     COUNT(i.asuransi_id) - COUNT(t.id) as tidak_ada_temuan,
-                                    COUNT(i.nm_agen) as agen,
+                                    COUNT(i.agen_terlibat='Terlibat') as agen,
                                     0 AS insurance_shop,
                                     SUM(i.uang_pertanggungan) as uang_per,
                                     SUM(u.nominal) as uang_selamat

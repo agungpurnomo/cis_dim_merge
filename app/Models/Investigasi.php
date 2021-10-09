@@ -14,7 +14,7 @@ class Investigasi extends Model
     'total_premi','tempat_meninggal','tgl_meninggal','diagnosa_utama','tgl_dirawat_dr','tgl_dirawat_smp',
     'jenisclaim_id','rumah_sakit','area_investigasi','provinsi','investigasi_fee','investigator_id',
     'informasi_lain','user_id','uang_pertanggungan','tgl_kirim_dokumen','tambahan_waktu',
-    'pengaju_klaim','kronologi_singkat','metode_investigasi','status'];
+    'pengaju_klaim','kronologi_singkat','metode_investigasi','status','agen_terlibat'];
 
     public function updateinvest(){
         return $this->hasMany(Updateinvestigasi::class);

@@ -36,8 +36,10 @@
               </td>
               <td><?php echo str_repeat("&nbsp;",25);?></td>
               <td align="center">
+              <?php $convertTgl1 = date('d-m-Y', strtotime($tgl1)); ?>
+              <?php $convertTgl2 = date('d-m-Y', strtotime($tgl2)); ?>
                 <h2 style="margin-bottom:10px;margin-top:30px;"> MANAGEMENT REPORT </h2>
-                    Periode : <b> <?php echo $tgl1;?> S/D  <?php echo $tgl2;?> </b><br>
+                    Periode : <?php echo $convertTgl1;?> S/D  <?php echo $convertTgl2;?><br>
                     Perusahaan : <b>{{$peru->nm_perusahaan}}</b> 
               </td>
               <td><?php echo str_repeat("&nbsp;",5);?></td>

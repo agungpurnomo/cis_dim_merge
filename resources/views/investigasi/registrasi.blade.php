@@ -420,6 +420,16 @@
                             <textarea class="form-control"  id="metode_investigasi" name="metode_investigasi" rows="3" placeholder="metode investigasi.."></textarea>
                             </div>
                         </div>
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label" for="agen_terlibat">Keterlibatan Agen</label>
+                            <div class="col-sm-8">
+                                <select class="form-select" id="agen_terlibat" name="agen_terlibat">
+                                    <option selected="">keterlibatan agen</option>
+                                    <option value="Tidak terlibat">Tidak terlibat</option>
+                                    <option value="Terlibat">Terlibat</option>
+                                </select>
+                            </div>
+                        </div>
                         
                     </div>
                 </div>

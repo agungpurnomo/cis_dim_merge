@@ -80,14 +80,16 @@ class InvestigasiController extends Controller
             return DataTables::of($data)
             ->addIndexColumn()        
                 ->addColumn('action', function($row){
-                    $btn = '<div class="btn-group"><a href="javascript:void(0)" id="'.$row->id.'" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled btn-upload" 
-                           data-bs-toggle="tooltip" title="Upload Foto"><i class="fa fa-fw fa-cloud-upload-alt"></i>';
-                    $btn .= '<a href="javascript:void(0)" id="'.$row->id.'" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled btn-imageview"
-                    data-bs-toggle="tooltip" title="View Foto"><i class="fa fa-fw fa-images"></i></a>';
-                    $btn .= '<a href="javascript:void(0)" id="'.$row->id.'" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled btn-edit"
-                           data-bs-toggle="tooltip" title="Edit"><i class="fa fa-fw fa-pencil-alt"></i></a>';
-                    $btn .= '<a href="javascript:void(0)" id="'.$row->id.'" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled btn-delete-update"
-                            data-bs-toggle="tooltip" title="Delete"><i class="fa fa-fw fa-times"></i></a></div>';
+                    $btn = '<div class="btn-group">
+                                <a href="javascript:void(0)" id="'.$row->id.'" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled btn-upload" 
+                                    data-bs-toggle="tooltip" title="Upload Foto"><i class="fa fa-fw fa-cloud-upload-alt"></i>
+                                <a href="javascript:void(0)" id="'.$row->id.'" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled btn-imageview"
+                                    data-bs-toggle="tooltip" title="View Foto"><i class="fa fa-fw fa-images"></i></a>
+                                <a href="javascript:void(0)" id="'.$row->id.'" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled btn-edit"
+                                    data-bs-toggle="tooltip" title="Edit"><i class="fa fa-fw fa-pencil-alt"></i></a>
+                                <a href="javascript:void(0)" id="'.$row->id.'" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled btn-delete-update"
+                                    data-bs-toggle="tooltip" title="Delete"><i class="fa fa-fw fa-times"></i></a>
+                            </div>';
                     return $btn;
             })
             ->escapeColumns([])

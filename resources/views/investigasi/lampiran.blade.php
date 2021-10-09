@@ -191,9 +191,9 @@
         <!-- Dynamic Table with Export Buttons -->
         <div class="block block-rounded">
             <div class="block-header block-header-default">
-                <h3 class="block-title">
-                    Lampiran Investigasi
-                </h3>
+                <a href="javascript:history.back()" class="btn btn-alt-primary btn-sm">
+                    <i class="fa fa-arrow-alt-circle-left text-info me-1"></i>Kembali
+                </a>
                 <button type="button" type="button" class="btn btn-alt-primary  btn-sm" data-bs-toggle="modal" data-bs-target="#modal-upload">
                     <i class="fa fa-plus text-info me-1"></i>Add Lampiran
                 </button>  
