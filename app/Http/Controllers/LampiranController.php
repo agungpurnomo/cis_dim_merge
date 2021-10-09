@@ -77,11 +77,11 @@ class LampiranController extends Controller
 
         $details['path'] = time().'.'.$image->extension();
      
-        $destinationPath = public_path('/storage');
+        // $destinationPath = public_path('/storage');
         $img = Image::make($image->path());
         $img->resize(1000, 1000, function ($constraint) {
             $constraint->aspectRatio();
-        })->save($destinationPath.'/'.$details['path']);
+        })->save('storage'.'/'.$details['path']);
    
         
         $ext_lamp =   LampiranFoto::updateOrCreate(['id' => $id_lampiran], $details);

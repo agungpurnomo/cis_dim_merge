@@ -61,7 +61,7 @@ class UpdateInvestigasiController extends Controller
                      {
                          $file      = $request->file('images'.$x);
       
-                         $path = $file->store('public/media');
+                        //  $path = $file->store('public/media');
                          $name = $file->getClientOriginalName();
                          $filename=$file->getClientOriginalName().time().'.'.$file->getClientOriginalExtension();
                         //  $file->move(public_path() . '/media/photos/', $filename);
