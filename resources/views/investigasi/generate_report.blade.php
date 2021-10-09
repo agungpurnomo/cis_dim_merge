@@ -587,10 +587,8 @@
       <div class="page" style="margin-left: 0px; margin-bottom: 100px; margin-top: 50px">
         <h2 style="text-align: center; margin-left : 30px;">LAMPIRAN <?php echo $no++?></h2>
         <p style="font-weight: bold">{{$key->title}}</p>
-        <?php $data_img = $key->path;
-         $data_img_fix = public_path("storage/$data_img ");
-        ?>
-        <p><img style="width: 600px; height: 500px;" src="<?php echo $data_img_fix ?>" alt=""></p>
+        <?php $data_img = $key->path;?>
+        <p><img style="width: 600px; height: 500px;" src="{{ public_path('storage/'.$data_img) }}" alt=""></p>
       </div>
     @endforeach
 </div>
