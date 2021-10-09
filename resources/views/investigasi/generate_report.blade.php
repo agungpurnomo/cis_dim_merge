@@ -432,7 +432,7 @@
 
 @foreach ($kategori as $item)
 <?php $no=1; ?>
-<div class="border-dot" style="margin-top:30px;">
+<div class="border-dot" style="margin-top:30px; page-break-inside: auto; page-break-after: auto;">
 <p style="font-weight: bold;margin-bottom: 1px;">{{$item->kategori_investigasi}}</p>
   @foreach ($data as $val)
     <?php if ($item->id == $val->kategoriinvestigasi_id) { ?>
@@ -443,34 +443,43 @@
             </td>
           </tr>
         </table>
-       
-            <table>
-              <?php  
-                $arr = [];
-                $con = 0;
-              ?>
-              <tr style="width:300px">
-                {{$val->investigasi_id}}
-                  @foreach ($foto as $res)
-                    <?php if ($val->id_upin == $res->updateinvestigasi_id) { 
-                          $picture = $res->path;
-                          array_push($arr,$res->path);
-                          $con = count($arr);  
+            <div style="page-break-inside: auto;">
+              <table style="page-break-after: auto;">
+                
+                 
+                  {{-- {{$val->investigasi_id}} --}}
+                   <?php  
+                      $con = 1;
                     ?>
-                        <td>
-                          <p><img src="{{ public_path('storage/'.$picture) }}" alt="" style="width: 240; height: 190"><br/> </p>
-                          <p align=center;>{{$res->judul}}</p>
-                        </td>
-                        <?php if ($con==2) { 
-                          $con=0;
-                        ?>
-                          </tr>
-                        <?php } ?>
+                     <tr style="width:300px; page-break-inside:avoid; page-break-after:auto">
+                    @foreach ($foto as $res)
+                    
+                   
+                      <?php if ($val->id_upin == $res->updateinvestigasi_id) { 
+                            $picture = $res->path;
+                      ?>
+                     
                       
-                      <?php } ?>
-                  @endforeach
-                </tr>
-            </table>
+                          <td>
+                            <p><img src="{{ public_path('storage/'.$picture) }}" alt="" style="width: 230; height: 170"></p>
+                            <p align=center;>{{$res->judul}}</p>
+                          
+                          </td>
+                          <?php if ($con/2 == 1  ) { 
+                              $con = 0;
+                           ?>
+                          
+                            </tr>
+                            <tr>
+                          <?php   }  ?>
+                        
+                        <?php $con++;}  ?>
+                           
+                       
+                    @endforeach
+                  </tr>
+              </table>
+            </div>
    <?php }?>
   @endforeach
 </div>
